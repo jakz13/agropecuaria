@@ -40,5 +40,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Manejar estado activo de los enlaces del navbar
+    document.addEventListener('DOMContentLoaded', function() {
+        function actualizarEnlaceActivo() {
+            const enlaces = document.querySelectorAll('.navbar-moderna .nav-link');
+            const paginaActual = window.location.pathname.split('/').pop() || 'index.html';
+
+            enlaces.forEach(enlace => {
+                const href = enlace.getAttribute('href');
+                if (href === paginaActual) {
+                    enlace.classList.add('active');
+                } else {
+                    enlace.classList.remove('active');
+                }
+            });
+        }
+
+        // Actualizar al cargar y al cambiar de página
+        actualizarEnlaceActivo();
+
+        // También actualizar cuando se hace clic en un enlace
+        document.querySelectorAll('.navbar-moderna .nav-link').forEach(enlace => {
+            enlace.addEventListener('click', function() {
+                document.querySelectorAll('.navbar-moderna .nav-link').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+    });
+
     window.addEventListener('scroll', resaltarEnlaceActivo);
 });
