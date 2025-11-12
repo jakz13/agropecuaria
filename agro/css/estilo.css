@@ -29,6 +29,10 @@ body {
     padding: 20px;
 }
 
+.navbar {
+    background: linear-gradient(90deg, #2c3e50 0%, #4a6572 30%, #ecf0f1 70%, #ffffff 100%) !important;
+}
+
 .navbar-brand img {
     max-height: 50px;
 }

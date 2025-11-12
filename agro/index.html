@@ -9,74 +9,32 @@
     <link rel="stylesheet" href="css/animaciones.css">
 </head>
 <body>
-<!-- Barra de navegación -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="index.html">
-            <img src="complementos/logos/logo-empresa.png" alt="Logo Empresa" height="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="productos-servicios.html">Productos y Servicios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="responsabilidad-social.html">Responsabilidad Social</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="nosotros.html">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="historia.html">Historia</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contacto</a>
-                </li>
-            </ul>
-            <div class="d-flex">
-                <a href="acceso-cliente.html" class="btn btn-outline-primary">Acceso Cliente</a>
-            </div>
-        </div>
-    </div>
-</nav>
+<!-- Barra de navegación incluida -->
+<div id="BarraNavegacion"></div>
 
 <!-- Contenido principal -->
 <main>
-    <!-- Sección Hero con carrusel -->
+    <!-- Sección Hero con carrusel fullscreen -->
     <section id="hero" class="hero-section">
-        <div id="carruselHero" class="carousel slide" data-bs-ride="carousel">
+        <div id="carruselHero" class="carousel slide carousel-fade" data-bs-ride="carousel">
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="0" class="active"></button>
                 <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="1"></button>
                 <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="3"></button>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="complementos/imagenes/hero1.jpg" class="d-block w-100" alt="Productos agroinsumos">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>110 años fomentando el agro</h2>
-                        <p>Fomento de todos</p>
-                    </div>
+                    <img src="data:image/jpeg;base64,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" class="d-block w-100" alt="Nuestros productos agroinsumos">
                 </div>
                 <div class="carousel-item">
-                    <img src="complementos/imagenes/hero2.jpg" class="d-block w-100" alt="Servicio veterinario">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>Servicio veterinario especializado</h2>
-                        <p>Cuidamos de tu ganado</p>
-                    </div>
+                    <img src="https://img.freepik.com/foto-gratis/campo-cultivado-al-atardecer_1232-860.jpg?semt=ais_hybrid&w=740&q=80" class="d-block w-100" alt="Servicio veterinario especializado">
                 </div>
                 <div class="carousel-item">
-                    <img src="complementos/imagenes/hero3.jpg" class="d-block w-100" alt="Raciones">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h2>Raciones de calidad</h2>
-                        <p>Nutrición optimizada para tu producción</p>
-                    </div>
+                    <img src="https://compo-expert.com/sites/default/files/2019-12/title-image-field-crops.jpg" class="d-block w-100" alt="Raciones de calidad">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://static.weg.net/medias/images/he0/hfc/SILOS.jpg" class="d-block w-100" alt="Nuestro equipo de trabajo">
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carruselHero" data-bs-slide="prev">
@@ -92,9 +50,10 @@
     <section id="bienvenida" class="py-5">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto text-center">
-                    <h1 class="mb-4">Bienvenidos a nuestra empresa</h1>
-                    <p class="lead">Con más de 110 años de experiencia, somos líderes en el sector de agroinsumos, ofreciendo productos y servicios de calidad para potenciar tu producción agropecuaria.</p>
+                <div class="col-lg-10 mx-auto text-center">
+                    <h1 class="mb-4" data-aniversario>110 años fomentando el agro</h1>
+                    <p class="lead slogan">"Fomento de todos"</p>
+                    <p class="mt-4">Con más de un siglo de experiencia, somos líderes en el sector de agroinsumos, ofreciendo productos y servicios de calidad para potenciar tu producción agropecuaria.</p>
                     <p>Nos especializamos en la distribución de insumos agrícolas, servicio veterinario profesional y elaboración de raciones balanceadas para todo tipo de ganado.</p>
                 </div>
             </div>
