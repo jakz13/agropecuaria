@@ -1,0 +1,95 @@
+:root {
+    --color-primario: #ffffff;
+    --color-secundario: #145bab;
+    --color-detalle: #00291F;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    padding-top: 76px; /* Para compensar la navbar fija */
+}
+
+.hero-section {
+    margin-top: -76px; /* Para que el carrusel quede debajo de la navbar */
+}
+
+.hero-section .carousel-item {
+    height: 70vh;
+    min-height: 400px;
+}
+
+.hero-section .carousel-item img {
+    object-fit: cover;
+    height: 100%;
+}
+
+.hero-section .carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.navbar-brand img {
+    max-height: 50px;
+}
+
+.navbar-nav .nav-link {
+    color: var(--color-secundario) !important;
+    font-weight: 500;
+    margin: 0 5px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--color-detalle) !important;
+}
+
+.btn-outline-primary {
+    border-color: var(--color-secundario);
+    color: var(--color-secundario);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E;
+    color: white;
+}
+
+section {
+    scroll-margin-top: 80px; /* Para que al hacer scroll, la sección no quede oculta tras la navbar fija */
+}
+
+.bg-primary {
+    background-color: var(--color-secundario) !important;
+}
