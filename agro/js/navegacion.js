@@ -1,35 +1,20 @@
 // Navegación suave entre secciones y manejo del navbar
 document.addEventListener('DOMContentLoaded', function() {
-    const enlacesNavegacion = document.querySelectorAll('a.nav-link');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-
     // Cerrar navbar en móvil al hacer clic en un enlace
-    enlacesNavegacion.forEach(enlace => {
-        enlace.addEventListener('click', function(e) {
-            // Cerrar navbar en dispositivos móviles
-            if (window.innerWidth < 992) {
-                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                    toggle: false
-                });
-                bsCollapse.hide();
-            }
-
-            // Navegación suave para enlaces internos
-            if(this.getAttribute('href').startsWith('#')) {
-                e.preventDefault();
-                const destino = document.querySelector(this.getAttribute('href'));
-                if(destino) {
-                    const offsetTop = destino.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth < 992) {
+            const target = e.target;
+            if (target.classList.contains('nav-link') || target.classList.contains('btn-acceso')) {
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                    bsCollapse.hide();
                 }
             }
-        });
+        }
     });
 
-    // Manejar estado activo de los enlaces del navbar
+    // Manejar estado activo de los enlaces
     function actualizarEnlaceActivo() {
         const enlaces = document.querySelectorAll('.navbar-moderna .nav-link');
         const paginaActual = window.location.pathname.split('/').pop() || 'index.html';
@@ -44,8 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Actualizar al cargar y al cambiar de página
+    // Actualizar enlace activo
     actualizarEnlaceActivo();
+    });
+
 
     // También actualizar cuando se hace clic en un enlace
     document.querySelectorAll('.navbar-moderna .nav-link').forEach(enlace => {
@@ -63,4 +50,3 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
         }
     });
-});
