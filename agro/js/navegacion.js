@@ -1,16 +1,27 @@
-// Navegación suave entre secciones
+// Navegación suave entre secciones y manejo del navbar
 document.addEventListener('DOMContentLoaded', function() {
     const enlacesNavegacion = document.querySelectorAll('a.nav-link');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
 
+    // Cerrar navbar en móvil al hacer clic en un enlace
     enlacesNavegacion.forEach(enlace => {
         enlace.addEventListener('click', function(e) {
-            // Solo aplica a enlaces que apuntan a secciones dentro de la misma página
+            // Cerrar navbar en dispositivos móviles
+            if (window.innerWidth < 992) {
+                const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+                    toggle: false
+                });
+                bsCollapse.hide();
+            }
+
+            // Navegación suave para enlaces internos
             if(this.getAttribute('href').startsWith('#')) {
                 e.preventDefault();
                 const destino = document.querySelector(this.getAttribute('href'));
                 if(destino) {
+                    const offsetTop = destino.offsetTop - 80;
                     window.scrollTo({
-                        top: destino.offsetTop - 80,
+                        top: offsetTop,
                         behavior: 'smooth'
                     });
                 }
@@ -18,57 +29,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Resaltar enlace activo en la navegación
-    function resaltarEnlaceActivo() {
-        const secciones = document.querySelectorAll('section');
-        const enlaces = document.querySelectorAll('.navbar-nav .nav-link');
-
-        let seccionActiva = '';
-
-        secciones.forEach(seccion => {
-            const rect = seccion.getBoundingClientRect();
-            if(rect.top <= 100 && rect.bottom >= 100) {
-                seccionActiva = seccion.getAttribute('id');
-            }
-        });
+    // Manejar estado activo de los enlaces del navbar
+    function actualizarEnlaceActivo() {
+        const enlaces = document.querySelectorAll('.navbar-moderna .nav-link');
+        const paginaActual = window.location.pathname.split('/').pop() || 'index.html';
 
         enlaces.forEach(enlace => {
-            enlace.classList.remove('active');
-            if(enlace.getAttribute('href') === `#${seccionActiva}`) {
+            const href = enlace.getAttribute('href');
+            if (href === paginaActual) {
                 enlace.classList.add('active');
+            } else {
+                enlace.classList.remove('active');
             }
         });
     }
 
-    // Manejar estado activo de los enlaces del navbar
-    document.addEventListener('DOMContentLoaded', function() {
-        function actualizarEnlaceActivo() {
-            const enlaces = document.querySelectorAll('.navbar-moderna .nav-link');
-            const paginaActual = window.location.pathname.split('/').pop() || 'index.html';
+    // Actualizar al cargar y al cambiar de página
+    actualizarEnlaceActivo();
 
-            enlaces.forEach(enlace => {
-                const href = enlace.getAttribute('href');
-                if (href === paginaActual) {
-                    enlace.classList.add('active');
-                } else {
-                    enlace.classList.remove('active');
-                }
+    // También actualizar cuando se hace clic en un enlace
+    document.querySelectorAll('.navbar-moderna .nav-link').forEach(enlace => {
+        enlace.addEventListener('click', function() {
+            document.querySelectorAll('.navbar-moderna .nav-link').forEach(nav => {
+                nav.classList.remove('active');
             });
-        }
-
-        // Actualizar al cargar y al cambiar de página
-        actualizarEnlaceActivo();
-
-        // También actualizar cuando se hace clic en un enlace
-        document.querySelectorAll('.navbar-moderna .nav-link').forEach(enlace => {
-            enlace.addEventListener('click', function() {
-                document.querySelectorAll('.navbar-moderna .nav-link').forEach(nav => {
-                    nav.classList.remove('active');
-                });
-                this.classList.add('active');
-            });
+            this.classList.add('active');
         });
     });
 
-    window.addEventListener('scroll', resaltarEnlaceActivo);
+    // Prevenir que el navbar se cierre al hacer clic dentro de él en móviles
+    document.querySelector('.navbar-collapse').addEventListener('click', function(e) {
+        if (window.innerWidth < 992) {
+            e.stopPropagation();
+        }
+    });
 });
