@@ -1,0 +1,377 @@
+/* Nuevo archivo: estilo-moderno.css */
+:root {
+    --color-primario: #ffffff;
+    --color-secundario: #145bab;
+    --color-azul-oscuro: #0a2d4d;
+    --color-azul-medio: #1c6bb8;
+    --color-azul-claro: #e3f2fd;
+    --color-gris-oscuro: #2c3e50;
+    --color-gris-medio: #546e7a;
+    --color-gris-claro: #f5f7fa;
+    --color-verde-agro: #27ae60;
+    --color-dorado: #f39c12;
+    --navbar-height: 0px;
+}
+
+/* Reset y fondo general */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: var(--color-gris-oscuro);
+    min-height: 100vh;
+}
+
+/* Hero Section Moderna */
+.hero-section {
+    background: linear-gradient(135deg,
+    var(--color-azul-oscuro) 0%,
+    var(--color-secundario) 50%,
+    var(--color-azul-medio) 100%);
+    color: white;
+    padding: 160px 0 100px;
+    margin-top: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+            radial-gradient(circle at 20% 80%, rgba(39, 174, 96, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(243, 156, 18, 0.1) 0%, transparent 50%);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-section .lead {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
+
+/* Secciones con diseño moderno */
+section {
+    padding: 80px 0;
+    position: relative;
+}
+
+section:nth-child(even):not(.hero-section):not(.bg-light):not(.bg-primary) {
+    background: linear-gradient(135deg, #ffffff 0%, var(--color-gris-claro) 100%);
+}
+
+section:nth-child(odd):not(.hero-section):not(.bg-light):not(.bg-primary) {
+    background: white;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Tarjetas con diseño glassmorphism */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+    var(--color-secundario),
+    var(--color-verde-agro));
+}
+
+.card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.card img {
+    transition: transform 0.4s ease;
+    border-radius: 0;
+}
+
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Encabezados modernos */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-azul-oscuro);
+}
+
+.section-title {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    background: linear-gradient(135deg, var(--color-azul-oscuro), var(--color-secundario));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg,
+    var(--color-secundario),
+    var(--color-verde-agro));
+    border-radius: 2px;
+}
+
+/* Botones modernos con efecto 3D */
+.btn-modern {
+    background: linear-gradient(135deg,
+    var(--color-secundario) 0%,
+    var(--color-azul-medio) 100%);
+    border: none;
+    border-radius: 50px;
+    padding: 15px 40px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow:
+            0 10px 20px rgba(20, 91, 171, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent);
+    transition: left 0.5s;
+}
+
+.btn-modern:hover::before {
+    left: 100%;
+}
+
+.btn-modern:hover {
+    transform: translateY(-3px);
+    box-shadow:
+            0 15px 30px rgba(20, 91, 171, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: linear-gradient(135deg,
+    var(--color-azul-medio) 0%,
+    var(--color-secundario) 100%);
+}
+
+.btn-modern-secondary {
+    background: transparent;
+    border: 2px solid var(--color-secundario);
+    color: var(--color-secundario);
+    box-shadow: none;
+}
+
+.btn-modern-secondary:hover {
+    background: var(--color-secundario);
+    color: white;
+}
+
+/* Iconos modernos */
+.card-icon {
+    font-size: 3.5rem;
+    color: var(--color-secundario);
+    margin: 2rem 0;
+    background: linear-gradient(135deg, var(--color-azul-claro), white);
+    padding: 25px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+            0 8px 20px rgba(20, 91, 171, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-icon {
+    transform: scale(1.1) rotate(5deg);
+    background: linear-gradient(135deg, white, var(--color-azul-claro));
+}
+
+/* Listas mejoradas */
+.producto-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.producto-lista li {
+    padding: 12px 0;
+    padding-left: 2.5rem;
+    position: relative;
+    color: var(--color-gris-oscuro);
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.producto-lista li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-verde-agro);
+    font-weight: bold;
+    background: rgba(39, 174, 96, 0.1);
+    padding: 8px 12px;
+    border-radius: 50%;
+    border: 2px solid var(--color-verde-agro);
+}
+
+/* Footer moderno */
+footer {
+    background: linear-gradient(135deg,
+    var(--color-gris-oscuro) 0%,
+    #1a202c 100%);
+    color: white;
+    padding: 4rem 0 2rem;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+    var(--color-secundario),
+    var(--color-verde-agro));
+}
+
+/* Animaciones */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card, .producto-item, .servicio-item {
+    animation: slideInUp 0.8s ease-out;
+}
+
+/* Efectos de partículas para hero */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Mejoras responsivas */
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 140px 0 80px;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .card {
+        margin-bottom: 2rem;
+    }
+
+    .btn-modern {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Utilidades */
+.text-gradient {
+    background: linear-gradient(135deg, var(--color-secundario), var(--color-verde-agro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.border-gradient {
+    border: 2px solid;
+    border-image: linear-gradient(135deg, var(--color-secundario), var(--color-verde-agro)) 1;
+}
+
+.shadow-soft {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}

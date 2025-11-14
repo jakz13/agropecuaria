@@ -3,6 +3,9 @@
     --color-secundario: #145bab;
     --color-detalle: #00291F;
     --navbar-height: 0px; /* se establece desde JS */
+    /* Variables añadidas para evitar errores por referencias a colores inexistentes */
+    --color-azul-oscuro: #0a3a66; /* tono oscuro de azul para títulos y acentos */
+    --color-gris-medio: #6c757d;  /* gris medio para subtítulos y textos secundarios */
 }
 
 
