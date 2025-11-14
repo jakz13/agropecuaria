@@ -74,141 +74,219 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // CARRUSEL DE CATEGORÍAS - VERSIÓN CON EFECTO "GIRAR" SUAVE
+    // CARRUSEL DE CATEGORÍAS - VERSIÓN LINEAL CON requestAnimationFrame
     function inicializarCarruselCategorias() {
-        const items = document.querySelectorAll('.cat-item');
-        if (items.length === 0) return;
+        const contenedorCarrusel = document.querySelector('.cat-carousel');
+        const elementos = document.querySelectorAll('.cat-item');
+        if (elementos.length === 0) return;
 
-        let current = 0;
-        let autoRotate = true;
-        let rotationInterval;
-        let isAnimating = false;
+        let indiceActual = 0;
+        let estaAnimando = false;
+        let rotacionAutomatica = true;
+        let intervaloRotacion;
+        let toqueInicioX = 0;
+        let toqueFinX = 0;
 
-        // Función para calcular índices circularmente
-        function getCircularIndex(index, total) {
-            return (index + total) % total;
-        }
+        // Configuración inicial
+        function inicializarCarrusel() {
+            // Mostrar solo los primeros 3 elementos
+            elementos.forEach((elemento, indice) => {
+                if (indice < 3) {
+                    elemento.style.display = 'block';
+                    elemento.classList.remove('active', 'prev', 'next');
 
-        // Función para actualizar el carrusel con animaciones mejoradas
-        function updateCarousel(direction = 1) {
-            if (isAnimating) return;
-            isAnimating = true;
-
-            const total = items.length;
-            const prevIndex = getCircularIndex(current - 1, total);
-            const nextIndex = getCircularIndex(current + 1, total);
-
-            // Aplicar efecto de salida suave primero
-            items.forEach(item => {
-                item.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                    if (indice === 0) elemento.classList.add('prev');
+                    if (indice === 1) elemento.classList.add('active');
+                    if (indice === 2) elemento.classList.add('next');
+                } else {
+                    elemento.style.display = 'none';
+                }
             });
 
-            // Pequeño delay para que el navegador procese los cambios
-            setTimeout(() => {
-                // Remover clases anteriores
-                items.forEach(item => {
-                    item.classList.remove('active', 'prev', 'next');
+            // Forzar reflow para asegurar transiciones
+            contenedorCarrusel.offsetHeight;
+        }
+
+        // Función de easing para suavidad
+        function easingEntradaSalida(t) {
+            return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        }
+
+        // Animación suave usando requestAnimationFrame
+        function animarTransicion(direccion) {
+            return new Promise((resolver) => {
+                if (estaAnimando) return resolver();
+                estaAnimando = true;
+
+                const duracion = 600;
+                const tiempoInicio = performance.now();
+                const elementosVisibles = Array.from(elementos).filter(elemento => elemento.style.display !== 'none');
+
+                function animar(tiempoActual) {
+                    const tiempoTranscurrido = tiempoActual - tiempoInicio;
+                    const progreso = Math.min(tiempoTranscurrido / duracion, 1);
+
+                    // Aplicar easing para suavidad
+                    const progresoSuavizado = easingEntradaSalida(progreso);
+
+                    // Aplicar transformación según dirección
+                    elementosVisibles.forEach((elemento) => {
+                        if (direccion === 1) {
+                            // Movimiento hacia izquierda
+                            elemento.style.transform = `translateX(${-progresoSuavizado * 100}%)`;
+                        } else {
+                            // Movimiento hacia derecha
+                            elemento.style.transform = `translateX(${progresoSuavizado * 100}%)`;
+                        }
+                    });
+
+                    if (progreso < 1) {
+                        requestAnimationFrame(animar);
+                    } else {
+                        // Animación completada
+                        finalizarTransicion(direccion);
+                        estaAnimando = false;
+                        resolver();
+                    }
+                }
+
+                requestAnimationFrame(animar);
+            });
+        }
+
+        // Finalizar transición y actualizar visibilidad
+        function finalizarTransicion(direccion) {
+            // Calcular nuevo índice
+            if (direccion === 1) {
+                indiceActual = (indiceActual + 1) % elementos.length;
+            } else {
+                indiceActual = (indiceActual - 1 + elementos.length) % elementos.length;
+            }
+
+            // Ocultar todos primero
+            elementos.forEach(elemento => {
+                elemento.style.display = 'none';
+                elemento.style.transform = 'translateX(0)';
+                elemento.classList.remove('active', 'prev', 'next');
+            });
+
+            // Mostrar nuevos 3 elementos
+            const indices = [
+                (indiceActual - 1 + elementos.length) % elementos.length,
+                indiceActual,
+                (indiceActual + 1) % elementos.length
+            ];
+
+            indices.forEach((indice, posicion) => {
+                const elemento = elementos[indice];
+                elemento.style.display = 'block';
+
+                if (posicion === 0) elemento.classList.add('prev');
+                if (posicion === 1) elemento.classList.add('active');
+                if (posicion === 2) elemento.classList.add('next');
+            });
+
+            // Forzar reflow
+            contenedorCarrusel.offsetHeight;
+        }
+
+        // Navegación principal
+        async function navegar(direccion) {
+            if (estaAnimando) return;
+
+            await animarTransicion(direccion);
+            reiniciarRotacionAutomatica();
+        }
+
+        // Rotación automática
+        function iniciarRotacionAutomatica() {
+            intervaloRotacion = setInterval(() => {
+                if (rotacionAutomatica && !estaAnimando) {
+                    navegar(1);
+                }
+            }, 5000);
+        }
+
+        function reiniciarRotacionAutomatica() {
+            clearInterval(intervaloRotacion);
+            if (rotacionAutomatica) {
+                iniciarRotacionAutomatica();
+            }
+        }
+
+        // Configurar event listeners
+        function configurarEventos() {
+            const botonSiguiente = document.getElementById("cat-next");
+            const botonAnterior = document.getElementById("cat-prev");
+
+            if (botonSiguiente) {
+                botonSiguiente.addEventListener("click", () => navegar(1));
+            }
+
+            if (botonAnterior) {
+                botonAnterior.addEventListener("click", () => navegar(-1));
+            }
+
+            // Control de hover
+            if (contenedorCarrusel) {
+                contenedorCarrusel.addEventListener('mouseenter', () => {
+                    rotacionAutomatica = false;
+                    clearInterval(intervaloRotacion);
                 });
 
-                // Aplicar nuevas clases con efecto de "girar"
-                items[prevIndex].classList.add('prev');
-                items[current].classList.add('active');
-                items[nextIndex].classList.add('next');
+                contenedorCarrusel.addEventListener('mouseleave', () => {
+                    rotacionAutomatica = true;
+                    iniciarRotacionAutomatica();
+                });
+            }
 
-                // Permitir siguiente animación después de que termine la transición
+            // Configurar eventos táctiles
+            configurarEventosTactiles();
+        }
+
+        // Eventos táctiles para móvil
+        function configurarEventosTactiles() {
+            if (!contenedorCarrusel) return;
+
+            contenedorCarrusel.addEventListener('touchstart', (e) => {
+                toqueInicioX = e.changedTouches[0].screenX;
+                rotacionAutomatica = false;
+                clearInterval(intervaloRotacion);
+            }, { passive: true });
+
+            contenedorCarrusel.addEventListener('touchend', (e) => {
+                toqueFinX = e.changedTouches[0].screenX;
+                manejarDeslizamiento();
+
+                // Reanudar auto-rotación después de un tiempo
                 setTimeout(() => {
-                    isAnimating = false;
-                }, 800); // Coincide con la duración de la transición CSS
-            }, 50);
+                    rotacionAutomatica = true;
+                    iniciarRotacionAutomatica();
+                }, 3000);
+            }, { passive: true });
         }
 
-        // Navegación mejorada
-        function navigate(direction) {
-            if (isAnimating) return;
+        function manejarDeslizamiento() {
+            const umbralDeslizamiento = 50;
+            const diferencia = toqueInicioX - toqueFinX;
 
-            current = getCircularIndex(current + direction, items.length);
-            updateCarousel(direction);
-            resetAutoRotation();
-        }
-
-        // Event listeners con feedback táctil mejorado
-        const nextBtn = document.getElementById("cat-next");
-        const prevBtn = document.getElementById("cat-prev");
-
-        if (nextBtn) {
-            nextBtn.addEventListener("click", () => navigate(1));
-            // Efecto de click en las flechas
-            nextBtn.addEventListener('mousedown', () => nextBtn.style.transform = 'translateY(-50%) scale(0.95)');
-            nextBtn.addEventListener('mouseup', () => nextBtn.style.transform = 'translateY(-50%) scale(1.1)');
-        }
-
-        if (prevBtn) {
-            prevBtn.addEventListener("click", () => navigate(-1));
-            // Efecto de click en las flechas
-            prevBtn.addEventListener('mousedown', () => prevBtn.style.transform = 'translateY(-50%) scale(0.95)');
-            prevBtn.addEventListener('mouseup', () => prevBtn.style.transform = 'translateY(-50%) scale(1.1)');
-        }
-
-        // Rotación automática mejorada
-        function startAutoRotation() {
-            rotationInterval = setInterval(() => {
-                if (autoRotate && !isAnimating) {
-                    navigate(1);
-                }
-            }, 5000); // Mantener 5 segundos
-        }
-
-        function resetAutoRotation() {
-            clearInterval(rotationInterval);
-            startAutoRotation();
-        }
-
-        // Control de hover mejorado
-        const carouselContainer = document.querySelector('.cat-carousel');
-        if (carouselContainer) {
-            carouselContainer.addEventListener('mouseenter', () => {
-                autoRotate = false;
-                // Pausar sutilmente la rotación
-                clearInterval(rotationInterval);
-            });
-
-            carouselContainer.addEventListener('mouseleave', () => {
-                autoRotate = true;
-                // Reanudar después de un pequeño delay
-                setTimeout(startAutoRotation, 1000);
-            });
-        }
-
-        // Inicializar
-        startAutoRotation();
-        updateCarousel();
-
-        // Soporte para touch devices
-        let touchStartX = 0;
-        let touchEndX = 0;
-
-        if (carouselContainer) {
-            carouselContainer.addEventListener('touchstart', e => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            carouselContainer.addEventListener('touchend', e => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
-            });
-        }
-
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const difference = touchStartX - touchEndX;
-
-            if (Math.abs(difference) > swipeThreshold) {
-                if (difference > 0) {
-                    navigate(1); // Swipe izquierda -> siguiente
+            if (Math.abs(diferencia) > umbralDeslizamiento) {
+                if (diferencia > 0) {
+                    navegar(1); // Deslizar izquierda -> siguiente
                 } else {
-                    navigate(-1); // Swipe derecha -> anterior
+                    navegar(-1); // Deslizar derecha -> anterior
                 }
             }
         }
+
+        // Inicialización
+        function iniciar() {
+            inicializarCarrusel();
+            configurarEventos();
+            iniciarRotacionAutomatica();
+        }
+        
+        iniciar();
     }
 
     // Inicialización principal

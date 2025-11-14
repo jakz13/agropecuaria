@@ -873,3 +873,103 @@ section {
         border-width: 1px;
     }
 }
+
+.cat-item {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+/* Estados base */
+.cat-item.prev {
+    opacity: 0.6;
+    transform: translateX(-100%) scale(0.9);
+}
+
+.cat-item.active {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 3;
+}
+
+.cat-item.next {
+    opacity: 0.6;
+    transform: translateX(100%) scale(0.9);
+}
+
+/* Animaciones para transiciones suaves */
+@keyframes deslizarDesdeDerecha {
+    from {
+        opacity: 0;
+        transform: translateX(100%) scale(0.95);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateX(100%) scale(0.9);
+    }
+}
+
+@keyframes deslizarDesdeIzquierda {
+    from {
+        opacity: 0;
+        transform: translateX(-100%) scale(0.95);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateX(-100%) scale(0.9);
+    }
+}
+
+@keyframes deslizarAlCentro {
+    from {
+        opacity: 0.6;
+        transform: translateX(0) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Efectos hover mejorados */
+.cat-item:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.cat-item.active:hover {
+    transform: translateY(-5px) scale(1.07);
+}
+
+/* Transición suave para el overlay */
+.cat-item .cat-overlay {
+    transition: all 0.4s ease;
+}
+
+/* Animación de pulso sutil para la tarjeta activa */
+@keyframes pulsoSutil {
+    0%, 100% {
+        box-shadow: 0 12px 35px rgba(20, 91, 171, 0.3);
+    }
+    50% {
+        box-shadow: 0 15px 45px rgba(20, 91, 171, 0.5);
+    }
+}
+
+.cat-item.active {
+    animation: pulsoSutil 4s ease-in-out infinite;
+}
+
+/* Mejoras para móviles */
+@media (max-width: 768px) {
+    .cat-item {
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .cat-item.prev,
+    .cat-item.next {
+        opacity: 0.4;
+    }
+}

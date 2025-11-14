@@ -167,3 +167,78 @@
     transform: translateY(-50%) scale(1.15);
     box-shadow: 0 8px 25px rgba(20, 91, 171, 0.5);
 }
+
+.cat-carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.cat-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Para escritorio - mostrar 3 tarjetas */
+@media (min-width: 769px) {
+    .cat-carousel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        overflow: visible;
+    }
+
+    .cat-item {
+        position: relative;
+        width: 28%;
+        height: 400px;
+    }
+
+    .cat-item.prev {
+        transform: translateX(-100%) scale(0.9);
+    }
+
+    .cat-item.active {
+        transform: translateX(0) scale(1.05);
+    }
+
+    .cat-item.next {
+        transform: translateX(100%) scale(0.9);
+    }
+}
+
+/* Para móviles - una sola tarjeta */
+@media (max-width: 768px) {
+    .cat-carousel {
+        height: 350px;
+    }
+
+    .cat-item {
+        width: 85%;
+        left: 7.5%;
+        height: 300px;
+    }
+
+    .cat-item.prev {
+        transform: translateX(-120%) scale(0.8);
+        opacity: 0.3;
+    }
+
+    .cat-item.active {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+
+    .cat-item.next {
+        transform: translateX(120%) scale(0.8);
+        opacity: 0.3;
+    }
+
+    /* Ocultar flechas en móvil si prefieres gestos táctiles */
+    .cat-arrow {
+        display: none;
+    }
+}
