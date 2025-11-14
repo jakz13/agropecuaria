@@ -14,41 +14,29 @@
     <link rel="stylesheet" href="css/animaciones.css">
 </head>
 <body>
-<<div id="BarraNavegacion"></div>
+<div id="BarraNavegacion"></div>
+
 <!-- Contenido principal -->
 <main>
-    <!-- Sección Hero con carrusel fullscreen -->
+    <!-- Sección Hero con SOLO video -->
     <section id="hero" class="hero-section">
-        <div id="carruselHero" class="carousel slide carousel-fade" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="2"></button>
-                <button type="button" data-bs-target="#carruselHero" data-bs-slide-to="3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <video class="d-block w-100" autoplay muted loop playsinline>
-                        <source src="complementos/videos/videoPromocional.mp4" type="video/mp4">
-                        Tu navegador no soporta el elemento video.
-                    </video>
-                </div>
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                </div>
-                <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carruselHero" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carruselHero" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
+
+        <!-- Overlay oscuro -->
+        <div class="hero-overlay"></div>
+
+        <!-- Texto central tipo "Build With Confidence" -->
+        <div class="hero-content text-center">
+            <h1 class="hero-title">Fomentamos tu crecimiento</h1>
+            <p class="hero-subtitle">Impulsamos tu producción agropecuaria con calidad y confianza</p>
+            <a href="#contacto-preview" class="btn btn-primary btn-lg hero-btn">Contáctanos</a>
+        </div>
+
+        <!-- Video único en el hero -->
+        <div class="video-hero">
+            <video class="w-100" autoplay muted loop playsinline>
+                <source src="complementos/videos/videoPromocional.mp4" type="video/mp4">
+                Tu navegador no soporta el elemento video.
+            </video>
         </div>
     </section>
 
@@ -62,6 +50,45 @@
                     <p class="mt-4">Con más de un siglo de experiencia, somos líderes en el sector de agroinsumos, ofreciendo productos y servicios de calidad para potenciar tu producción agropecuaria.</p>
                     <p>Nos especializamos en la distribución de insumos agrícolas, servicio veterinario profesional y elaboración de raciones balanceadas para todo tipo de ganado.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Carrusel Entre Bienvenida y Servicios -->
+    <section id="seccion-carrusel-montana">
+        <div class="overlay-azul"></div>
+
+        <div class="contenido-carrusel text-center">
+            <h2 class="titulo-carrusel">Nuestro Compromiso en Imágenes</h2>
+
+            <!-- Carrusel reubicado aquí -->
+            <div id="carruselImagenes" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carruselImagenes" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#carruselImagenes" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carruselImagenes" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#carruselImagenes" data-bs-slide-to="3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" class="d-block w-100" alt="Nuestras instalaciones">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a" class="d-block w-100" alt="Equipo de trabajo">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a" class="d-block w-100" alt="Procesos de calidad">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=8a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a" class="d-block w-100" alt="Tecnología avanzada">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carruselImagenes" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carruselImagenes" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
             </div>
         </div>
     </section>

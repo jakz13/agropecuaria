@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Calcular años de la empresa
     function calcularAniosEmpresa() {
-        const anioFundacion = 1913;
+        const anioFundacion = 1915;
         return new Date().getFullYear() - anioFundacion;
     }
 

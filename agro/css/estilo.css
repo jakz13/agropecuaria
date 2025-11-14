@@ -455,3 +455,253 @@ section {
         transform: translateY(0);
     }
 }
+
+/* Codigo para la parte superior de la pagina inicial */
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+/* Capa oscura encima del video */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+}
+
+/* Texto centrado */
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    color: white;
+    text-align: center;
+    width: 90%;
+    max-width: 900px;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 700;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-family: 'Open Sans', sans-serif;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* Botón estilo profesional */
+.hero-btn {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    background: var(--color-secundario);
+    border: 2px solid var(--color-secundario);
+    transition: all 0.3s ease;
+}
+
+.hero-btn:hover {
+    background: transparent;
+    border-color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,255,255,0.2);
+}
+
+/* Video en el hero */
+.video-hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.video-hero video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección Carrusel con fondo tipo montañas */
+#seccion-carrusel-montana {
+    position: relative;
+    background-image: url("https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1200&auto=format&fit=crop");
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: white;
+    z-index: 1;
+}
+
+/* Sombra azulada */
+#seccion-carrusel-montana .overlay-azul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(20, 91, 171, 0.7); /* azul de tu marca con transparencia */
+    backdrop-filter: brightness(0.8);
+    z-index: -1;
+}
+
+/* Contenido del carrusel */
+#seccion-carrusel-montana .contenido-carrusel {
+    position: relative;
+    z-index: 2;
+}
+
+#seccion-carrusel-montana .titulo-carrusel {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    margin-bottom: 3rem;
+}
+
+/* Estilos del carrusel en la sección montañas */
+#seccion-carrusel-montana .carousel {
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+#seccion-carrusel-montana .carousel-inner {
+    border-radius: 15px;
+}
+
+#seccion-carrusel-montana .carousel-item {
+    height: 500px;
+}
+
+#seccion-carrusel-montana .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Indicadores del carrusel */
+#seccion-carrusel-montana .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 8px;
+    background-color: rgba(255,255,255,0.5);
+    border: 2px solid transparent;
+}
+
+#seccion-carrusel-montana .carousel-indicators .active {
+    background-color: white;
+    border-color: var(--color-secundario);
+}
+
+/* Controles del carrusel */
+#seccion-carrusel-montana .carousel-control-prev,
+#seccion-carrusel-montana .carousel-control-next {
+    width: 60px;
+    height: 60px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+#seccion-carrusel-montana .carousel-control-prev:hover,
+#seccion-carrusel-montana .carousel-control-next:hover {
+    background: rgba(255,255,255,0.3);
+    border-color: rgba(255,255,255,0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-btn {
+        font-size: 1.1rem;
+        padding: 10px 24px;
+    }
+
+    #seccion-carrusel-montana .titulo-carrusel {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    #seccion-carrusel-montana .carousel-item {
+        height: 400px;
+    }
+
+    #seccion-carrusel-montana .carousel-control-prev,
+    #seccion-carrusel-montana .carousel-control-next {
+        width: 50px;
+        height: 50px;
+        margin: 0 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .hero-content {
+        width: 95%;
+    }
+
+    #seccion-carrusel-montana {
+        padding: 60px 0;
+    }
+
+    #seccion-carrusel-montana .titulo-carrusel {
+        font-size: 1.6rem;
+        letter-spacing: 0.5px;
+    }
+
+    #seccion-carrusel-montana .carousel-item {
+        height: 300px;
+    }
+
+    #seccion-carrusel-montana .carousel-control-prev,
+    #seccion-carrusel-montana .carousel-control-next {
+        width: 40px;
+        height: 40px;
+    }
+
+    #seccion-carrusel-montana .carousel-indicators button {
+        width: 8px;
+        height: 8px;
+        margin: 0 4px;
+    }
+}
