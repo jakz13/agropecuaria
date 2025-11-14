@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
         boton.addEventListener('click', () => console.log('Usuario hizo clic en WhatsApp'));
     }
 
-    // CARRUSEL DE CATEGORÍAS - VERSIÓN CON ANIMACIONES SUAVES
+    // CARRUSEL DE CATEGORÍAS - VERSIÓN CON EFECTO "GIRAR" SUAVE
     function inicializarCarruselCategorias() {
         const items = document.querySelectorAll('.cat-item');
         if (items.length === 0) return;
@@ -88,8 +88,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return (index + total) % total;
         }
 
-        // Función para actualizar el carrusel con animaciones
-        function updateCarousel() {
+        // Función para actualizar el carrusel con animaciones mejoradas
+        function updateCarousel(direction = 1) {
             if (isAnimating) return;
             isAnimating = true;
 
@@ -97,47 +97,64 @@ document.addEventListener('DOMContentLoaded', function () {
             const prevIndex = getCircularIndex(current - 1, total);
             const nextIndex = getCircularIndex(current + 1, total);
 
-            // Ocultar todas primero
+            // Aplicar efecto de salida suave primero
             items.forEach(item => {
-                item.classList.remove('active', 'prev', 'next');
+                item.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             });
 
-            // Aplicar clases con pequeño delay para animación
+            // Pequeño delay para que el navegador procese los cambios
             setTimeout(() => {
+                // Remover clases anteriores
+                items.forEach(item => {
+                    item.classList.remove('active', 'prev', 'next');
+                });
+
+                // Aplicar nuevas clases con efecto de "girar"
                 items[prevIndex].classList.add('prev');
                 items[current].classList.add('active');
                 items[nextIndex].classList.add('next');
 
-                // Permitir siguiente animación
+                // Permitir siguiente animación después de que termine la transición
                 setTimeout(() => {
                     isAnimating = false;
-                }, 600);
+                }, 800); // Coincide con la duración de la transición CSS
             }, 50);
         }
 
-        // Navegación con throttling
+        // Navegación mejorada
         function navigate(direction) {
             if (isAnimating) return;
 
             current = getCircularIndex(current + direction, items.length);
-            updateCarousel();
+            updateCarousel(direction);
             resetAutoRotation();
         }
 
-        // Event listeners
+        // Event listeners con feedback táctil mejorado
         const nextBtn = document.getElementById("cat-next");
         const prevBtn = document.getElementById("cat-prev");
 
-        if (nextBtn) nextBtn.addEventListener("click", () => navigate(1));
-        if (prevBtn) prevBtn.addEventListener("click", () => navigate(-1));
+        if (nextBtn) {
+            nextBtn.addEventListener("click", () => navigate(1));
+            // Efecto de click en las flechas
+            nextBtn.addEventListener('mousedown', () => nextBtn.style.transform = 'translateY(-50%) scale(0.95)');
+            nextBtn.addEventListener('mouseup', () => nextBtn.style.transform = 'translateY(-50%) scale(1.1)');
+        }
 
-        // Rotación automática
+        if (prevBtn) {
+            prevBtn.addEventListener("click", () => navigate(-1));
+            // Efecto de click en las flechas
+            prevBtn.addEventListener('mousedown', () => prevBtn.style.transform = 'translateY(-50%) scale(0.95)');
+            prevBtn.addEventListener('mouseup', () => prevBtn.style.transform = 'translateY(-50%) scale(1.1)');
+        }
+
+        // Rotación automática mejorada
         function startAutoRotation() {
             rotationInterval = setInterval(() => {
                 if (autoRotate && !isAnimating) {
                     navigate(1);
                 }
-            }, 5000);
+            }, 5000); // Mantener 5 segundos
         }
 
         function resetAutoRotation() {
@@ -145,19 +162,53 @@ document.addEventListener('DOMContentLoaded', function () {
             startAutoRotation();
         }
 
-        // Control de hover
-        items.forEach(item => {
-            item.addEventListener('mouseenter', () => {
+        // Control de hover mejorado
+        const carouselContainer = document.querySelector('.cat-carousel');
+        if (carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => {
                 autoRotate = false;
+                // Pausar sutilmente la rotación
+                clearInterval(rotationInterval);
             });
 
-            item.addEventListener('mouseleave', () => {
+            carouselContainer.addEventListener('mouseleave', () => {
                 autoRotate = true;
+                // Reanudar después de un pequeño delay
+                setTimeout(startAutoRotation, 1000);
             });
-        });
+        }
 
+        // Inicializar
         startAutoRotation();
         updateCarousel();
+
+        // Soporte para touch devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        if (carouselContainer) {
+            carouselContainer.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            carouselContainer.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+        }
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const difference = touchStartX - touchEndX;
+
+            if (Math.abs(difference) > swipeThreshold) {
+                if (difference > 0) {
+                    navigate(1); // Swipe izquierda -> siguiente
+                } else {
+                    navigate(-1); // Swipe derecha -> anterior
+                }
+            }
+        }
     }
 
     // Inicialización principal
