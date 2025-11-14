@@ -55,3 +55,116 @@
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* ANIMACIONES MEJORADAS PARA EL CARRUSEL DE CATEGORÍAS */
+
+/* Animación de entrada para las tarjetas del carrusel */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px) scale(0.9);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px) scale(0.9);
+    }
+    to {
+        opacity: 0.6;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes scaleToActive {
+    from {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* Aplicar animaciones a las tarjetas */
+.cat-item.prev {
+    animation: slideInFromLeft 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.cat-item.next {
+    animation: slideInFromRight 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.cat-item.active {
+    animation: scaleToActive 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+/* Animación suave para el cambio de overlay */
+.cat-item .cat-overlay {
+    transition: all 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Efecto de parallax sutil en las imágenes */
+.cat-item img {
+    transition: transform 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.cat-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Animación para el título de sección */
+.section-title {
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.section-subtitle {
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de pulso sutil para la tarjeta activa */
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 0 12px 35px rgba(20, 91, 171, 0.3);
+    }
+    50% {
+        box-shadow: 0 12px 45px rgba(20, 91, 171, 0.4);
+    }
+}
+
+.cat-item.active {
+    animation:
+            scaleToActive 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards,
+            subtlePulse 3s ease-in-out infinite;
+}
+
+/* Transición mejorada para los botones de flecha */
+.cat-arrow {
+    transition: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Efecto de desvanecimiento suave entre transiciones */
+.cat-carousel {
+    perspective: 1000px;
+}
+
+.cat-item {
+    transform-style: preserve-3d;
+}

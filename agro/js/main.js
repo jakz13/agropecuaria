@@ -73,6 +73,93 @@ document.addEventListener('DOMContentLoaded', function () {
         boton.addEventListener('click', () => console.log('Usuario hizo clic en WhatsApp'));
     }
 
+    // CARRUSEL DE CATEGORÍAS - VERSIÓN CON ANIMACIONES SUAVES
+    function inicializarCarruselCategorias() {
+        const items = document.querySelectorAll('.cat-item');
+        if (items.length === 0) return;
+
+        let current = 0;
+        let autoRotate = true;
+        let rotationInterval;
+        let isAnimating = false;
+
+        // Función para calcular índices circularmente
+        function getCircularIndex(index, total) {
+            return (index + total) % total;
+        }
+
+        // Función para actualizar el carrusel con animaciones
+        function updateCarousel() {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            const total = items.length;
+            const prevIndex = getCircularIndex(current - 1, total);
+            const nextIndex = getCircularIndex(current + 1, total);
+
+            // Ocultar todas primero
+            items.forEach(item => {
+                item.classList.remove('active', 'prev', 'next');
+            });
+
+            // Aplicar clases con pequeño delay para animación
+            setTimeout(() => {
+                items[prevIndex].classList.add('prev');
+                items[current].classList.add('active');
+                items[nextIndex].classList.add('next');
+
+                // Permitir siguiente animación
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 600);
+            }, 50);
+        }
+
+        // Navegación con throttling
+        function navigate(direction) {
+            if (isAnimating) return;
+
+            current = getCircularIndex(current + direction, items.length);
+            updateCarousel();
+            resetAutoRotation();
+        }
+
+        // Event listeners
+        const nextBtn = document.getElementById("cat-next");
+        const prevBtn = document.getElementById("cat-prev");
+
+        if (nextBtn) nextBtn.addEventListener("click", () => navigate(1));
+        if (prevBtn) prevBtn.addEventListener("click", () => navigate(-1));
+
+        // Rotación automática
+        function startAutoRotation() {
+            rotationInterval = setInterval(() => {
+                if (autoRotate && !isAnimating) {
+                    navigate(1);
+                }
+            }, 5000);
+        }
+
+        function resetAutoRotation() {
+            clearInterval(rotationInterval);
+            startAutoRotation();
+        }
+
+        // Control de hover
+        items.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                autoRotate = false;
+            });
+
+            item.addEventListener('mouseleave', () => {
+                autoRotate = true;
+            });
+        });
+
+        startAutoRotation();
+        updateCarousel();
+    }
+
     // Inicialización principal
     cargarNavbar();
 
@@ -84,6 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     inicializarCarrusel();
+    inicializarCarruselCategorias(); // ← AQUÍ SE INICIALIZA EL NUEVO CARRUSEL
     actualizarAniversario();
     configurarWhatsApp();
 

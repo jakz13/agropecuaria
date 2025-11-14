@@ -18,16 +18,16 @@
 
 <!-- Contenido principal -->
 <main>
-    <!-- Sección Hero con SOLO video -->
+    <!-- Sección Hero con el video -->
     <section id="hero" class="hero-section">
 
         <!-- Overlay oscuro -->
         <div class="hero-overlay"></div>
 
-        <!-- Texto central tipo "Build With Confidence" -->
+        <!-- Texto central -->
         <div class="hero-content text-center">
-            <h1 class="hero-title">Fomentamos tu crecimiento</h1>
-            <p class="hero-subtitle">Impulsamos tu producción agropecuaria con calidad y confianza</p>
+            <h1 class="hero-title">Fomento de todos</h1>
+            <p class="hero-subtitle">Por más de un siglo construimos relaciones sólidas con quienes trabajan la tierra. Estamos aquí para acompañarte con agroinsumos de calidad y asesoramiento cercano.</p>
             <a href="#contacto-preview" class="btn btn-primary btn-lg hero-btn">Contáctanos</a>
         </div>
 
@@ -45,10 +45,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto text-center">
-                    <h1 class="mb-4" data-aniversario>110 años fomentando el agro</h1>
-                    <p class="lead slogan">"Fomento de todos"</p>
-                    <p class="mt-4">Con más de un siglo de experiencia, somos líderes en el sector de agroinsumos, ofreciendo productos y servicios de calidad para potenciar tu producción agropecuaria.</p>
-                    <p>Nos especializamos en la distribución de insumos agrícolas, servicio veterinario profesional y elaboración de raciones balanceadas para todo tipo de ganado.</p>
+                    <h1 class="mb-4" data-aniversario>110 años al servicio del productor</h1>
+                    <p class="lead slogan"></p>  <!-- Por ahora vacio -->
+                    <p class="mt-4">A lo largo de nuestra trayectoria hemos construido una relación de confianza ofreciendo insumos agrícolas de calidad, asistencia veterinaria especializada y raciones balanceadas adaptadas a las necesidades de cada sistema productivo.
+                        Nuestro compromiso es brindarte soluciones que acompañen tu labor en el día a día.</p>
                 </div>
             </div>
         </div>
@@ -77,39 +77,69 @@
         </div>
     </section>
 
-    <!-- Servicios destacados -->
-    <section id="servicios" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">Nuestros Servicios</h2>
-            <div class="row">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center">
-                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Raciones</h5>
-                            <p class="card-text">Elaboramos raciones balanceadas de alta calidad nutricional para maximizar el rendimiento de tu ganado.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center">
-                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Servicio Veterinario</h5>
-                            <p class="card-text">Contamos con profesionales especializados en salud animal para prevenir y tratar enfermedades.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 text-center">
-                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Agroinsumos</h5>
-                            <p class="card-text">Distribuimos una amplia gama de productos para optimizar tu producción agrícola y ganadera.</p>
-                        </div>
-                    </div>
+    <!-- Carrusel de Categorías -->
+    <section id="carrusel-categorias" class="py-5 bg-light">
+        <div class="container position-relative">
+
+            <!-- Flecha Izquierda -->
+            <button id="cat-prev" class="cat-arrow left">
+                &#10094;
+            </button>
+
+            <!-- Título de la sección -->
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Nuestros Servicios</h2>
+                    <p class="section-subtitle">Soluciones integrales para tu producción agropecuaria</p>
                 </div>
             </div>
+
+            <!-- Carrusel -->
+            <div class="cat-carousel d-flex justify-content-center align-items-center">
+
+                <div class="cat-item active">
+                    <img src="https://images.unsplash.com/photo-1589923188651-268a35c11f0a?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Raciones y Alimentación">
+                    <div class="cat-overlay">
+                        <h3>Raciones y Alimentación</h3>
+                        <p class="cat-description">Elaboramos raciones balanceadas de alta calidad nutricional</p>
+                        <a href="productos-servicios.html" class="btn btn-cat">Ver más</a>
+                    </div>
+                </div>
+
+                <div class="cat-item">
+                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Agroinsumos">
+                    <div class="cat-overlay">
+                        <h3>Agroinsumos</h3>
+                        <p class="cat-description">Amplia gama de productos para optimizar tu producción</p>
+                        <a href="productos-servicios.html" class="btn btn-cat">Ver más</a>
+                    </div>
+                </div>
+
+                <div class="cat-item">
+                    <img src="https://images.unsplash.com/photo-1574943320219-553eb213f72d?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3" alt="Servicio Veterinario">
+                    <div class="cat-overlay">
+                        <h3>Servicio Veterinario</h3>
+                        <p class="cat-description">Profesionales especializados en salud animal</p>
+                        <a href="productos-servicios.html" class="btn btn-cat">Ver más</a>
+                    </div>
+                </div>
+
+                <div class="cat-item">
+                    <img src="complementos/pruebas/caballo.jpg" alt="Asesoramiento Técnico">
+                    <div class="cat-overlay">
+                        <h3>Asesoramiento Técnico</h3>
+                        <p class="cat-description">Asesoramiento especializado para maximizar tu producción</p>
+                        <a href="productos-servicios.html" class="btn btn-cat">Ver más</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Flecha Derecha -->
+            <button id="cat-next" class="cat-arrow right">
+                &#10095;
+            </button>
+
         </div>
     </section>
 
