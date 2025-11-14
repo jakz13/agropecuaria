@@ -286,3 +286,172 @@ section {
     background-color: #128C7E;
     color: white;
 }
+
+
+.hero-section-productos {
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    padding: 120px 0 80px;
+    margin-top: 0;
+}
+
+/* Títulos de sección */
+.section-title {
+    color: var(--color-secundario);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--color-detalle);
+}
+
+.section-subtitle {
+    color: var(--color-gris-medio);
+    font-size: 1.1rem;
+}
+
+/* Estilos para productos */
+.producto-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: aparecer 0.6s ease forwards;
+}
+
+.producto-titulo {
+    color: var(--color-secundario);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.producto-descripcion {
+    color: var(--color-gris-medio);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.producto-lista {
+    list-style: none;
+    padding: 0;
+}
+
+.producto-lista li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--color-azul-oscuro);
+}
+
+.producto-lista li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-secundario);
+    font-weight: bold;
+}
+
+/* Estilos para servicios */
+.servicio-item {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: aparecer 0.6s ease forwards;
+}
+
+.servicio-item:nth-child(1) { animation-delay: 0.1s; }
+.servicio-item:nth-child(2) { animation-delay: 0.2s; }
+.servicio-item:nth-child(3) { animation-delay: 0.3s; }
+.servicio-item:nth-child(4) { animation-delay: 0.4s; }
+.servicio-item:nth-child(5) { animation-delay: 0.5s; }
+.servicio-item:nth-child(6) { animation-delay: 0.6s; }
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--color-secundario);
+    margin: 1.5rem 0;
+}
+
+.servicio-caracteristicas {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.servicio-caracteristicas li {
+    padding: 0.3rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--color-gris-medio);
+}
+
+.servicio-caracteristicas li::before {
+    content: '•';
+    position: absolute;
+    left: 0.5rem;
+    color: var(--color-secundario);
+    font-weight: bold;
+}
+
+/* Estilos para beneficios */
+.beneficio-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: aparecer 0.5s ease forwards;
+}
+
+.beneficio-item:nth-child(1) { animation-delay: 0.1s; }
+.beneficio-item:nth-child(2) { animation-delay: 0.2s; }
+.beneficio-item:nth-child(3) { animation-delay: 0.3s; }
+.beneficio-item:nth-child(4) { animation-delay: 0.4s; }
+
+.beneficio-icon {
+    font-size: 2.5rem;
+    color: var(--color-secundario);
+    margin-bottom: 1rem;
+}
+
+.beneficio-item h5 {
+    color: var(--color-azul-oscuro);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.beneficio-item p {
+    color: var(--color-gris-medio);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section-productos {
+        padding: 100px 0 60px;
+    }
+
+    .producto-item,
+    .producto-item.flex-md-row-reverse {
+        text-align: center;
+    }
+
+    .producto-item .col-md-6:first-child {
+        margin-bottom: 2rem;
+    }
+
+    .servicio-caracteristicas {
+        text-align: center;
+    }
+}
+
+/* Animaciones mejoradas */
+@keyframes aparecer {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
