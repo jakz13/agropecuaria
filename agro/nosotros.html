@@ -19,14 +19,32 @@
 
 <!-- Contenido principal -->
 <main>
-    <!-- Hero Section Nosotros -->
-    <section id="hero-nosotros" class="hero-section-nosotros">
-        <div class="container">
-            <div class="row align-items-center min-vh-100">
-                <div class="col-lg-8 mx-auto text-center text-white">
-                    <h1 class="display-4 mb-4">¿Quienés Somos?</h1>
-                    <p class="lead mb-5">Más de un siglo cultivando confianza y crecimiento en el sector agropecuario</p>
+    <!-- Sección con imagen de fondo antes del Hero - USANDO TUS ESTILOS EXISTENTES -->
+    <section id="seccion-imagen-equipo" class="seccion-con-fondo">
+        <div class="overlay-azul"></div>
+
+        <!-- Imagen de fondo fija (sin carrusel) -->
+        <div class="imagen-fondo-fija">
+            <img src="complementos/imagenes/equipo.jpg" class="w-100" alt="Nuestro equipo de trabajo">
+        </div>
+
+        <!-- Contenido superpuesto -->
+        <div class="contenido-carrusel">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto text-center text-white">
+                        <h2 class="titulo-carrusel mb-4">¿Quiénes Somos?</h2>
+                        <p class="lead subtitulo-carrusel">Más de un siglo cultivando confianza y crecimiento en el sector agropecuario</p>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section Nosotros -->
+    <section id="hero-nosotros" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
             </div>
         </div>
     </section>
@@ -91,7 +109,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card instalacion-card border-0 shadow-sm h-100">
-                        <img src="complementos/imagenes/instalacion-plantas.jpg" class="card-img-top" alt="Plantas de Producción">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top" alt="Plantas de Producción">
                         <div class="card-body">
                             <h5 class="card-title">Plantas de Producción</h5>
                             <p class="card-text">Instalaciones equipadas con tecnología de última generación para la elaboración de raciones balanceadas y procesamiento de agroinsumos.</p>
@@ -101,7 +119,7 @@
 
                 <div class="col-md-4 mb-4">
                     <div class="card instalacion-card border-0 shadow-sm h-100">
-                        <img src="complementos/imagenes/instalacion-laboratorio.jpg" class="card-img-top" alt="Laboratorios">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top" alt="Laboratorios">
                         <div class="card-body">
                             <h5 class="card-title">Laboratorios de Control</h5>
                             <p class="card-text">Laboratorios certificados para el análisis de calidad de materias primas y productos terminados, garantizando estándares de excelencia.</p>
@@ -111,7 +129,7 @@
 
                 <div class="col-md-4 mb-4">
                     <div class="card instalacion-card border-0 shadow-sm h-100">
-                        <img src="complementos/imagenes/instalacion-almacenes.jpg" class="card-img-top" alt="Almacenes">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top" alt="Almacenes">
                         <div class="card-body">
                             <h5 class="card-title">Centros de Distribución</h5>
                             <p class="card-text">Almacenes estratégicamente ubicados y equipados para garantizar la disponibilidad y distribución eficiente de nuestros productos.</p>
@@ -132,7 +150,8 @@
 
                     <div class="compromiso-item mb-3">
                         <h5><i class="fas fa-handshake me-2"></i>Relaciones a Largo Plazo</h5>
-                        <p>Construimos relaciones duraderas basadas en la transparencia y el cumplimiento de compromisos.</p>
+                        <p>Desde 1915, la Sociedad de Fomento Rural de Colonia Suiza nace y se desarrolla en una tierra generosa, labrada por familias trabajadoras y comprometidas con las tradiciones y también con el futuro.
+                            Nuestra misión siempre ha sido acompañar a los productores rurales, respondiendo a sus necesidades, intereses y desafios, brindándoles respaldo y herramientas para su crecimiento</p>
                     </div>
 
                     <div class="compromiso-item mb-3">
@@ -239,7 +258,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card equipo-card border-0 shadow-sm h-100 text-center">
-                        <img src="complementos/imagenes/veterinario-jefe.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Veterinario Jefe" style="width: 150px; height: 150px; object-fit: cover;">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Veterinario Jefe" style="width: 150px; height: 150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Dr. Carlos Rodríguez</h5>
                             <p class="card-text text-muted">Veterinario Jefe</p>
@@ -249,7 +268,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card equipo-card border-0 shadow-sm h-100 text-center">
-                        <img src="complementos/imagenes/tecnico-agricola.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Técnico Agrícola" style="width: 150px; height: 150px; object-fit: cover;">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Técnico Agrícola" style="width: 150px; height: 150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Ana Martínez</h5>
                             <p class="card-text text-muted">Técnica Agrícola</p>
@@ -259,7 +278,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card equipo-card border-0 shadow-sm h-100 text-center">
-                        <img src="complementos/imagenes/investigador.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Investigador" style="width: 150px; height: 150px; object-fit: cover;">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Investigador" style="width: 150px; height: 150px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Roberto Silva</h5>
                             <p class="card-text text-muted">Investigador y Desarrollo</p>
@@ -276,7 +295,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="card equipo-card border-0 shadow-sm h-100 text-center">
-                        <img src="complementos/imagenes/ejecutivo-ventas1.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Ejecutivo de Ventas" style="width: 120px; height: 120px; object-fit: cover;">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Ejecutivo de Ventas" style="width: 120px; height: 120px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Laura Díaz</h5>
                             <p class="card-text text-muted">Ejecutiva de Ventas Zona Norte</p>
@@ -286,7 +305,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="card equipo-card border-0 shadow-sm h-100 text-center">
-                        <img src="complementos/imagenes/ejecutivo-ventas2.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Ejecutivo de Ventas" style="width: 120px; height: 120px; object-fit: cover;">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Ejecutivo de Ventas" style="width: 120px; height: 120px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Pedro López</h5>
                             <p class="card-text text-muted">Ejecutivo de Ventas Zona Sur</p>
@@ -296,7 +315,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="card equipo-card border-0 shadow-sm h-100 text-center">
-                        <img src="complementos/imagenes/atencion-cliente1.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Atención al Cliente" style="width: 120px; height: 120px; object-fit: cover;">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Atención al Cliente" style="width: 120px; height: 120px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Sofía Ramírez</h5>
                             <p class="card-text text-muted">Coordinadora de Atención al Cliente</p>
@@ -306,7 +325,7 @@
                 </div>
                 <div class="col-md-3 mb-4">
                     <div class="card equipo-card border-0 shadow-sm h-100 text-center">
-                        <img src="complementos/imagenes/atencion-cliente2.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Soporte Técnico" style="width: 120px; height: 120px; object-fit: cover;">
+                        <img src="complementos/imagenes/avatar.jpg" class="card-img-top rounded-circle mx-auto mt-3" alt="Soporte Técnico" style="width: 120px; height: 120px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title">Miguel Ángel Torres</h5>
                             <p class="card-text text-muted">Soporte Técnico</p>
