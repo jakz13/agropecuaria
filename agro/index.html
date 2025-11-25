@@ -78,9 +78,8 @@
         </div>
     </section>
 
-    <!-- Carrusel Horizontal Simplificado -->
-    <!-- Carrusel Cíclico Tradicional -->
-    <section id="carrusel-categorias" class="py-5">
+    <!-- Categorías de Productos -->
+    <section id="categorias-productos" class="py-5 bg-light">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-12 text-center">
@@ -88,57 +87,75 @@
                     <p class="section-subtitle">Soluciones integrales para tu producción agropecuaria</p>
                 </div>
             </div>
-        </div>
 
-        <div class="carrusel-ciclico-container">
-            <div class="flecha-carrusel flecha-izquierda" onclick="moverCarrusel(-1)">&#10094;</div>
-
-            <div class="carrusel-ciclico" id="carruselCiclico">
-                <!-- Solo 4 tarjetas únicas -->
-                <div class="tarjeta-categoria activa" data-indice="0">
-                    <img src="complementos/imagenes/semillas-diseno.png" alt="Raciones y Alimentación">
-                    <div class="contenido-tarjeta">
-                        <h3>Raciones y Alimentación</h3>
-                        <p>Elaboramos raciones balanceadas de alta calidad nutricional</p>
+            <div class="row g-4">
+                <!-- Categoría 1: Raciones y Alimentación -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="categoria-card">
+                        <img src="complementos/imagenes/semillas-diseno.png" alt="Raciones y Alimentación" class="categoria-img">
+                        <div class="categoria-overlay">
+                            <div class="categoria-content">
+                                <h3 class="categoria-titulo">Raciones y Alimentación</h3>
+                                <p class="categoria-descripcion">Elaboramos raciones balanceadas de alta calidad nutricional</p>
+                                <a href="productos-servicios.html#raciones" class="btn-ver-detalles">
+                                    Ver Detalles <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tarjeta-categoria" data-indice="1">
-                    <img src="complementos/imagenes/semillas-diseno.png" alt="Agroinsumos">
-                    <div class="contenido-tarjeta">
-                        <h3>Agroinsumos</h3>
-                        <p>Amplia gama de productos para optimizar tu producción</p>
+                <!-- Categoría 2: Agroinsumos -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="categoria-card">
+                        <img src="complementos/imagenes/semillas-diseno.png" alt="Agroinsumos" class="categoria-img">
+                        <div class="categoria-overlay">
+                            <div class="categoria-content">
+                                <h3 class="categoria-titulo">Agroinsumos</h3>
+                                <p class="categoria-descripcion">Amplia gama de productos para optimizar tu producción</p>
+                                <a href="productos-servicios.html#agroinsumos" class="btn-ver-detalles">
+                                    Ver Detalles <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tarjeta-categoria" data-indice="2">
-                    <img src="complementos/pruebas/veterinario.jpg" alt="Servicio Veterinario">
-                    <div class="contenido-tarjeta">
-                        <h3>Servicio Veterinario</h3>
-                        <p>Profesionales especializados en salud animal</p>
+                <!-- Categoría 3: Servicio Veterinario -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="categoria-card">
+                        <img src="complementos/pruebas/veterinario.jpg" alt="Servicio Veterinario" class="categoria-img">
+                        <div class="categoria-overlay">
+                            <div class="categoria-content">
+                                <h3 class="categoria-titulo">Servicio Veterinario</h3>
+                                <p class="categoria-descripcion">Profesionales especializados en salud animal</p>
+                                <a href="productos-servicios.html#veterinario" class="btn-ver-detalles">
+                                    Ver Detalles <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="tarjeta-categoria" data-indice="3">
-                    <img src="complementos/pruebas/caballo.jpg" alt="Asesoramiento Técnico">
-                    <div class="contenido-tarjeta">
-                        <h3>Asesoramiento Técnico</h3>
-                        <p>Asesoramiento especializado para maximizar tu producción</p>
+                <!-- Categoría 4: Asesoramiento Técnico -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="categoria-card">
+                        <img src="complementos/pruebas/caballo.jpg" alt="Asesoramiento Técnico" class="categoria-img">
+                        <div class="categoria-overlay">
+                            <div class="categoria-content">
+                                <h3 class="categoria-titulo">Asesoramiento Técnico</h3>
+                                <p class="categoria-descripcion">Asesoramiento especializado para maximizar tu producción</p>
+                                <a href="productos-servicios.html#asesoramiento" class="btn-ver-detalles">
+                                    Ver Detalles <i class="fas fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="flecha-carrusel flecha-derecha" onclick="moverCarrusel(1)">&#10095;</div>
-        </div>
-
-        <!-- Indicadores de posición -->
-        <div class="indicadores-carrusel" id="indicadoresCarrusel">
-            <div class="indicador activo" data-indice="0"></div>
-            <div class="indicador" data-indice="1"></div>
-            <div class="indicador" data-indice="2"></div>
-            <div class="indicador" data-indice="3"></div>
         </div>
     </section>
+
 
     <!-- Responsables de la empresa -->
     <section id="responsables" class="py-5">
@@ -270,7 +287,7 @@
         <div class="container py-4">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <p class="mb-0">&copy; 2025 Sociedad de Fomento Nueva Helvecia. Todos los derechos reservados.</p>
+                    <p class="mb-0">&copy; 2025 Sociedad de Fomento - Colonia Suiza. Todos los derechos reservados.</p>
                 </div>
                 <div class="col-md-6 text-md-end">
                     <p class="mb-0">Fomento de todos</p>

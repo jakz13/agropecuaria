@@ -12,494 +12,52 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="css/animaciones.css">
-
-    <!-- ESTILOS ESPECÍFICOS PARA HISTORIA MEJORADOS -->
-    <style>
-        /* Fondo general con patrón sutil */
-        body {
-            background: linear-gradient(135deg, #f8f9fc 0%, #eef2f6 100%);
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                    radial-gradient(circle at 10% 20%, rgba(20, 91, 171, 0.03) 0%, transparent 20%),
-                    radial-gradient(circle at 90% 80%, rgba(20, 91, 171, 0.03) 0%, transparent 20%);
-            z-index: -1;
-        }
-
-        /* Hero Section específico con animación */
-        .hero-section-historia {
-            background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 50%, #145bab 100%);
-            padding: 150px 0 80px;
-            margin-top: 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-section-historia::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,20 Q40,5 60,20 T100,20 Q85,40 100,60 T100,100 Q60,85 20,100 T0,100 Q5,60 0,20 T20,20Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: 200px;
-            opacity: 0.3;
-            animation: float 20s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-200px); }
-        }
-
-        /* Línea de tiempo visual */
-        .timeline-line {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--color-secundario), var(--color-detalle));
-            z-index: -1;
-            opacity: 0.2;
-        }
-
-        /* Contenedor principal del carrusel */
-        .historia-carrusel-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .carrusel-container {
-            position: relative;
-            overflow: hidden;
-            min-height: 550px;
-            padding: 40px 0;
-        }
-
-        /* Slides */
-        .carrusel-slides-wrapper {
-            display: flex;
-            transition: transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-
-        .historia-slide {
-            min-width: 100%;
-            padding: 0 10px;
-            box-sizing: border-box;
-            filter: brightness(0.8);
-            transition: filter 0.3s ease;
-        }
-
-        .historia-slide.active {
-            filter: brightness(1);
-        }
-
-        /* Tarjetas individuales de hito - DISEÑO MEJORADO */
-        .hito-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: none;
-            position: relative;
-            height: 100%;
-            backdrop-filter: blur(10px);
-        }
-
-        .hito-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--color-secundario), var(--color-detalle));
-        }
-
-        .hito-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
-        }
-
-        .hito-imagen {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            background: linear-gradient(135deg, var(--color-secundario), var(--color-detalle));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 0.9rem;
-            font-family: 'Montserrat', sans-serif;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hito-imagen::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: 100px;
-            opacity: 0.3;
-        }
-
-        .hito-contenido {
-            padding: 2rem;
-        }
-
-        .hito-anio {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--color-detalle);
-            margin-bottom: 0.5rem;
-            display: block;
-            letter-spacing: 1px;
-        }
-
-        .hito-titulo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--color-azul-oscuro);
-            margin-bottom: 1.2rem;
-            line-height: 1.3;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .hito-titulo::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: var(--color-secundario);
-            border-radius: 3px;
-        }
-
-        .hito-descripcion {
-            color: var(--color-gris-medio);
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .hito-lista {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .hito-lista li {
-            padding: 0.6rem 0;
-            padding-left: 2rem;
-            position: relative;
-            color: var(--color-gris-medio);
-            font-size: 0.95rem;
-            border-bottom: 1px dashed rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-        }
-
-        .hito-lista li:hover {
-            background: rgba(20, 91, 171, 0.03);
-            padding-left: 2.2rem;
-        }
-
-        .hito-lista li:last-child {
-            border-bottom: none;
-        }
-
-        .hito-lista li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--color-secundario);
-            font-weight: bold;
-            font-size: 1.2rem;
-            background: rgba(20, 91, 171, 0.1);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Navegación por décadas - DISEÑO MEJORADO */
-        .timeline-navigation {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-top: 4rem;
-            text-align: center;
-            position: relative;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(20, 91, 171, 0.1);
-        }
-
-        .timeline-navigation::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.95);
-            border-radius: 50%;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            z-index: -1;
-        }
-
-        .nav-dot {
-            background: rgba(255,255,255,0.9);
-            border: 2px solid var(--color-secundario);
-            color: var(--color-secundario);
-            padding: 0.8rem 1.5rem;
-            margin: 0.4rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-dot::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.6s;
-        }
-
-        .nav-dot:hover::before {
-            left: 100%;
-        }
-
-        .nav-dot:hover {
-            background: var(--color-secundario);
-            color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(20, 91, 171, 0.3);
-        }
-
-        .nav-dot.active {
-            background: var(--color-secundario);
-            color: white;
-            border-color: var(--color-secundario);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(20, 91, 171, 0.4);
-        }
-
-        /* Flechas de navegación - DISEÑO MEJORADO */
-        .carrusel-control {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(20, 91, 171, 0.9);
-            color: white;
-            border: none;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 10;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            backdrop-filter: blur(5px);
-        }
-
-        .carrusel-control:hover {
-            background: var(--color-secundario);
-            transform: translateY(-50%) scale(1.15);
-            box-shadow: 0 8px 25px rgba(20, 91, 171, 0.4);
-        }
-
-        .carrusel-control.prev { left: -25px; }
-        .carrusel-control.next { right: -25px; }
-
-        .carrusel-control:disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        /* Indicadores de progreso - DISEÑO MEJORADO */
-        .carrusel-indicadores {
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-            background: rgba(255,255,255,0.8);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .indicador {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(20, 91, 171, 0.3);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .indicador::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: var(--color-secundario);
-            transition: all 0.3s ease;
-        }
-
-        .indicador.active {
-            background: var(--color-secundario);
-            transform: scale(1.5);
-        }
-
-        .indicador.active::after {
-            width: 6px;
-            height: 6px;
-            background: white;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .carrusel-control {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-
-            .carrusel-control.prev { left: -10px; }
-            .carrusel-control.next { right: -10px; }
-
-            .hito-titulo {
-                font-size: 1.4rem;
-            }
-
-            .hito-titulo::after {
-                width: 40px;
-            }
-
-            .nav-dot {
-                padding: 0.6rem 1rem;
-                font-size: 0.8rem;
-                margin: 0.3rem;
-            }
-
-            .timeline-navigation {
-                padding: 1.5rem;
-                margin-top: 3rem;
-            }
-
-            .timeline-navigation::before {
-                width: 30px;
-                height: 30px;
-                top: -15px;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .historia-carrusel-wrapper {
-                padding: 0 10px;
-            }
-
-            .hito-contenido {
-                padding: 1.5rem;
-            }
-
-            .hito-imagen {
-                height: 150px;
-            }
-
-            .carrusel-control {
-                width: 40px;
-                height: 40px;
-            }
-
-            .carrusel-indicadores {
-                gap: 8px;
-                padding: 0.4rem 0.8rem;
-            }
-
-            .indicador {
-                width: 10px;
-                height: 10px;
-            }
-
-            .indicador.active {
-                transform: scale(1.3);
-            }
-        }
-    </style>
 </head>
-<body>
+<body class="pagina-historia">
 <div id="BarraNavegacion"></div>
 
 <main>
     <!-- Hero Section -->
-    <section id="hero-historia" class="hero-section-historia">
+    <section class="hero-section-historia">
         <div class="container">
             <h1 class="text-white mb-3">Nuestra Historia</h1>
-            <p class="text-white lead">Más de 108 años fomentando el agro uruguayo</p>
+            <p class="text-white lead">Más de 100 años fomentando el agro uruguayo</p>
         </div>
     </section>
 
-    <!-- Carrusel de Historia -->
-    <section class="py-5 position-relative">
-        <div class="timeline-line"></div>
-        <div class="historia-carrusel-wrapper">
+    <!-- Sección de Logos Históricos -->
+    <section class="logos-historicos">
+        <div class="container">
+            <div class="logos-container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-4 col-6">
+                        <div class="logo-item">
+                            <img src="complementos/imagenes/LogoAntiguo.png" class="logo-imagen">
+                            <div class="logo-periodo">1915-1950</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <div class="logo-item">
+                            <img src="complementos/imagenes/Logo2013.png" class="logo-imagen">
+                            <div class="logo-periodo">1980-2000</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <div class="logo-item">
+                            <img src="complementos/logos/fomento-logo.png" class="logo-imagen">
+                            <div class="logo-periodo">2000-ACTUAL</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Carrusel de Sucesos Históricos -->
+    <section class="py-5">
+        <div class="historia-carrusel-wrapper">
             <!-- Contenedor del carrusel -->
             <div class="carrusel-container" id="carruselHistoria">
-
                 <!-- Flechas de navegación -->
                 <button class="carrusel-control prev" id="btnPrev">
                     <i class="bi bi-chevron-left"></i>
@@ -510,281 +68,93 @@
 
                 <!-- Slides -->
                 <div class="carrusel-slides-wrapper" id="slidesWrapper">
-
-                    <!-- HITO 1: 1915 -->
-                    <div class="historia-slide" data-decada="1915">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Acta Fundación 12 Set 1915]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">12 SETIEMBRE 1915</span>
-                                <h3 class="hito-titulo">Asamblea de Fundación</h3>
-                                <p class="hito-descripcion">
-                                    En la Estación del Ferrocarril se llevó a cabo la Asamblea de Fundación de la SOCIEDAD DE FOMENTO RURAL DE COLONIA SUIZA.
+                    <!-- SUCESO 1: Fundación -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Acta Fundación]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Fundación de la Sociedad</h3>
+                                <p class="suceso-descripcion">
+                                    El 12 de septiembre de 1915 se realizó la Asamblea de Fundación en la Estación del Ferrocarril, marcando el inicio de nuestra institución.
                                 </p>
-                                <ul class="hito-lista">
-                                    <li>Guillermo Greising (Presidente)</li>
-                                    <li>Federico Gilomén (Vicepresidente)</li>
-                                    <li>Juan Werner Berger (Secretario)</li>
-                                    <li>Teodoro Greising (Tesorero)</li>
-                                    <li>Juan Mischler, Juan Cedrés y Juan Francisco Viñas (Vocales)</li>
+                                <ul class="suceso-lista">
+                                    <li>Primera Comisión Directiva electa</li>
+                                    <li>Guillermo Greising como Presidente</li>
+                                    <li>Objetivo: Fomentar el desarrollo rural</li>
+                                    <li>Base de 25 socios fundadores</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- HITO 2: 1915-1925 -->
-                    <div class="historia-slide" data-decada="1915">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Primeros locales usados]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1915-1925</span>
-                                <h3 class="hito-titulo">Sin Sede Propia</h3>
-                                <p class="hito-descripcion">
-                                    La Sociedad no tenía sede propia para reuniones o asambleas. Se utilizaban locales prestados.
+                    <!-- SUCESO 2: Primera Sede -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Primera Sede]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Primera Sede Propia</h3>
+                                <p class="suceso-descripcion">
+                                    Adquisición del local en calle Artigas 1130, proporcionando estabilidad institucional después de 10 años de reuniones en locales prestados.
                                 </p>
-                                <ul class="hito-lista">
-                                    <li>Domicilio de Don Guillermo Greising</li>
-                                    <li>Local Feria de Don Alfredo Carbajal</li>
-                                    <li>Centro Helvético, Cine, Centro Comercial</li>
-                                    <li>Escuela Municipal del Hogar, Hotel del Prado, Hotel Suizo</li>
-                                    <li>Escuela de Lechería</li>
+                                <ul class="suceso-lista">
+                                    <li>Compra del inmueble en 1925</li>
+                                    <li>Fin de la itinerancia institucional</li>
+                                    <li>Mejora en la atención a socios</li>
+                                    <li>Base para crecimiento futuro</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- HITO 3: 1925 -->
-                    <div class="historia-slide" data-decada="1925">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Primera sede propia]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1925</span>
-                                <h3 class="hito-titulo">Primera Sede Propia</h3>
-                                <p class="hito-descripcion">
-                                    Se adquiere la primera sede propia en calle Artigas 1130, marcando un hito en la consolidación institucional.
+                    <!-- SUCESO 3: Servicio Veterinario -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Servicio Veterinario]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Implementación del Servicio Veterinario</h3>
+                                <p class="suceso-descripcion">
+                                    Creación del departamento veterinario para atender las necesidades de salud animal de los productores asociados.
                                 </p>
-                                <ul class="hito-lista">
-                                    <li>Local ubicado en Artigas 1130</li>
-                                    <li>Primera propiedad institucional</li>
-                                    <li>Estabilidad para reuniones y actividades</li>
-                                    <li>Base para el crecimiento futuro</li>
+                                <ul class="suceso-lista">
+                                    <li>Primer veterinario contratado</li>
+                                    <li>Programas de prevención sanitaria</li>
+                                    <li>Asesoramiento técnico especializado</li>
+                                    <li>Mejora en productividad ganadera</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- HITO 4: 1930-1940 -->
-                    <div class="historia-slide" data-decada="1930">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Expansión servicios]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1930-1940</span>
-                                <h3 class="hito-titulo">Expansión de Servicios</h3>
-                                <p class="hito-descripcion">
-                                    Durante esta década se diversifican los servicios ofrecidos a los socios y productores de la región.
+                    <!-- SUCESO 4: Planta de Raciones -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Planta Raciones]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Primera Planta de Raciones</h3>
+                                <p class="suceso-descripcion">
+                                    Establecimiento de la planta para elaboración de alimentos balanceados, revolucionando la nutrición animal en la región.
                                 </p>
-                                <ul class="hito-lista">
-                                    <li>Asesoramiento técnico agrícola</li>
-                                    <li>Capacitaciones para productores</li>
-                                    <li>Fomento de nuevas técnicas</li>
-                                    <li>Crecimiento de la membresía</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 5: 1945 -->
-                    <div class="historia-slide" data-decada="1940">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Nuevas instalaciones]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1945</span>
-                                <h3 class="hito-titulo">Modernización Institucional</h3>
-                                <p class="hito-descripcion">
-                                    Se realizan mejoras significativas en la infraestructura y se modernizan los procesos administrativos.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Renovación de instalaciones</li>
-                                    <li>Implementación de nuevos sistemas</li>
-                                    <li>Ampliación de servicios al productor</li>
-                                    <li>Fortalecimiento institucional</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 6: 1950 -->
-                    <div class="historia-slide" data-decada="1950">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Servicio veterinario]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1950</span>
-                                <h3 class="hito-titulo">Servicio Veterinario</h3>
-                                <p class="hito-descripcion">
-                                    Se implementa el servicio veterinario para atender las necesidades de salud animal de los productores asociados.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Atención veterinaria profesional</li>
-                                    <li>Control sanitario del ganado</li>
-                                    <li>Asesoramiento en salud animal</li>
-                                    <li>Programas de prevención</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 7: 1955 -->
-                    <div class="historia-slide" data-decada="1950">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Primera planta raciones]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1955</span>
-                                <h3 class="hito-titulo">Primera Planta de Raciones</h3>
-                                <p class="hito-descripcion">
-                                    Se establece la primera planta para la elaboración de raciones balanceadas, marcando un hito en la nutrición animal.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Elaboración de alimentos balanceados</li>
-                                    <li>Mejora en la nutrición animal</li>
-                                    <li>Incremento en productividad</li>
+                                <ul class="suceso-lista">
                                     <li>Tecnología de punta para la época</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 8: 1960 -->
-                    <div class="historia-slide" data-decada="1960">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Expansión territorial]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1960</span>
-                                <h3 class="hito-titulo">Expansión Territorial</h3>
-                                <p class="hito-descripcion">
-                                    La sociedad amplía su cobertura a nuevas zonas y aumenta significativamente su base de socios.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Ampliación de área de influencia</li>
-                                    <li>Nuevos socios incorporados</li>
-                                    <li>Servicios extendidos a más productores</li>
-                                    <li>Fortalecimiento comunitario</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 9: 1970 -->
-                    <div class="historia-slide" data-decada="1970">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Tecnificación agrícola]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1970</span>
-                                <h3 class="hito-titulo">Tecnificación Agrícola</h3>
-                                <p class="hito-descripcion">
-                                    Se incorporan nuevas tecnologías y maquinarias para modernizar los procesos productivos de los asociados.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Modernización de equipos</li>
-                                    <li>Capacitación en nuevas técnicas</li>
+                                    <li>Elaboración de raciones balanceadas</li>
                                     <li>Incremento en eficiencia productiva</li>
-                                    <li>Adaptación a nuevos mercados</li>
+                                    <li>Base para marcas propias futuras</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- HITO 10: 1975 -->
-                    <div class="historia-slide" data-decada="1970">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Nueva sede social]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1975</span>
-                                <h3 class="hito-titulo">Nueva Sede Social</h3>
-                                <p class="hito-descripcion">
-                                    Se inaugura una nueva sede social con mejores instalaciones para atender las necesidades crecientes.
+                    <!-- SUCESO 5: Expansión Territorial -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Sucursal Ecilda Paullier]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Expansión a Ecilda Paullier</h3>
+                                <p class="suceso-descripcion">
+                                    Apertura de la primera sucursal fuera de Nueva Helvecia, ampliando la cobertura de servicios en la región.
                                 </p>
-                                <ul class="hito-lista">
-                                    <li>Instalaciones modernas</li>
-                                    <li>Mejores espacios de atención</li>
-                                    <li>Ampliación de oficinas</li>
-                                    <li>Infraestructura renovada</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 11: 1980 -->
-                    <div class="historia-slide" data-decada="1980">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Diversificación productos]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1980</span>
-                                <h3 class="hito-titulo">Diversificación de Productos</h3>
-                                <p class="hito-descripcion">
-                                    Se amplía la gama de productos y servicios ofrecidos, incorporando nuevos insumos agrícolas.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Nuevos agroquímicos</li>
-                                    <li>Ampliación de línea de fertilizantes</li>
-                                    <li>Servicios técnicos especializados</li>
-                                    <li>Asesoramiento integral</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 12: 1985 -->
-                    <div class="historia-slide" data-decada="1980">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Mejoras planta raciones]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1985</span>
-                                <h3 class="hito-titulo">Ampliación Planta de Raciones</h3>
-                                <p class="hito-descripcion">
-                                    Se realiza una importante ampliación y modernización de la planta de elaboración de raciones balanceadas.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Incremento de capacidad productiva</li>
-                                    <li>Nuevas líneas de producción</li>
-                                    <li>Mejora en calidad de productos</li>
-                                    <li>Tecnología de última generación</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 13: 1990 -->
-                    <div class="historia-slide" data-decada="1990">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Certificaciones calidad]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1990</span>
-                                <h3 class="hito-titulo">Certificaciones de Calidad</h3>
-                                <p class="hito-descripcion">
-                                    Se obtienen las primeras certificaciones de calidad para los procesos productivos y servicios ofrecidos.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Implementación de sistemas de calidad</li>
-                                    <li>Certificaciones sectoriales</li>
-                                    <li>Mejora continua en procesos</li>
-                                    <li>Reconocimiento institucional</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 14: 1995 -->
-                    <div class="historia-slide" data-decada="1990">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Sucursal Ecilda Paullier]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">1995</span>
-                                <h3 class="hito-titulo">Apertura Sucursal Ecilda Paullier</h3>
-                                <p class="hito-descripcion">
-                                    Se inaugura la primera sucursal en Ecilda Paullier, expandiendo la cobertura de servicios en la región.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Primera expansión fuera de Nueva Helvecia</li>
+                                <ul class="suceso-lista">
+                                    <li>Primera expansión territorial</li>
                                     <li>Nuevos mercados atendidos</li>
                                     <li>Ampliación de base social</li>
                                     <li>Servicios descentralizados</li>
@@ -793,57 +163,35 @@
                         </div>
                     </div>
 
-                    <!-- HITO 15: 2000 -->
-                    <div class="historia-slide" data-decada="2000">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Digitalización procesos]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">2000</span>
-                                <h3 class="hito-titulo">Digitalización de Procesos</h3>
-                                <p class="hito-descripcion">
-                                    Se implementan sistemas informáticos para modernizar la gestión administrativa y de servicios.
+                    <!-- SUCESO 6: Marcas Propias -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Marcas LACTUS, BOVEM, EXIGES]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Lanzamiento de Marcas Propias</h3>
+                                <p class="suceso-descripcion">
+                                    Desarrollo y lanzamiento de las marcas LACTUS, BOVEM y EXIGES para la línea de raciones balanceadas.
                                 </p>
-                                <ul class="hito-lista">
-                                    <li>Implementación de software de gestión</li>
-                                    <li>Digitalización de registros</li>
-                                    <li>Mejora en eficiencia administrativa</li>
-                                    <li>Modernización tecnológica</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- HITO 16: 2005 -->
-                    <div class="historia-slide" data-decada="2000">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Nuevas marcas propias]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">2005</span>
-                                <h3 class="hito-titulo">Lanzamiento de Marcas Propias</h3>
-                                <p class="hito-descripcion">
-                                    Se desarrollan y lanzan las marcas propias LACTUS, BOVEM y EXIGES para la línea de raciones balanceadas.
-                                </p>
-                                <ul class="hito-lista">
-                                    <li>Marca LACTUS para lactancia</li>
-                                    <li>Marca BOVEM para ganado bovino</li>
-                                    <li>Marca EXIGES para alta performance</li>
+                                <ul class="suceso-lista">
                                     <li>Diferenciación en el mercado</li>
+                                    <li>Productos especializados</li>
+                                    <li>Mejora en calidad nutricional</li>
+                                    <li>Reconocimiento de marca</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <!-- HITO 17: 2010 -->
-                    <div class="historia-slide" data-decada="2010">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Supermercados agro]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">2010</span>
-                                <h3 class="hito-titulo">Supermercados Agropecuarios</h3>
-                                <p class="hito-descripcion">
-                                    Se inauguran los supermercados agropecuarios en Nueva Helvecia y Ecilda Paullier con 1,200 m² totales.
+                    <!-- SUCESO 7: Supermercados Agro -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Supermercado Agro]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Inauguración de Supermercados Agropecuarios</h3>
+                                <p class="suceso-descripcion">
+                                    Apertura de los supermercados especializados en Nueva Helvecia y Ecilda Paullier con 1,200 m² totales.
                                 </p>
-                                <ul class="hito-lista">
+                                <ul class="suceso-lista">
                                     <li>Amplia gama de productos</li>
                                     <li>Mejor experiencia de compra</li>
                                     <li>Autoservicio especializado</li>
@@ -853,20 +201,20 @@
                         </div>
                     </div>
 
-                    <!-- HITO 18: Actualidad -->
-                    <div class="historia-slide" data-decada="2010">
-                        <div class="hito-card">
-                            <div class="hito-imagen">[FOTO: Equipo directivo y áreas actual]</div>
-                            <div class="hito-contenido">
-                                <span class="hito-anio">HOY - 2024</span>
-                                <h3 class="hito-titulo">Más de 108 Años de Fomento</h3>
-                                <p class="hito-descripcion">
-                                    <strong>Impacto actual:</strong> 900+ productores asesorados, 6,000 ha de verano, 2,500 ha de invierno, 55 personas trabajando directamente, 1,200 m² de supermercados en Nueva Helvecia y Ecilda Paullier.
+                    <!-- SUCESO 8: Actualidad -->
+                    <div class="historia-slide">
+                        <div class="suceso-card">
+                            <div class="suceso-imagen">[FOTO: Equipo Actual]</div>
+                            <div class="suceso-contenido">
+                                <h3 class="suceso-titulo">Consolidación y Proyección</h3>
+                                <p class="suceso-descripcion">
+                                    Después de 108 años, continuamos creciendo y adaptándonos a las necesidades del sector agropecuario moderno.
                                 </p>
-                                <ul class="hito-lista">
-                                    <li><strong>Gerente General:</strong> Juber Gonzalvez de Mezquita</li>
-                                    <li><strong>Áreas principales:</strong> Planta de Raciones (LACTUS, BOVEM, EXIGES), Agro Veterinaria, Supermercados</li>
-                                    <li><strong>Organigrama:</strong> Comisión Directiva, Comisión Fiscal, Encargados de área</li>
+                                <ul class="suceso-lista">
+                                    <li>900+ productores asesorados</li>
+                                    <li>6,000 ha de verano atendidas</li>
+                                    <li>2,500 ha de invierno</li>
+                                    <li>55 colaboradores directos</li>
                                 </ul>
                             </div>
                         </div>
@@ -883,29 +231,20 @@
                     <div class="indicador" data-indicador="5"></div>
                     <div class="indicador" data-indicador="6"></div>
                     <div class="indicador" data-indicador="7"></div>
-                    <div class="indicador" data-indicador="8"></div>
-                    <div class="indicador" data-indicador="9"></div>
-                    <div class="indicador" data-indicador="10"></div>
-                    <div class="indicador" data-indicador="11"></div>
-                    <div class="indicador" data-indicador="12"></div>
-                    <div class="indicador" data-indicador="13"></div>
-                    <div class="indicador" data-indicador="14"></div>
-                    <div class="indicador" data-indicador="15"></div>
-                    <div class="indicador" data-indicador="16"></div>
-                    <div class="indicador" data-indicador="17"></div>
                 </div>
             </div>
 
-            <!-- Navegación por décadas -->
+            <!-- Navegación por sucesos -->
             <div class="timeline-navigation">
-                <h5 class="mb-3" style="color: var(--color-azul-oscuro); font-weight: 600;">Navegar por décadas</h5>
-                <button class="nav-dot active" data-decada-nav="1915">1915-1930</button>
-                <button class="nav-dot" data-decada-nav="1930">1930-1950</button>
-                <button class="nav-dot" data-decada-nav="1950">1950-1970</button>
-                <button class="nav-dot" data-decada-nav="1970">1970-1990</button>
-                <button class="nav-dot" data-decada-nav="1990">1990-2000</button>
-                <button class="nav-dot" data-decada-nav="2000">2000-2010</button>
-                <button class="nav-dot" data-decada-nav="2010">2010-HOY</button>
+                <h5 class="mb-3" style="color: var(--color-azul-oscuro); font-weight: 600;">Navegar por hitos históricos</h5>
+                <button class="nav-suceso active">Fundación</button>
+                <button class="nav-suceso">Primera Sede</button>
+                <button class="nav-suceso">Servicio Veterinario</button>
+                <button class="nav-suceso">Planta Raciones</button>
+                <button class="nav-suceso">Expansión</button>
+                <button class="nav-suceso">Marcas Propias</button>
+                <button class="nav-suceso">Supermercados</button>
+                <button class="nav-suceso">Actualidad</button>
             </div>
         </div>
     </section>
@@ -925,156 +264,11 @@
     </div>
 </footer>
 
-<!-- Botón de WhatsApp -->
-<a href="https://wa.me/+59899777007?text=Te%20enviamos%20el%20presupuesto%20" class="whatsapp-float" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30">
-</a>
-
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/navegacion.js"></script>
 <script src="js/animaciones.js"></script>
 <script src="js/main.js"></script>
-
-<!-- Script del Carrusel de Historia MEJORADO -->
-<script>
-    class HistoriaCarrusel {
-        constructor() {
-            this.slides = document.querySelectorAll('.historia-slide');
-            this.indicadores = document.querySelectorAll('.indicador');
-            this.botonesNav = document.querySelectorAll('.nav-dot[data-decada-nav]');
-            this.btnPrev = document.getElementById('btnPrev');
-            this.btnNext = document.getElementById('btnNext');
-            this.slidesWrapper = document.getElementById('slidesWrapper');
-
-            this.slideActual = 0;
-            this.totalSlides = this.slides.length;
-            this.isTransitioning = false;
-
-            this.init();
-        }
-
-        init() {
-            // Event listeners
-            this.btnPrev.addEventListener('click', () => this.anteriorSlide());
-            this.btnNext.addEventListener('click', () => this.siguienteSlide());
-
-            // Indicadores
-            this.indicadores.forEach((ind, index) => {
-                ind.addEventListener('click', () => this.irASlide(index));
-            });
-
-            // Botones de década
-            this.botonesNav.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const decada = btn.getAttribute('data-decada-nav');
-                    this.irAPrimeraDecada(decada);
-                });
-            });
-
-            // Teclado
-            document.addEventListener('keydown', (e) => {
-                if(e.key === 'ArrowLeft') this.anteriorSlide();
-                if(e.key === 'ArrowRight') this.siguienteSlide();
-            });
-
-            // Touch/swipe para móvil
-            this.addTouchSupport();
-
-            // Actualizar estado inicial
-            this.actualizarCarrusel();
-        }
-
-        addTouchSupport() {
-            let startX = 0;
-            let endX = 0;
-
-            this.slidesWrapper.addEventListener('touchstart', (e) => {
-                startX = e.changedTouches[0].screenX;
-            });
-
-            this.slidesWrapper.addEventListener('touchend', (e) => {
-                endX = e.changedTouches[0].screenX;
-                this.handleSwipe(startX, endX);
-            });
-        }
-
-        handleSwipe(startX, endX) {
-            const swipeThreshold = 50;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
-                    this.siguienteSlide();
-                } else {
-                    this.anteriorSlide();
-                }
-            }
-        }
-
-        irASlide(index) {
-            if (this.isTransitioning) return;
-
-            if(index < 0) index = this.totalSlides - 1;
-            if(index >= this.totalSlides) index = 0;
-
-            this.slideActual = index;
-            this.actualizarCarrusel();
-        }
-
-        siguienteSlide() {
-            this.irASlide(this.slideActual + 1);
-        }
-
-        anteriorSlide() {
-            this.irASlide(this.slideActual - 1);
-        }
-
-        irAPrimeraDecada(decada) {
-            // Encontrar el primer slide de esa década
-            const primerSlideDecada = Array.from(this.slides).findIndex(slide =>
-                slide.getAttribute('data-decada') === decada
-            );
-
-            if(primerSlideDecada !== -1) {
-                this.irASlide(primerSlideDecada);
-            }
-        }
-
-        actualizarCarrusel() {
-            this.isTransitioning = true;
-
-            // Mover el wrapper
-            this.slidesWrapper.style.transform = `translateX(-${this.slideActual * 100}%)`;
-
-            // Actualizar indicadores
-            this.indicadores.forEach((ind, index) => {
-                ind.classList.toggle('active', index === this.slideActual);
-            });
-
-            // Actualizar botones de década
-            const decadaActual = this.slides[this.slideActual].getAttribute('data-decada');
-            this.botonesNav.forEach(btn => {
-                btn.classList.toggle('active', btn.getAttribute('data-decada-nav') === decadaActual);
-            });
-
-            // Animar entrada
-            this.slides.forEach((slide, index) => {
-                slide.classList.toggle('active', index === this.slideActual);
-            });
-
-            // Permitir nueva transición después de que termine la actual
-            setTimeout(() => {
-                this.isTransitioning = false;
-            }, 600);
-        }
-    }
-
-    // Inicializar cuando DOM esté listo
-    document.addEventListener('DOMContentLoaded', () => {
-        new HistoriaCarrusel();
-    });
-</script>
-
+<script src="js/historia.js"></script>
 </body>
 </html>

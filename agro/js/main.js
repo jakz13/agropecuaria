@@ -70,87 +70,8 @@ document.addEventListener('DOMContentLoaded', function () {
         boton.addEventListener('click', () => console.log('Usuario hizo clic en WhatsApp'));
     }
 
-    function inicializarCarruselCiclico() {
-        const carrusel = document.getElementById('carruselCiclico');
-        const indicadores = document.getElementById('indicadoresCarrusel');
-        const tarjetas = document.querySelectorAll('.tarjeta-categoria');
-        const puntos = document.querySelectorAll('.indicador');
-
-        if (!carrusel || tarjetas.length === 0) return;
-
-        let indiceActual = 0;
-        const totalTarjetas = tarjetas.length;
-        let intervaloAuto;
-
-        function actualizarCarrusel() {
-            // Ocultar todas las tarjetas
-            tarjetas.forEach(tarjeta => {
-                tarjeta.classList.remove('activa');
-            });
-
-            // Mostrar solo la tarjeta activa
-            tarjetas[indiceActual].classList.add('activa');
-
-            // Actualizar indicadores
-            puntos.forEach((punto, index) => {
-                punto.classList.toggle('activo', index === indiceActual);
-            });
-
-            // Calcular desplazamiento
-            const desplazamiento = -indiceActual * 305; // 280px tarjeta + 25px gap
-            carrusel.style.transform = `translateX(${desplazamiento}px)`;
-        }
-
-        function moverAIndice(nuevoIndice) {
-            indiceActual = nuevoIndice; // CORRECCIÓN: era "nuevoIndex"
-
-            // Ciclo infinito
-            if (indiceActual >= totalTarjetas) {
-                indiceActual = 0;
-            } else if (indiceActual < 0) {
-                indiceActual = totalTarjetas - 1;
-            }
-
-            actualizarCarrusel();
-            reiniciarAutoPlay();
-        }
-
-        window.moverCarrusel = function(direccion) {
-            moverAIndice(indiceActual + direccion);
-        };
-
-        // Navegación por indicadores
-        puntos.forEach((punto, index) => {
-            punto.addEventListener('click', () => {
-                moverAIndice(index);
-            });
-        });
-
-        // Auto-play
-        function iniciarAutoPlay() {
-            intervaloAuto = setInterval(() => {
-                moverAIndice(indiceActual + 1);
-            }, 5000); // Cambia cada 5 segundos
-        }
-
-        function reiniciarAutoPlay() {
-            clearInterval(intervaloAuto);
-            iniciarAutoPlay();
-        }
-
-        // Pausar auto-play al hacer hover
-        carrusel.addEventListener('mouseenter', () => {
-            clearInterval(intervaloAuto);
-        });
-
-        carrusel.addEventListener('mouseleave', () => {
-            iniciarAutoPlay();
-        });
-
-        // Inicializar
-        actualizarCarrusel();
-        iniciarAutoPlay();
-    }
+    // FUNCIÓN DEL CARRUSEL CÍCLICO ELIMINADA
+    // Ya no es necesaria porque ahora las categorías son estáticas
 
     // Inicialización principal
     cargarNavbar();
@@ -164,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function () {
     inicializarCarrusel();
     actualizarAniversario();
     configurarWhatsApp();
-    inicializarCarruselCiclico();
 
     // Recalcular altura al redimensionar
     window.addEventListener('resize', () => {
