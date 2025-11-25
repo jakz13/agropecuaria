@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Cliente - Fomento de Todos</title>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&family=Abril+Fatface&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Estilos Propios -->
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/animaciones.css">
+</head>
+<body>
+<div id="BarraNavegacion"></div>
+
+<main>
+    <!-- Sección de Login -->
+    <section class="login-section">
+        <!-- Imagen de fondo -->
+        <div class="login-background">
+            <img src="complementos/imagenes/campo-recortada.jpg" alt="Instalaciones Fomento de Todos">
+        </div>
+
+        <!-- Overlay oscuro -->
+        <div class="login-overlay"></div>
+
+        <!-- Contenedor del formulario de login -->
+        <div class="login-container" id="loginContainer">
+            <div class="login-card">
+                <h1 class="login-title">Consulte su estado de cuenta</h1>
+                <p class="login-subtitle">Ingrese sus credenciales para acceder a su información</p>
+
+                <!-- Alerta de error (oculta por defecto) -->
+                <div id="alertError" class="alert alert-danger alert-custom" style="display: none;" role="alert">
+                    <i class="fas fa-exclamation-circle me-2"></i>
+                    <span id="errorMessage">Usuario o contraseña incorrectos</span>
+                </div>
+
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label for="usuario" class="form-label">
+                            <i class="fas fa-user me-2"></i>Usuario
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="usuario"
+                                    placeholder="Ingrese su usuario"
+                                    required
+                                    autocomplete="username">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="contrasena" class="form-label">
+                            <i class="fas fa-lock me-2"></i>Contraseña
+                        </label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input
+                                    type="password"
+                                    class="form-control"
+                                    id="contrasena"
+                                    placeholder="Ingrese su contraseña"
+                                    required
+                                    autocomplete="current-password">
+                            <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-login">
+                        <i class="fas fa-sign-in-alt me-2"></i>Ingresar
+                    </button>
+                </form>
+
+                <!-- Spinner de carga -->
+                <div class="spinner-container" id="loadingSpinner">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                    <p class="mt-3 text-muted">Verificando credenciales...</p>
+                </div>
+
+                <div class="login-footer">
+                    <p class="mb-2">¿Aún no tienes acceso?</p>
+                    <a href="contacto.html">Solicítalo en recepción</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenedor del estado de cuenta (oculto inicialmente) -->
+        <div class="login-container estado-cuenta-container" id="estadoCuentaContainer">
+            <div class="estado-cuenta-card">
+                <!-- Información del cliente -->
+                <div class="cliente-info" id="clienteInfo">
+                    <h3><i class="fas fa-user-circle me-2"></i>Bienvenido/a</h3>
+                    <p><strong>Cliente:</strong> <span id="clienteNombre">-</span></p>
+                    <p><strong>Usuario:</strong> <span id="clienteUsuario">-</span></p>
+                    <p><strong>Última actualización:</strong> <span id="fechaActualizacion">-</span></p>
+                </div>
+
+                <!-- Alerta de éxito -->
+                <div class="alert alert-success alert-custom" role="alert">
+                    <i class="fas fa-check-circle me-2"></i>
+                    Su estado de cuenta está disponible para descargar
+                </div>
+
+                <!-- Preview del PDF -->
+                <div class="pdf-preview">
+                    <div class="pdf-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h4 class="mb-3">Estado de Cuenta</h4>
+                    <p class="text-muted mb-0">
+                        <i class="fas fa-calendar-alt me-2"></i>
+                        Documento generado el <span id="fechaGeneracion">-</span>
+                    </p>
+                    <p class="text-muted">
+                        <i class="fas fa-file-alt me-2"></i>
+                        Formato: PDF | Tamaño: ~250 KB
+                    </p>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="text-center">
+                    <button class="btn-download" id="btnDescargar">
+                        <i class="fas fa-download me-2"></i>Descargar Estado de Cuenta
+                    </button>
+                    <button class="btn-logout" id="btnCerrarSesion">
+                        <i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión
+                    </button>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="mt-4 text-center">
+                    <small class="text-muted">
+                        <i class="fas fa-info-circle me-1"></i>
+                        Si encuentra algún error en su estado de cuenta, por favor contáctenos
+                    </small>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-white">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-4">Sociedad de Fomento Nueva Helvecia</h5>
+                <p class="mb-4">Más de un siglo acompañando el crecimiento del sector agropecuario con compromiso, calidad y servicio personalizado.</p>
+                <div class="d-flex">
+                    <a href="#" class="text-white me-3">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-white me-3">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-4">Contacto</h5>
+                <div class="contacto-item mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt me-3 mt-1"></i>
+                        <div>
+                            <strong>Dirección</strong>
+                            <p class="mb-0">[Dirección completa de la empresa]</p>
+                            <p class="mb-0">Nueva Helvecia, Colonia, Uruguay</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacto-item mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-phone me-3 mt-1"></i>
+                        <div>
+                            <strong>Teléfono Fijo</strong>
+                            <p class="mb-0">[Número de teléfono fijo]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-4">Horarios de Atención</h5>
+                <div class="horario-item mb-3">
+                    <strong>Lunes a Viernes</strong>
+                    <p class="mb-1">08:00 - 12:00 | 13:30 - 17:30</p>
+                </div>
+                <div class="horario-item mb-3">
+                    <strong>Sábados</strong>
+                    <p class="mb-1">08:00 - 12:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-top border-secondary">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Sociedad de Fomento Nueva Helvecia. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Fomento de todos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Botón de WhatsApp -->
+<a href="https://wa.me/XXXXXXXXXX" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30">
+</a>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/navegacion.js"></script>
+<script src="js/acceso-cliente.js"></script>
+</body>
+</html>
