@@ -79,6 +79,9 @@
     </section>
 
     <!-- Categorías de Productos -->
+    <!-- REEMPLAZO PARA LA SECCIÓN DE CATEGORÍAS (línea ~110 del index.html) -->
+    <!-- Esta versión elimina los microcortes y mejora el rendimiento -->
+
     <section id="categorias-productos" class="py-5 bg-light">
         <div class="container">
             <div class="row mb-5">
@@ -91,7 +94,7 @@
             <div class="row g-4">
                 <!-- Categoría 1: Raciones y Alimentación -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="categoria-card">
+                    <div class="categoria-card-optimizada">
                         <img src="complementos/imagenes/semillas-diseno.png" alt="Raciones y Alimentación" class="categoria-img">
                         <div class="categoria-overlay">
                             <div class="categoria-content">
@@ -107,7 +110,7 @@
 
                 <!-- Categoría 2: Agroinsumos -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="categoria-card">
+                    <div class="categoria-card-optimizada">
                         <img src="complementos/imagenes/semillas-diseno.png" alt="Agroinsumos" class="categoria-img">
                         <div class="categoria-overlay">
                             <div class="categoria-content">
@@ -123,7 +126,7 @@
 
                 <!-- Categoría 3: Servicio Veterinario -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="categoria-card">
+                    <div class="categoria-card-optimizada">
                         <img src="complementos/pruebas/veterinario.jpg" alt="Servicio Veterinario" class="categoria-img">
                         <div class="categoria-overlay">
                             <div class="categoria-content">
@@ -139,7 +142,7 @@
 
                 <!-- Categoría 4: Asesoramiento Técnico -->
                 <div class="col-lg-3 col-md-6">
-                    <div class="categoria-card">
+                    <div class="categoria-card-optimizada">
                         <img src="complementos/pruebas/caballo.jpg" alt="Asesoramiento Técnico" class="categoria-img">
                         <div class="categoria-overlay">
                             <div class="categoria-content">
@@ -156,33 +159,72 @@
         </div>
     </section>
 
-
-    <!-- Responsables de la empresa -->
-    <section id="responsables" class="py-5">
+    <section id="nuestro-equipo" class="py-5 bg-white">
         <div class="container">
-            <h2 class="text-center mb-5">Nuestro Equipo</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-5 mb-4">
-                    <div class="card text-center">
-                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre Responsable 1</h5>
-                            <p class="card-text">Breve descripción sobre su experiencia y compromiso con la empresa y el sector agropecuario.</p>
+            <div class="row align-items-center">
+                <!-- Columna de imagen -->
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="equipo-imagen-container">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop"
+                             alt="Nuestro equipo de trabajo"
+                             class="img-fluid rounded-3 shadow-lg equipo-foto">
+                        <div class="equipo-badge">
+                            <i class="fas fa-users"></i>
+                            <span></span>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 mb-4">
-                    <div class="card text-center">
-                        <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a6e2f0b6f7d9c8a6e3b8f4c9d7e8f3a" alt="Semillas de calidad" class="img-fluid rounded shadow">
-                        <div class="card-body">
-                            <h5 class="card-title">Nombre Responsable 2</h5>
-                            <p class="card-text">Breve descripción sobre su experiencia y compromiso con la empresa y el sector agropecuario.</p>
+
+                <!-- Columna de contenido -->
+                <div class="col-lg-6">
+                    <div class="equipo-contenido">
+                        <span class="equipo-pretitulo">Nuestro Equipo</span>
+                        <h2 class="equipo-titulo">Comprometidos con tu éxito</h2>
+                        <p class="equipo-texto-principal">
+                            Un equipo unido y comprometido, con más de un siglo de experiencia, trabajando cada día para brindarte la mejor atención y las soluciones más efectivas para tu producción.
+                        </p>
+                        <p class="equipo-texto-secundario">
+                            Nuestra fortaleza radica en el conocimiento profundo del sector agropecuario y en la pasión por el trabajo bien hecho. Cada miembro de nuestro equipo está capacitado para ofrecerte asesoramiento personalizado y acompañarte en cada etapa de tu proyecto.
+                        </p>
+
+                        <!-- Valores destacados -->
+                        <div class="equipo-valores mt-4">
+                            <div class="valor-item">
+                                <div class="valor-icono">
+                                    <i class="fas fa-handshake"></i>
+                                </div>
+                                <div class="valor-texto">
+                                    <h5>Confianza</h5>
+                                    <p>Relaciones sólidas basadas en la transparencia</p>
+                                </div>
+                            </div>
+
+                            <div class="valor-item">
+                                <div class="valor-icono">
+                                    <i class="fas fa-award"></i>
+                                </div>
+                                <div class="valor-texto">
+                                    <h5>Excelencia</h5>
+                                    <p>Productos y servicios de la más alta calidad</p>
+                                </div>
+                            </div>
+
+                            <div class="valor-item">
+                                <div class="valor-icono">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="valor-texto">
+                                    <h5>Compromiso</h5>
+                                    <p>Dedicación absoluta con cada productor</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Contacto resumido -->
     <section id="contacto-preview" class="py-5 bg-primary text-white">

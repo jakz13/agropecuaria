@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Fomento de Todos</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&family=Abril+Fatface&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/animaciones.css">
+</head>
+<body>
+<div id="BarraNavegacion"></div>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero-section-productos">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto text-center text-white">
+                    <h1 class="display-4 fw-bold mb-4">Contactanos</h1>
+                    <p class="lead">Estamos aquí para ayudarte. Comunicate con nosotros y te responderemos a la brevedad</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Información de contacto + Formulario -->
+    <section class="py-5" id="bienvenida">
+        <div class="container">
+            <div class="row g-5">
+                <!-- Columna izquierda: Información de contacto -->
+                <div class="col-lg-5">
+                    <div class="contacto-info-wrapper">
+                        <h2 class="section-title mb-4">Hablemos</h2>
+                        <p class="texto-responsabilidad mb-4">
+                            Tenés alguna consulta sobre nuestros productos o servicios? Querés conocer más sobre cómo podemos ayudarte? Escribinos y un miembro de nuestro equipo se pondrá en contacto contigo.
+                        </p>
+
+                        <!-- Items de contacto reutilizando estilos del footer -->
+                        <div class="contacto-items-lista">
+                            <div class="contacto-item mb-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="contacto-item-icono">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Dirección</strong>
+                                        <p class="mb-0">[Dirección completa de la empresa]</p>
+                                        <p class="mb-0">Nueva Helvecia, Colonia, Uruguay</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item mb-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="contacto-item-icono">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Teléfono</strong>
+                                        <p class="mb-0">[Número de teléfono fijo]</p>
+                                        <a href="https://wa.me/091805711" class="contacto-link">
+                                            <i class="fab fa-whatsapp"></i> +598 91 805 711
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item mb-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="contacto-item-icono">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Email</strong>
+                                        <p class="mb-0">[correo@empresa.com]</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item mb-4">
+                                <div class="d-flex align-items-start">
+                                    <div class="contacto-item-icono">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <strong>Horarios de Atención</strong>
+                                        <p class="mb-1">Lunes a Viernes: 08:00 - 12:00 | 13:30 - 17:30</p>
+                                        <p class="mb-1">Sábados: 08:00 - 12:00</p>
+                                        <p class="mb-0">Domingos: Cerrado</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Redes sociales -->
+                        <div class="contacto-redes-sociales mt-4">
+                            <h5 class="mb-3" style="color: var(--color-azul-oscuro); font-weight: 600;">Seguinos en redes</h5>
+                            <div class="d-flex gap-3">
+                                <a href="#" class="red-social-btn">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="red-social-btn">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="red-social-btn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Formulario de contacto -->
+                <div class="col-lg-7">
+                    <div class="formulario-contacto-card">
+                        <h3 class="formulario-titulo mb-4">Envianos tu consulta</h3>
+
+                        <form id="contactForm" class="formulario-contacto">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="nombre" class="form-label">Nombre completo *</label>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="telefono" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="telefono" name="telefono">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="asunto" class="form-label">Asunto *</label>
+                                    <select class="form-control" id="asunto" name="asunto" required>
+                                        <option value="">Seleccioná un asunto</option>
+                                        <option value="consulta-productos">Consulta sobre Productos</option>
+                                        <option value="consulta-servicios">Consulta sobre Servicios</option>
+                                        <option value="cotizacion">Solicitud de Cotización</option>
+                                        <option value="asesoramiento">Asesoramiento Técnico</option>
+                                        <option value="reclamo">Reclamo o Sugerencia</option>
+                                        <option value="otro">Otro</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <label for="mensaje" class="form-label">Mensaje *</label>
+                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="6" required placeholder="Contanos en qué podemos ayudarte..."></textarea>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="aceptoTerminos" required>
+                                        <label class="form-check-label" for="aceptoTerminos">
+                                            Acepto la política de privacidad y el tratamiento de mis datos personales
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="submit" class="btn-login w-100">
+                                        <i class="fas fa-paper-plane me-2"></i>
+                                        Enviar Mensaje
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Mensaje de éxito/error -->
+                        <div id="formMessage" class="alert mt-4" style="display: none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de mapa (opcional) -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h2 class="section-title">Dónde encontrarnos</h2>
+                <p class="section-subtitle">Visitanos en nuestra sede en Nueva Helvecia</p>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="mapa-container">
+                        <!-- Reemplazar con tu ubicación real de Google Maps -->
+                        <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.8276579524744!2d-57.22667508477262!3d-34.29545698051898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDE3JzQzLjYiUyA1N8KwMTMnMjguOCJX!5e0!3m2!1ses!2suy!4v1234567890123!5m2!1ses!2suy"
+                                width="100%"
+                                height="450"
+                                style="border:0; border-radius: 15px;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="destacado text-center">
+                        <i class="fas fa-handshake" style="font-size: 3rem; color: var(--color-secundario); margin-bottom: 1rem;"></i>
+                        <h3 style="color: var(--color-secundario); margin-bottom: 1rem;">Esperamos tu contacto</h3>
+                        <p class="mb-0">Nuestro equipo está listo para brindarte la mejor atención y encontrar juntos la solución perfecta para tus necesidades. No dudes en escribirnos, estamos para ayudarte.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer (reutilizar el mismo del index.html) -->
+<footer class="bg-dark text-white">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-4">Sociedad de Fomento Nueva Helvecia</h5>
+                <p class="mb-4">Más de un siglo acompañando el crecimiento del sector agropecuario con compromiso, calidad y servicio personalizado.</p>
+                <div class="d-flex">
+                    <a href="#" class="text-white me-3">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-white me-3">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-white">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-4">Contacto</h5>
+                <div class="contacto-item mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-map-marker-alt me-3 mt-1"></i>
+                        <div>
+                            <strong>Dirección</strong>
+                            <p class="mb-0">[Dirección completa de la empresa]</p>
+                            <p class="mb-0">Nueva Helvecia, Colonia, Uruguay</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacto-item mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-phone me-3 mt-1"></i>
+                        <div>
+                            <strong>Teléfono Fijo</strong>
+                            <p class="mb-0">[Número de teléfono fijo]</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contacto-item mb-3">
+                    <div class="d-flex align-items-start">
+                        <i class="fas fa-envelope me-3 mt-1"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p class="mb-0">[correo@empresa.com]</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-4">Horarios de Atención</h5>
+                <div class="horario-item mb-3">
+                    <strong>Lunes a Viernes</strong>
+                    <p class="mb-1">08:00 - 12:00 | 13:30 - 17:30</p>
+                </div>
+                <div class="horario-item mb-3">
+                    <strong>Sábados</strong>
+                    <p class="mb-1">08:00 - 12:00</p>
+                </div>
+                <div class="horario-item">
+                    <strong>Domingos</strong>
+                    <p class="mb-1">Cerrado</p>
+                </div>
+
+                <div class="mt-4">
+                    <h6 class="mb-3">Enlaces Rápidos</h6>
+                    <div class="d-flex flex-wrap">
+                        <a href="index.html" class="text-white-50 me-3 mb-2 text-decoration-none">Inicio</a>
+                        <a href="nosotros.html" class="text-white-50 me-3 mb-2 text-decoration-none">Nosotros</a>
+                        <a href="productos-servicios.html" class="text-white-50 me-3 mb-2 text-decoration-none">Servicios</a>
+                        <a href="contacto.html" class="text-white-50 me-3 mb-2 text-decoration-none">Contacto</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-top border-secondary">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Sociedad de Fomento Nueva Helvecia. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Fomento de todos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Botón de WhatsApp -->
+<a href="https://wa.me/091805711" class="whatsapp-float" target="_blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30">
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/navegacion.js"></script>
+<script src="js/animaciones.js"></script>
+<script src="js/main.js"></script>
+
+<!-- Script para el formulario de contacto -->
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formMessage = document.getElementById('formMessage');
+        const submitBtn = this.querySelector('button[type="submit"]');
+
+        // Deshabilitar botón mientras se procesa
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+
+        // Simular envío (aquí deberías integrar con tu backend)
+        setTimeout(function() {
+            // Mostrar mensaje de éxito
+            formMessage.className = 'alert alert-success mt-4';
+            formMessage.style.display = 'block';
+            formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i>¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
+
+            // Resetear formulario
+            document.getElementById('contactForm').reset();
+
+            // Restaurar botón
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
+
+            // Ocultar mensaje después de 5 segundos
+            setTimeout(function() {
+                formMessage.style.display = 'none';
+            }, 5000);
+        }, 1500);
+
+        /*
+        // CÓDIGO REAL PARA INTEGRAR CON TU BACKEND:
+
+        const formData = new FormData(this);
+
+        fetch('tu-endpoint-de-backend.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                formMessage.className = 'alert alert-success mt-4';
+                formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i>' + data.message;
+                document.getElementById('contactForm').reset();
+            } else {
+                formMessage.className = 'alert alert-danger mt-4';
+                formMessage.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>' + data.message;
+            }
+            formMessage.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
+        })
+        .catch(error => {
+            formMessage.className = 'alert alert-danger mt-4';
+            formMessage.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje. Intenta nuevamente.';
+            formMessage.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
+        });
+        */
+    });
+</script>
+</body>
+</html>
+
+<!-- ============================================== -->
+<!-- CSS ADICIONAL ESPECÍFICO PARA CONTACTO -->
+<!-- Agregar SOLO estos estilos nuevos a estilo.css -->
+<!-- El resto ya está reutilizado de tus estilos existentes -->
+<!-- ============================================== -->
+
+<style>
+    /* Estilos específicos para la página de contacto */
+
+    .contacto-info-wrapper {
+        padding: 2rem;
+        background: var(--color-blanco);
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        height: 100%;
+    }
+
+    .contacto-items-lista .contacto-item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        padding-bottom: 1.5rem;
+    }
+
+    .contacto-items-lista .contacto-item:last-child {
+        border-bottom: none;
+    }
+
+    .contacto-item-icono {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-blanco);
+        font-size: 1.2rem;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+
+    .contacto-item strong {
+        display: block;
+        color: var(--color-azul-oscuro);
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+    }
+
+    .contacto-item p {
+        color: var(--color-gris-medio);
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .contacto-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--color-secundario);
+        text-decoration: none;
+        font-weight: 500;
+        margin-top: 0.3rem;
+        transition: all 0.3s ease;
+    }
+
+    .contacto-link:hover {
+        color: var(--color-azul-oscuro);
+        transform: translateX(3px);
+    }
+
+    .red-social-btn {
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-blanco);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+    }
+
+    .red-social-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(20, 91, 171, 0.3);
+        color: var(--color-blanco);
+    }
+
+    /* Formulario de contacto */
+    .formulario-contacto-card {
+        padding: 2.5rem;
+        background: var(--color-blanco);
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .formulario-titulo {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        color: var(--color-secundario);
+        font-size: 1.8rem;
+    }
+
+    /* Mapa */
+    .mapa-container {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    /* Responsive */
+    @media (max-width: 991.98px) {
+        .contacto-info-wrapper {
+            margin-bottom: 2rem;
+        }
+
+        .formulario-contacto-card {
+            padding: 2rem;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .contacto-info-wrapper,
+        .formulario-contacto-card {
+            padding: 1.5rem;
+        }
+
+        .formulario-titulo {
+            font-size: 1.5rem;
+        }
+    }
+</style>
