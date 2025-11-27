@@ -25,6 +25,8 @@ body {
     font-weight: 400;
     line-height: 1.6;
     background-color: var(--color-primario);
+    margin: 0 !important;
+    padding-top: 0 !important;
 }
 
 h1, h3, h4, h5, h6,
@@ -2833,4 +2835,210 @@ footer .text-white-50:hover {
 .carousel-hero .carousel-control-next,
 .carousel-hero .carousel-indicators {
     display: none;
+}
+
+/* ========================================
+   ÁREAS DE TRABAJO - DISEÑO BURBUJA
+   ======================================== */
+
+.seccion-areas-trabajo {
+    padding: 4rem 0;
+    background: #f8f9fa;
+}
+
+.area-trabajo-card {
+    background: var(--color-blanco);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
+}
+
+.area-trabajo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(20, 91, 171, 0.15);
+}
+
+.area-content-wrapper {
+    display: flex;
+    align-items: stretch;
+    min-height: 350px;
+}
+
+.area-imagen-container {
+    flex: 0 0 45%;
+    position: relative;
+    overflow: hidden;
+}
+
+.area-imagen-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.area-trabajo-card:hover .area-imagen-container img {
+    transform: scale(1.05);
+}
+
+.area-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    color: var(--color-blanco);
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(20, 91, 171, 0.3);
+}
+
+.area-texto-container {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.area-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-secundario);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.area-descripcion {
+    color: var(--color-gris-medio);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+/* ========================================
+   ÁREA CON 3 FOTOS
+   ======================================== */
+
+.area-multi-fotos {
+    background: var(--color-blanco);
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
+}
+
+.area-multi-fotos:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(20, 91, 171, 0.15);
+}
+
+.area-header-section {
+    padding: 2.5rem 3rem;
+    background: linear-gradient(135deg, rgba(20, 91, 171, 0.05) 0%, rgba(20, 91, 171, 0.08) 100%);
+    border-bottom: 3px solid var(--color-secundario);
+}
+
+.area-multi-fotos .area-titulo {
+    margin-bottom: 1rem;
+}
+
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    height: 300px;
+}
+
+.foto-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.foto-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.foto-item:hover img {
+    transform: scale(1.1);
+}
+
+.foto-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+    padding: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.foto-item:hover .foto-overlay {
+    opacity: 1;
+}
+
+.foto-caption {
+    color: var(--color-blanco);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991.98px) {
+    .area-content-wrapper {
+        flex-direction: column !important;
+        min-height: auto;
+    }
+
+    .area-imagen-container {
+        flex: 0 0 250px;
+        width: 100%;
+    }
+
+    .area-texto-container {
+        padding: 2rem;
+    }
+
+    .area-titulo {
+        font-size: 1.6rem;
+    }
+
+    .galeria-fotos {
+        height: 250px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .area-header-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .area-titulo {
+        font-size: 1.5rem;
+    }
+
+    .area-descripcion {
+        font-size: 0.95rem;
+    }
+
+    .galeria-fotos {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .foto-item {
+        height: 200px;
+    }
 }
