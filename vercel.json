@@ -1,0 +1,55 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "css/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "js/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "imagenes/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "logos/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "ods/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "perfiles/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "videos/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "agro/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "complementos/**/*",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "idea/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}
