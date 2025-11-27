@@ -29,7 +29,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const nav = document.querySelector('.navbar-moderna');
         const altura = nav ? Math.ceil(nav.getBoundingClientRect().height) : 0;
         document.documentElement.style.setProperty('--navbar-height', altura + 'px');
-        document.body.style.paddingTop = altura + 'px';
+        // Solo aplicar padding si NO estamos en la página de inicio
+        if (!document.querySelector('#hero')) {
+            document.body.style.paddingTop = altura + 'px';
+        } else {
+            document.body.style.paddingTop = '0px';
+        }
     }
 
     // Agregar listeners al collapse
@@ -44,11 +49,16 @@ document.addEventListener('DOMContentLoaded', function () {
         if (toggler) toggler.addEventListener('click', () => setTimeout(ajustarAlturaNavbar, 200));
     }
 
-    // Inicializar carrusel
+    // Inicializar carrusel con transición ultra suave
     function inicializarCarrusel() {
         const miCarrusel = document.querySelector('#carruselHero');
         if (miCarrusel && window.bootstrap && typeof bootstrap.Carousel === 'function') {
-            new bootstrap.Carousel(miCarrusel, { interval: 5000, wrap: true });
+            new bootstrap.Carousel(miCarrusel, {
+                interval: 6000,  // Cambia cada 6 segundos
+                wrap: true,      // Vuelve al inicio
+                pause: false,    // No se pausa al hover
+                touch: false     // Deshabilita swipe para evitar transiciones bruscas
+            });
         }
     }
 

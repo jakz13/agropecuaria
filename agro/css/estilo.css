@@ -2773,3 +2773,64 @@ footer .text-white-50:hover {
         gap: 10px;
     }
 }
+
+/* ========================================
+   CARRUSEL HERO - Transición suave
+   ======================================== */
+.carousel-hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.carousel-hero .carousel-inner,
+.carousel-hero .carousel-item {
+    height: 100%;
+}
+
+.carousel-hero .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Transición ultra suave entre imágenes - SIN FLASH */
+.carousel-hero .carousel-item {
+    transition: opacity 2s ease-in-out !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+}
+
+.carousel-hero .carousel-item.active {
+    opacity: 1;
+    position: relative;
+}
+
+/* Asegura que la transición sea gradual */
+.carousel-hero.carousel-fade .carousel-item {
+    transition: opacity 2s ease-in-out !important;
+}
+
+.carousel-hero.carousel-fade .carousel-item.active,
+.carousel-hero.carousel-fade .carousel-item-next.carousel-item-start,
+.carousel-hero.carousel-fade .carousel-item-prev.carousel-item-end {
+    opacity: 1;
+}
+
+.carousel-hero.carousel-fade .carousel-item-next:not(.carousel-item-start),
+.carousel-hero.carousel-fade .active.carousel-item-end {
+    opacity: 0;
+}
+
+/* Ocultar controles del carrusel */
+.carousel-hero .carousel-control-prev,
+.carousel-hero .carousel-control-next,
+.carousel-hero .carousel-indicators {
+    display: none;
+}
