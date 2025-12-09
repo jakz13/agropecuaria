@@ -2226,7 +2226,7 @@ footer .text-white-50:hover {
 }
 
 .valor-texto p {
-    color: var(--color-gris-medio);
+    color: var(#0000);
     font-size: 0.9rem;
     margin: 0;
     line-height: 1.5;
