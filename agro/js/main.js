@@ -75,11 +75,38 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function configurarWhatsApp() {
-        const boton = document.querySelector('.whatsapp-float');
-        if (!boton) return;
-        boton.addEventListener('click', () => console.log('Usuario hizo clic en WhatsApp'));
+        // Aplica a todos los botones por si hay más de uno
+        document.querySelectorAll('.whatsapp-float').forEach(boton => {
+            try {
+                // Asegurar href correcto
+                const url = getWaUrlWithMessage(__WHATSAPP.number, __WHATSAPP.message);
+                boton.setAttribute('href', url);
+                boton.setAttribute('target', '_blank');
+                boton.setAttribute('rel', 'noopener noreferrer');
+            } catch (e) {
+                // no crítico
+            }
+
+            // Manejar click para abrir la URL construida (garantiza que el texto se pase correctamente)
+            boton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const url = getWaUrlWithMessage(__WHATSAPP.number, __WHATSAPP.message);
+                try {
+                    window.open(url, '_blank');
+                } catch (err) {
+                    // fallback a location.href
+                    window.location.href = url;
+                }
+            });
+        });
     }
 
+    // Normaliza un número manteniendo + y dígitos
+    function normalizeNumber(num) {
+        return ('' + num).replace(/[^+\d]/g, '');
+    }
+
+    // Configuración central del número de WhatsApp (siempre definida por whatsapp-config.js antes de main.js)
     // FUNCIÓN DEL CARRUSEL CÍCLICO ELIMINADA
     // Ya no es necesaria porque ahora las categorías son estáticas
 
@@ -92,9 +119,99 @@ document.addEventListener('DOMContentLoaded', function () {
         agregarListenersCollapse();
     }
 
+    // Cargar y configurar el botón de WhatsApp como fragmento reutilizable
+    function crearWhatsAppFallback() {
+        // Crea el botón directamente si el fetch no funciona (útil en file:// o entornos sin servidor)
+        if (document.querySelector('.whatsapp-float')) return;
+        const a = document.createElement('a');
+        a.className = 'whatsapp-float';
+        a.href = getWaUrlWithMessage(__WHATSAPP.number, __WHATSAPP.message);
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.setAttribute('aria-label', 'Enviar mensaje por WhatsApp');
+        a.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="30">';
+        document.body.appendChild(a);
+        console.log('Botón WhatsApp creado por fallback.');
+        configurarWhatsApp();
+        updateExistingWaLinks();
+    }
+
+    function cargarWhatsApp() {
+        // Evitar duplicados
+        if (document.querySelector('.whatsapp-float')) return;
+        // Intentar cargar como fragmento relativo desde la carpeta complementos
+        const ruta = './complementos/whatsapp.html';
+        fetch(ruta)
+            .then(resp => {
+                if (!resp.ok) throw new Error('No se pudo cargar WhatsApp: ' + resp.status);
+                return resp.text();
+            })
+            .then(html => {
+                const temp = document.createElement('div');
+                temp.innerHTML = html;
+                const elemento = temp.querySelector('.whatsapp-float') || temp.firstElementChild;
+                if (elemento) {
+                    // Asegurar que el fragmento tenga el href con mensaje centralizado
+                    try { elemento.setAttribute('href', getWaUrlWithMessage(__WHATSAPP.number, __WHATSAPP.message)); } catch (e) {}
+                    document.body.appendChild(elemento);
+                    console.log('Fragmento WhatsApp inyectado correctamente.');
+                } else {
+                    console.warn('Fragmento WhatsApp cargado pero no se encontró el elemento esperado. HTML recibido:', html);
+                    crearWhatsAppFallback();
+                }
+                configurarWhatsApp();
+                updateExistingWaLinks();
+            })
+            .catch(err => {
+                console.warn('Fragmento WhatsApp no cargado (fallback):', err);
+                crearWhatsAppFallback();
+            });
+    }
+
+    function getWaUrl(num) {
+        const normalized = normalizeNumber(num);
+        // quitar + para la URL si está presente, wa.me acepta con o sin + pero usamos sin +
+        return 'https://wa.me/' + normalized.replace(/^\+/, '');
+    }
+
+    // Nueva versión que acepta mensaje opcional
+    function getWaUrlWithMessage(num, message) {
+        // Normalizamos el número sin el signo + para usar en la query
+        const normalized = (('' + num).replace(/[^+\d]/g, '')).replace(/^\+/, '');
+        if (!message) {
+            // Cuando no hay mensaje usamos la forma corta wa.me
+            return 'https://wa.me/' + normalized;
+        }
+        try {
+            const encoded = encodeURIComponent(message);
+            // Usamos api.whatsapp.com/send?phone=...&text=... que suele respetar mejor el texto
+            return 'https://api.whatsapp.com/send?phone=' + normalized + '&text=' + encoded;
+        } catch (e) {
+            return 'https://wa.me/' + normalized;
+        }
+    }
+
+    function updateExistingWaLinks() {
+        try {
+            const waUrl = getWaUrlWithMessage(__WHATSAPP.number, __WHATSAPP.message);
+            // Actualizar cualquier enlace que apunte a wa.me o whatsapp
+            document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href^="whatsapp:"]').forEach(a => {
+                a.setAttribute('href', waUrl);
+            });
+            // También actualizar enlaces con la clase contacto-link para mostrar el número legible
+            document.querySelectorAll('a.contacto-link').forEach(a => {
+                if (__WHATSAPP.display) a.textContent = __WHATSAPP.display;
+            });
+        } catch (e) {
+            console.warn('No se pudieron actualizar enlaces de WhatsApp:', e);
+        }
+    }
+
     inicializarCarrusel();
     actualizarAniversario();
     configurarWhatsApp();
+
+    cargarWhatsApp();
 
     // Recalcular altura al redimensionar
     window.addEventListener('resize', () => {
