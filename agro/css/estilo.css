@@ -2316,15 +2316,33 @@ footer .text-white-50:hover {
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
+    pointer-events: none;
 }
 
-.accion-card:hover::before {
+/* Solo aplicar hover a tarjetas que NO están en flip */
+.accion-card:not(.accion-flip-front):not(.accion-flip-back)::before {
+    /* Esto solo afecta tarjetas normales, no las de flip */
+}
+
+.accion-card:not(.accion-flip-front):not(.accion-flip-back):hover::before {
     transform: scaleX(1);
 }
 
-.accion-card:hover {
+.accion-card:not(.accion-flip-front):not(.accion-flip-back):hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 40px rgba(20, 91, 171, 0.15);
+}
+
+/* Para las tarjetas de flip: NO aplicar transformación en hover */
+.accion-flip-front .accion-card,
+.accion-flip-back .accion-card {
+    transform: none !important;
+}
+
+.accion-flip-front .accion-card:hover,
+.accion-flip-back .accion-card:hover {
+    transform: none !important;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
 }
 
 .accion-icono-container {
@@ -2480,6 +2498,70 @@ footer .text-white-50:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(20, 91, 171, 0.4);
     color: var(--color-blanco);
+}
+
+/* RESPONSIVE */
+@media (max-width: 991.98px) {
+    .frase-texto {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .frase-destacada {
+        padding: 2.5rem 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .accion-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .accion-titulo {
+        font-size: 1.4rem;
+    }
+
+    .frase-destacada {
+        padding: 2rem 1.5rem;
+    }
+
+    .frase-icono {
+        font-size: 2rem;
+        top: 15px;
+        left: 15px;
+    }
+
+    .frase-icono-derecha {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .frase-texto {
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    .participacion-banner {
+        padding: 2rem 1.5rem;
+    }
+
+    .participacion-titulo {
+        font-size: 1.5rem;
+    }
+
+    .btn-participar {
+        display: block;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .accion-icono {
+        width: 70px;
+        height: 70px;
+        font-size: 1.7rem;
+    }
 }
 
 /* ========================================
@@ -3040,5 +3122,250 @@ footer .text-white-50:hover {
 
     .foto-item {
         height: 200px;
+    }
+}
+
+/* ========================================
+   TARJETAS CON EFECTO FLIP - ACCIONES
+   ======================================== */
+
+.accion-flip-container {
+    perspective: 1000px;
+    height: 100%;
+    min-height: 600px; /* Aumentado para dar más espacio */
+    position: relative; /* IMPORTANTE */
+}
+
+.accion-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 600px; /* Asegura altura mínima */
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.accion-flip-container.flipped .accion-flip-inner {
+    transform: rotateY(180deg);
+}
+
+.accion-flip-front,
+.accion-flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    min-height: 600px; /* Altura mínima consistente */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    top: 0; /* IMPORTANTE: Fija la posición */
+    left: 0; /* IMPORTANTE: Fija la posición */
+}
+
+.accion-flip-front {
+    z-index: 2;
+}
+
+.accion-flip-back {
+    transform: rotateY(180deg);
+    background: var(--color-blanco);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajuste CRÍTICO: La tarjeta frontal necesita altura fija */
+.accion-flip-front .accion-card {
+    height: 100%;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 6rem; /* Más espacio para el botón */
+}
+
+/* Ajustar el contenido de la tarjeta frontal */
+.accion-flip-front .accion-contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.accion-flip-front .accion-descripcion {
+    flex: 1; /* Permite que el texto se expanda */
+}
+
+/* Botón para voltear - POSICIÓN FIJA */
+.btn-flip {
+    position: absolute;
+    bottom: 2rem; /* Más espacio desde abajo */
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(20, 91, 171, 0.3);
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.btn-flip:hover {
+    transform: translateX(-50%) translateY(-3px);
+    box-shadow: 0 6px 20px rgba(20, 91, 171, 0.4);
+}
+
+.btn-flip i {
+    font-size: 1rem;
+}
+
+/* Botón para volver */
+.btn-flip-back {
+    background: var(--color-gris-medio);
+    color: var(--color-blanco);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-flip-back:hover {
+    background: var(--color-azul-oscuro);
+    transform: translateY(-2px);
+}
+
+/* Galería de momentos */
+.galeria-momentos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    flex: 1;
+    margin-bottom: 1.5rem;
+    height: auto;
+}
+
+.momento-foto {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 1;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.momento-foto:hover {
+    transform: scale(1.05);
+}
+
+.momento-foto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.momento-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+    color: var(--color-blanco);
+    padding: 0.8rem 0.5rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.momento-foto:hover .momento-caption {
+    opacity: 1;
+}
+
+/* RESPONSIVE */
+@media (max-width: 991.98px) {
+    .accion-flip-container,
+    .accion-flip-inner,
+    .accion-flip-front,
+    .accion-flip-back,
+    .accion-flip-front .accion-card {
+        min-height: 570px;
+    }
+
+    .galeria-momentos {
+        gap: 0.8rem;
+    }
+
+    .momento-caption {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .accion-flip-container,
+    .accion-flip-inner,
+    .accion-flip-front,
+    .accion-flip-back,
+    .accion-flip-front .accion-card {
+        min-height: 550px;
+    }
+
+    .accion-flip-container {
+        margin-bottom: 2rem;
+    }
+
+    .accion-flip-back {
+        padding: 1.5rem 1rem;
+    }
+
+    .btn-flip {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+        bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .accion-flip-container,
+    .accion-flip-inner,
+    .accion-flip-front,
+    .accion-flip-back,
+    .accion-flip-front .accion-card {
+        min-height: 520px;
+    }
+
+    .galeria-momentos {
+        gap: 0.6rem;
+    }
+
+    .momento-caption {
+        padding: 0.5rem 0.3rem 0.3rem;
+        font-size: 0.65rem;
+    }
+
+    .btn-flip {
+        bottom: 1rem;
+        padding: 8px 16px;
+        font-size: 0.8rem;
     }
 }
