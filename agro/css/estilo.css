@@ -104,8 +104,8 @@ h1, h3, h4, h5, h6,
     color: rgba(255, 255, 255, 0.9) !important;
     font-weight: 500;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 0.95rem;
-    padding: 0.5rem 1rem !important;
+    font-size: 1.1rem;
+    padding: 0.5rem 0.5rem !important;
     margin: 0 0.2rem;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -540,6 +540,39 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Video histórico embebido (YouTube) */
+.video-historico .youtube-container {
+    width: 90%;
+    max-width: 1200px; /* ancho máximo razonable */
+    margin: 0 auto;
+    position: relative;
+    padding-bottom:46.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-historico .youtube-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* ocupar todo el contenedor */
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 576px) {
+    .video-historico {
+        padding: 0.1rem 0;
+    }
+
+    .video-historico .youtube-container {
+        max-width: 80%;
+        padding-bottom: 56.25%;
+    }
 }
 
 #seccion-carrusel-montana {
@@ -1747,7 +1780,7 @@ footer .text-white-50:hover {
 
 .carrusel-container {
     position: relative;
-    overflow: visible; /* Cambiado a visible */
+    overflow: hidden; /* Cambiado a visible */
     min-height: 500px;
 }
 
@@ -1904,13 +1937,13 @@ footer .text-white-50:hover {
     font-size: 1.5rem;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(20, 91, 171, 0.2);
 }
 
 .carrusel-control:hover {
     background: var(--color-azul-oscuro);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .carrusel-control.prev {
@@ -2403,7 +2436,7 @@ footer .text-white-50:hover {
     gap: 12px;
     padding: 1.2rem;
     background: linear-gradient(135deg, rgba(20, 91, 171, 0.05) 0%, rgba(20, 91, 171, 0.08) 100%);
-    border-radius: 12px;
+    border-radius: 10px;
     border-left: 4px solid var(--color-secundario);
 }
 
@@ -2511,59 +2544,6 @@ footer .text-white-50:hover {
         padding: 2.5rem 2rem;
     }
 }
-
-@media (max-width: 767.98px) {
-    .accion-card {
-        padding: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .accion-titulo {
-        font-size: 1.4rem;
-    }
-
-    .frase-destacada {
-        padding: 2rem 1.5rem;
-    }
-
-    .frase-icono {
-        font-size: 2rem;
-        top: 15px;
-        left: 15px;
-    }
-
-    .frase-icono-derecha {
-        right: 15px;
-        bottom: 15px;
-    }
-
-    .frase-texto {
-        font-size: 1rem;
-        padding: 0;
-    }
-
-    .participacion-banner {
-        padding: 2rem 1.5rem;
-    }
-
-    .participacion-titulo {
-        font-size: 1.5rem;
-    }
-
-    .btn-participar {
-        display: block;
-        margin-top: 1rem;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .accion-icono {
-        width: 70px;
-        height: 70px;
-        font-size: 1.7rem;
-    }
-}
-
 /* ========================================
    SECCIÓN FAUSTO
    ======================================== */
@@ -2817,11 +2797,6 @@ footer .text-white-50:hover {
         font-size: 1.5rem;
     }
 
-    .btn-participar {
-        display: block;
-        margin-top: 1rem;
-    }
-
     .fausto-nombre {
         font-size: 2.5rem;
     }
@@ -2857,6 +2832,7 @@ footer .text-white-50:hover {
         gap: 10px;
     }
 }
+
 
 /* ========================================
    CARRUSEL HERO - Transición suave
@@ -3155,7 +3131,7 @@ footer .text-white-50:hover {
     position: absolute;
     width: 100%;
     height: 100%;
-    min-height: 600px; /* Altura mínima consistente */
+    min-height: 630px; /* Altura mínima consistente */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 20px;
@@ -3171,7 +3147,7 @@ footer .text-white-50:hover {
     transform: rotateY(180deg);
     background: var(--color-blanco);
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-    padding: 2rem 1.5rem;
+    padding: 2rem 1rem;
     display: flex;
     flex-direction: column;
 }
@@ -3200,7 +3176,7 @@ footer .text-white-50:hover {
 /* Botón para voltear - POSICIÓN FIJA */
 .btn-flip {
     position: absolute;
-    bottom: 2rem; /* Más espacio desde abajo */
+    bottom: 1rem; /* Más espacio desde abajo */
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
@@ -3369,3 +3345,5 @@ footer .text-white-50:hover {
         font-size: 0.8rem;
     }
 }
+
+

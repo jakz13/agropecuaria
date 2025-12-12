@@ -323,68 +323,108 @@
 <script src="js/whatsapp-config.js"></script>
 <!-- Script para el formulario de contacto -->
 <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+(function(){
+    // OPCIONES:
+    // 1) Formspree (recomendado, no requiere servidor): crea un formulario en https://formspree.io/ y copia el endpoint (ej: https://formspree.io/f/xxxxxxx)
+    //    Pega el endpoint en FORMSPREE_ENDPOINT más abajo.
+    // 2) Fallback: si no pegás endpoint, el formulario abrirá el cliente de correo (mailto) con el contenido.
+
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/meoypdzz'; // <-- Pega aquí tu endpoint de Formspree si lo tenés
+    const MAILTO_EMAIL = 'curbelo484@gmail.com'; // dirección que recuperará el mail en fallback
+
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+
+    // Seguridad: si el formulario no existe, no hacer nada
+    if (!form) {
+        console.warn('contactForm no encontrado en el DOM — script de formulario abortado.');
+        return;
+    }
+
+    function showMessage(type, html) {
+        if (!formMessage) return;
+        formMessage.className = 'alert ' + (type === 'success' ? 'alert-success' : 'alert-danger') + ' mt-4';
+        formMessage.innerHTML = html;
+        formMessage.style.display = 'block';
+    }
+
+    function resetButton() {
+        if (!submitBtn) return;
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
+    }
+
+    form.addEventListener('submit', function(e) {
         e.preventDefault();
 
-        const formMessage = document.getElementById('formMessage');
-        const submitBtn = this.querySelector('button[type="submit"]');
+        // Validación nativa HTML
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
 
-        // Deshabilitar botón mientras se procesa
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+        // Estado de envío
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
+        }
 
-        // Simular envío (aquí deberías integrar con tu backend)
-        setTimeout(function() {
-            // Mostrar mensaje de éxito
-            formMessage.className = 'alert alert-success mt-4';
-            formMessage.style.display = 'block';
-            formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i>¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
+        const formData = new FormData(form);
 
-            // Resetear formulario
-            document.getElementById('contactForm').reset();
+        if (FORMSPREE_ENDPOINT && FORMSPREE_ENDPOINT.trim() !== '') {
+            // Envío a Formspree (no requiere servidor propio)
+            fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) return response.json().catch(() => ({}));
+                return response.json().then(err => { throw err; });
+            })
+            .then(() => {
+                showMessage('success', '<i class="fas fa-check-circle me-2"></i>¡Mensaje enviado con éxito! Gracias por contactarnos.');
+                form.reset();
+                setTimeout(() => { if (formMessage) formMessage.style.display = 'none'; }, 5000);
+            })
+            .catch(() => {
+                showMessage('error', '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje. Intentá nuevamente más tarde.');
+            })
+            .finally(() => {
+                resetButton();
+            });
 
-            // Restaurar botón
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
+        } else {
+            // Fallback: abrir cliente de correo con mailto (no requiere servidor)
+            const nombre = formData.get('nombre') || '';
+            const email = formData.get('email') || '';
+            const telefono = formData.get('telefono') || '';
+            const asunto = formData.get('asunto') || 'Contacto desde web';
+            const mensaje = formData.get('mensaje') || '';
 
-            // Ocultar mensaje después de 5 segundos
-            setTimeout(function() {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }, 1500);
+            const body = [
+                `Nombre: ${nombre}`,
+                `Email: ${email}`,
+                `Teléfono: ${telefono}`,
+                '',
+                mensaje
+            ].join('%0D%0A');
 
-        /*
-        // CÓDIGO REAL PARA INTEGRAR CON TU BACKEND:
+            const mailto = `mailto:${encodeURIComponent(MAILTO_EMAIL)}?subject=${encodeURIComponent(asunto)}&body=${body}`;
 
-        const formData = new FormData(this);
+            // Abrir cliente de correo. Algunos navegadores bloquean popups si no es interacción directa, pero esto se llama desde submit.
+            window.location.href = mailto;
 
-        fetch('tu-endpoint-de-backend.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if(data.success) {
-                formMessage.className = 'alert alert-success mt-4';
-                formMessage.innerHTML = '<i class="fas fa-check-circle me-2"></i>' + data.message;
-                document.getElementById('contactForm').reset();
-            } else {
-                formMessage.className = 'alert alert-danger mt-4';
-                formMessage.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>' + data.message;
-            }
-            formMessage.style.display = 'block';
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
-        })
-        .catch(error => {
-            formMessage.className = 'alert alert-danger mt-4';
-            formMessage.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje. Intenta nuevamente.';
-            formMessage.style.display = 'block';
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
-        });
-        */
+            // Restaurar botón pasados 1s
+            setTimeout(() => {
+                resetButton();
+            }, 1000);
+        }
     });
+})();
 </script>
 </body>
 </html>
@@ -418,7 +458,7 @@
     .contacto-item-icono {
         width: 45px;
         height: 45px;
-        background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+        background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-azul-oscuro) 40%);
         border-radius: 12px;
         display: flex;
         align-items: center;

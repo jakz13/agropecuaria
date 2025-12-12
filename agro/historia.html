@@ -53,18 +53,21 @@
         </div>
     </section>
 
+    <!-- VIDEO EMBED: inserta aquí un video de YouTube entre los logos y las tarjetas -->
+    <section class="video-historico py-4">
+        <div class="container">
+            <div class="youtube-container">
+                <!-- Reemplaza el ID del video (VIDEO_ID) por el que quieras usar -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/jG2945xmuhc?si=NVf6iPsoZLVNP4F6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Carrusel de Sucesos Históricos -->
     <section class="py-5">
         <div class="historia-carrusel-wrapper">
             <!-- Contenedor del carrusel -->
             <div class="carrusel-container" id="carruselHistoria">
-                <!-- Flechas de navegación -->
-                <button class="carrusel-control prev" id="btnPrev">
-                    <i class="bi bi-chevron-left"></i>
-                </button>
-                <button class="carrusel-control next" id="btnNext">
-                    <i class="bi bi-chevron-right"></i>
-                </button>
 
                 <!-- Slides -->
                 <div class="carrusel-slides-wrapper" id="slidesWrapper">
@@ -219,9 +222,10 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
-                <!-- Indicadores de progreso -->
+                <!-- Indicadores de progreso (movidos dentro del contenedor para quedar entre tarjetas y navegación) -->
                 <div class="carrusel-indicadores">
                     <div class="indicador active" data-indicador="0"></div>
                     <div class="indicador" data-indicador="1"></div>
@@ -233,6 +237,15 @@
                     <div class="indicador" data-indicador="7"></div>
                 </div>
             </div>
+
+                <!-- Flechas de navegación (movidas fuera del contenedor para evitar recorte por overflow) -->
+                <button class="carrusel-control prev" id="btnPrev">
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+                <button class="carrusel-control next" id="btnNext">
+                    <i class="bi bi-chevron-right"></i>
+                </button>
+
 
             <!-- Navegación por sucesos -->
             <div class="timeline-navigation">
