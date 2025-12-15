@@ -104,8 +104,8 @@ h1, h3, h4, h5, h6,
     color: rgba(255, 255, 255, 0.9) !important;
     font-weight: 500;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.1rem;
-    padding: 0.5rem 0.5rem !important;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem !important;
     margin: 0 0.2rem;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -540,39 +540,6 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-/* Video histórico embebido (YouTube) */
-.video-historico .youtube-container {
-    width: 90%;
-    max-width: 1200px; /* ancho máximo razonable */
-    margin: 0 auto;
-    position: relative;
-    padding-bottom:46.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-}
-
-.video-historico .youtube-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%; /* ocupar todo el contenedor */
-    border: 0;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-}
-
-@media (max-width: 576px) {
-    .video-historico {
-        padding: 0.1rem 0;
-    }
-
-    .video-historico .youtube-container {
-        max-width: 80%;
-        padding-bottom: 56.25%;
-    }
 }
 
 #seccion-carrusel-montana {
@@ -1780,7 +1747,7 @@ footer .text-white-50:hover {
 
 .carrusel-container {
     position: relative;
-    overflow: hidden; /* Cambiado a visible */
+    overflow: visible; /* Cambiado a visible */
     min-height: 500px;
 }
 
@@ -1937,13 +1904,13 @@ footer .text-white-50:hover {
     font-size: 1.5rem;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 4px 15px rgba(20, 91, 171, 0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .carrusel-control:hover {
     background: var(--color-azul-oscuro);
     transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 .carrusel-control.prev {
@@ -2368,8 +2335,13 @@ footer .text-white-50:hover {
 
 /* Para las tarjetas de flip: NO aplicar transformación en hover */
 .accion-flip-front .accion-card,
-.accion-flip-back .accion-card {
-    transform: none !important;
+.accion-flip-front .accion-card {
+    height: 100%;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 10rem; /* AUMENTADO de 6rem a 7rem */
 }
 
 .accion-flip-front .accion-card:hover,
@@ -2436,7 +2408,7 @@ footer .text-white-50:hover {
     gap: 12px;
     padding: 1.2rem;
     background: linear-gradient(135deg, rgba(20, 91, 171, 0.05) 0%, rgba(20, 91, 171, 0.08) 100%);
-    border-radius: 10px;
+    border-radius: 12px;
     border-left: 4px solid var(--color-secundario);
 }
 
@@ -2544,6 +2516,59 @@ footer .text-white-50:hover {
         padding: 2.5rem 2rem;
     }
 }
+
+@media (max-width: 767.98px) {
+    .accion-card {
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .accion-titulo {
+        font-size: 1.4rem;
+    }
+
+    .frase-destacada {
+        padding: 2rem 1.5rem;
+    }
+
+    .frase-icono {
+        font-size: 2rem;
+        top: 15px;
+        left: 15px;
+    }
+
+    .frase-icono-derecha {
+        right: 15px;
+        bottom: 15px;
+    }
+
+    .frase-texto {
+        font-size: 1rem;
+        padding: 0;
+    }
+
+    .participacion-banner {
+        padding: 2rem 1.5rem;
+    }
+
+    .participacion-titulo {
+        font-size: 1.5rem;
+    }
+
+    .btn-participar {
+        display: block;
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .accion-icono {
+        width: 70px;
+        height: 70px;
+        font-size: 1.7rem;
+    }
+}
+
 /* ========================================
    SECCIÓN FAUSTO
    ======================================== */
@@ -2797,6 +2822,11 @@ footer .text-white-50:hover {
         font-size: 1.5rem;
     }
 
+    .btn-participar {
+        display: block;
+        margin-top: 1rem;
+    }
+
     .fausto-nombre {
         font-size: 2.5rem;
     }
@@ -2832,7 +2862,6 @@ footer .text-white-50:hover {
         gap: 10px;
     }
 }
-
 
 /* ========================================
    CARRUSEL HERO - Transición suave
@@ -3108,7 +3137,7 @@ footer .text-white-50:hover {
 .accion-flip-container {
     perspective: 1000px;
     height: 100%;
-    min-height: 600px; /* Aumentado para dar más espacio */
+    min-height: 700px; /* Aumentado para dar más espacio */
     position: relative; /* IMPORTANTE */
 }
 
@@ -3131,7 +3160,7 @@ footer .text-white-50:hover {
     position: absolute;
     width: 100%;
     height: 100%;
-    min-height: 630px; /* Altura mínima consistente */
+    min-height: 600px; /* Altura mínima consistente */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 20px;
@@ -3147,7 +3176,7 @@ footer .text-white-50:hover {
     transform: rotateY(180deg);
     background: var(--color-blanco);
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
-    padding: 2rem 1rem;
+    padding: 2rem 1.5rem;
     display: flex;
     flex-direction: column;
 }
@@ -3159,7 +3188,7 @@ footer .text-white-50:hover {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-bottom: 6rem; /* Más espacio para el botón */
+    padding-bottom: 20rem; /* Más espacio para el botón */
 }
 
 /* Ajustar el contenido de la tarjeta frontal */
@@ -3167,16 +3196,22 @@ footer .text-white-50:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .accion-flip-front .accion-descripcion {
     flex: 1; /* Permite que el texto se expanda */
+    margin-bottom: 1rem;
+}
+
+.accion-flip-front .accion-impacto {
+    margin-bottom: 0.5rem; /* NUEVO: Un poco de margen extra */
 }
 
 /* Botón para voltear - POSICIÓN FIJA */
 .btn-flip {
     position: absolute;
-    bottom: 1rem; /* Más espacio desde abajo */
+    bottom: 1rem; /* REDUCIDO de 2rem a 1.5rem para más espacio arriba */
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
@@ -3346,4 +3381,130 @@ footer .text-white-50:hover {
     }
 }
 
+/* ============================================== */
+/* ESTILOS ESPECÍFICOS PARA PÁGINA DE CONTACTO */
+/* ============================================== */
 
+.contacto-info-wrapper {
+    padding: 2rem;
+    background: var(--color-blanco);
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.contacto-items-lista .contacto-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding-bottom: 1.5rem;
+}
+
+.contacto-items-lista .contacto-item:last-child {
+    border-bottom: none;
+}
+
+.contacto-item-icono {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blanco);
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.contacto-item strong {
+    display: block;
+    color: var(--color-azul-oscuro);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.contacto-item p {
+    color: var(--color-gris-medio);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.contacto-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.contacto-link:hover {
+    color: var(--color-azul-oscuro);
+    transform: translateX(3px);
+}
+
+.red-social-btn {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blanco);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.red-social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(20, 91, 171, 0.3);
+    color: var(--color-blanco);
+}
+
+/* Formulario de contacto */
+.formulario-contacto-card {
+    padding: 2.5rem;
+    background: var(--color-blanco);
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.formulario-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--color-secundario);
+    font-size: 1.8rem;
+}
+
+/* Mapa */
+.mapa-container {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .contacto-info-wrapper {
+        margin-bottom: 2rem;
+    }
+
+    .formulario-contacto-card {
+        padding: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .contacto-info-wrapper,
+    .formulario-contacto-card {
+        padding: 1.5rem;
+    }
+
+    .formulario-titulo {
+        font-size: 1.5rem;
+    }
+}
