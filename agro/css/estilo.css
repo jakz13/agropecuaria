@@ -3569,3 +3569,84 @@ footer .text-white-50:hover {
         padding: 0.8rem;
     }
 }
+
+/* ============================================== */
+/* CSS ADICIONAL PARA PÁGINA DE CONTACTO */
+/* Agregar estos estilos a estilo.css */
+/* ============================================== */
+
+/* Tarjetas de ubicación */
+.ubicacion-card {
+    background: var(--color-blanco);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.ubicacion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(20, 91, 171, 0.15);
+}
+
+.ubicacion-header {
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    color: var(--color-blanco);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.ubicacion-header h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    font-size: 1.4rem;
+}
+
+.ubicacion-header p {
+    opacity: 0.9;
+    font-size: 0.95rem;
+}
+
+.ubicacion-info {
+    padding: 1.5rem;
+    background: var(--color-gris-claro);
+}
+
+.ubicacion-info p {
+    color: var(--color-gris-medio);
+    line-height: 1.6;
+}
+
+.ubicacion-info strong {
+    color: var(--color-azul-oscuro);
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+    .ubicacion-header h4 {
+        font-size: 1.2rem;
+    }
+
+    .mapa-container iframe {
+        height: 300px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .ubicacion-card {
+        margin-bottom: 2rem;
+    }
+
+    .ubicacion-header {
+        padding: 1.2rem;
+    }
+
+    .ubicacion-info {
+        padding: 1.2rem;
+    }
+
+    .mapa-container iframe {
+        height: 250px;
+    }
+}
