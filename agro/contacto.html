@@ -22,14 +22,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-10 mx-auto text-center text-white">
-                    <h2 class="hero-title">Contactos</h2>
+                    <h2 class="hero-title">Contacto</h2>
                     <p class="lead">Estamos aquí para ayudarte. Comunicate con nosotros y te responderemos a la brevedad</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Información de contacto + Formulario -->
+    <!-- Información de contacto -->
     <section class="py-5" id="bienvenida">
         <div class="container">
             <div class="row g-5">
@@ -41,7 +41,7 @@
                             Tenés alguna consulta sobre nuestros productos o servicios? Querés conocer más sobre cómo podemos ayudarte? Escribinos y un miembro de nuestro equipo se pondrá en contacto contigo.
                         </p>
 
-                        <!-- Items de contacto reutilizando estilos del footer -->
+                        <!-- Items de contacto -->
                         <div class="contacto-items-lista">
                             <div class="contacto-item mb-4">
                                 <div class="d-flex align-items-start">
@@ -64,7 +64,7 @@
                                     <div>
                                         <strong>Teléfono</strong>
                                         <p class="mb-0">[Número de teléfono fijo]</p>
-                                        <a href="https://wa.me/091805711" class="contacto-link">
+                                        <a href="https://wa.me/598918057111" class="contacto-link">
                                             <i class="fab fa-whatsapp"></i> +598 91 805 711
                                         </a>
                                     </div>
@@ -113,93 +113,97 @@
                     </div>
                 </div>
 
-                <!-- Columna derecha: Formulario de contacto -->
+                <!-- Columna derecha: Botón de contacto por email -->
                 <div class="col-lg-7">
                     <div class="formulario-contacto-card">
-                        <h3 class="formulario-titulo mb-4">Envianos tu consulta</h3>
+                        <h3 class="formulario-titulo mb-4">Envianos tu consulta por email</h3>
 
-                        <form id="contactForm" class="formulario-contacto">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label for="nombre" class="form-label">Nombre completo *</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="email" class="form-label">Email *</label>
-                                    <input type="email" class="form-control" id="email" name="email" required>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="telefono" class="form-label">Teléfono</label>
-                                    <input type="tel" class="form-control" id="telefono" name="telefono">
-                                </div>
-
-                                <div class="col-md-6">
-                                    <label for="asunto" class="form-label">Asunto *</label>
-                                    <select class="form-control" id="asunto" name="asunto" required>
-                                        <option value="">Seleccioná un asunto</option>
-                                        <option value="consulta-productos">Consulta sobre Productos</option>
-                                        <option value="consulta-servicios">Consulta sobre Servicios</option>
-                                        <option value="cotizacion">Solicitud de Cotización</option>
-                                        <option value="asesoramiento">Asesoramiento Técnico</option>
-                                        <option value="reclamo">Reclamo o Sugerencia</option>
-                                        <option value="otro">Otro</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-12">
-                                    <label for="mensaje" class="form-label">Mensaje *</label>
-                                    <textarea class="form-control" id="mensaje" name="mensaje" rows="6" required placeholder="Contanos en qué podemos ayudarte..."></textarea>
-                                </div>
-
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="aceptoTerminos" required>
-                                        <label class="form-check-label" for="aceptoTerminos">
-                                            Acepto la política de privacidad y el tratamiento de mis datos personales
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <button type="submit" class="btn-login w-100">
-                                        <i class="fas fa-paper-plane me-2"></i>
-                                        Enviar Mensaje
-                                    </button>
-                                </div>
+                        <div class="text-center py-5">
+                            <div class="mb-4">
+                                <i class="fas fa-envelope-open-text" style="font-size: 5rem; color: var(--color-secundario); opacity: 0.8;"></i>
                             </div>
-                        </form>
 
-                        <!-- Mensaje de éxito/error -->
-                        <div id="formMessage" class="alert mt-4" style="display: none;"></div>
+                            <h4 class="mb-3" style="color: var(--color-azul-oscuro);">Contactanos directamente</h4>
+                            <p class="mb-4 text-muted">
+                                Hacé clic en el botón de abajo para abrir tu cliente de correo y enviarnos tu consulta.
+                                Nuestro equipo te responderá a la brevedad.
+                            </p>
+
+                            <a href="mailto:arturo.bidegaray@sfrcs.com.uy?subject=Consulta desde la web&body=Hola, me gustaría consultar sobre:"
+                               class="btn-login"
+                               style="display: inline-block; text-decoration: none; padding: 15px 40px;">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                Enviar Mensaje por Email
+                            </a>
+
+                            <div class="mt-4 p-3" style="background: rgba(20, 91, 171, 0.05); border-radius: 10px;">
+                                <p class="mb-0 small text-muted">
+                                    <i class="fas fa-info-circle me-2"></i>
+                                    También podés escribirnos directamente a: <strong>arturo.bidegaray@sfrcs.com.uy</strong>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sección de mapa (opcional) -->
+    <!-- Sección de mapas -->
     <section class="py-5 bg-light">
         <div class="container">
-            <div class="text-center mb-4">
+            <div class="text-center mb-5">
                 <h2 class="section-title">Dónde encontrarnos</h2>
-                <p class="section-subtitle">Visitanos en nuestra sede en Nueva Helvecia</p>
+                <p class="section-subtitle">Visitanos en nuestras sedes</p>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <div class="mapa-container">
-                        <!-- Reemplazar con tu ubicación real de Google Maps -->
-                        <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.8276579524744!2d-57.22667508477262!3d-34.29545698051898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDE3JzQzLjYiUyA1N8KwMTMnMjguOCJX!5e0!3m2!1ses!2suy!4v1234567890123!5m2!1ses!2suy"
-                                width="100%"
-                                height="450"
-                                style="border:0; border-radius: 15px;"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+            <div class="row g-4">
+                <!-- Mapa Nueva Helvecia -->
+                <div class="col-lg-6">
+                    <div class="ubicacion-card">
+                        <div class="ubicacion-header">
+                            <h4><i class="fas fa-map-marker-alt me-2"></i>Nueva Helvecia</h4>
+                            <p class="mb-0">Sede Central</p>
+                        </div>
+                        <div class="mapa-container">
+                            <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3288.8276579524744!2d-57.22667508477262!3d-34.29545698051898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDE3JzQzLjYiUyA1N8KwMTMnMjguOCJX!5e0!3m2!1ses!2suy!4v1234567890123!5m2!1ses!2suy"
+                                    width="100%"
+                                    height="350"
+                                    style="border:0; border-radius: 15px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <div class="ubicacion-info">
+                            <p class="mb-1"><strong>Dirección:</strong> Frau Vogel 1090, Nueva Helvecia, Colonia</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mapa Ecilda Paullier -->
+                <div class="col-lg-6">
+                    <div class="ubicacion-card">
+                        <div class="ubicacion-header">
+                            <h4><i class="fas fa-map-marker-alt me-2"></i>Ecilda Paullier</h4>
+                            <p class="mb-0">Local de Ventas</p>
+                        </div>
+                        <div class="mapa-container">
+                            <!-- Reemplazar con coordenadas reales de Ecilda Paullier -->
+                            <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.123456789!2d-56.123456!3d-34.567890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzTCsDM0JzA0LjQiUyA1NsKwMDcnMjQuNCJX!5e0!3m2!1ses!2suy!4v1234567890123!5m2!1ses!2suy"
+                                    width="100%"
+                                    height="350"
+                                    style="border:0; border-radius: 15px;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                        <div class="ubicacion-info">
+                            <p class="mb-1"><strong>Dirección:</strong> 80002 Ecilda Paullier, San José</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -222,7 +226,7 @@
     </section>
 </main>
 
-<!-- Footer (reutilizar el mismo del index.html) -->
+<!-- Footer -->
 <footer class="bg-dark text-white">
     <div class="container py-5">
         <div class="row">
@@ -265,7 +269,7 @@
                         <i class="fas fa-envelope me-3 mt-1"></i>
                         <div>
                             <strong>Email</strong>
-                            <p class="mb-0"> arturo.bidegaray@sfrcs.com.uy</p>
+                            <p class="mb-0">arturo.bidegaray@sfrcs.com.uy</p>
                         </div>
                     </div>
                 </div>
@@ -313,252 +317,10 @@
     </div>
 </footer>
 
-<!-- Botón de WhatsApp -->
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/navegacion.js"></script>
 <script src="js/animaciones.js"></script>
 <script src="js/main.js"></script>
 <script src="js/whatsapp-config.js"></script>
-<!-- Script para el formulario de contacto -->
-<script>
-(function(){
-    // OPCIONES:
-    // 1) Formspree (recomendado, no requiere servidor): crea un formulario en https://formspree.io/ y copia el endpoint (ej: https://formspree.io/f/xxxxxxx)
-    //    Pega el endpoint en FORMSPREE_ENDPOINT más abajo.
-    // 2) Fallback: si no pegás endpoint, el formulario abrirá el cliente de correo (mailto) con el contenido.
-
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/meoypdzz'; // <-- Pega aquí tu endpoint de Formspree si lo tenés
-    const MAILTO_EMAIL = 'curbelo484@gmail.com'; // dirección que recuperará el mail en fallback
-
-    const form = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
-    const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
-
-    // Seguridad: si el formulario no existe, no hacer nada
-    if (!form) {
-        console.warn('contactForm no encontrado en el DOM — script de formulario abortado.');
-        return;
-    }
-
-    function showMessage(type, html) {
-        if (!formMessage) return;
-        formMessage.className = 'alert ' + (type === 'success' ? 'alert-success' : 'alert-danger') + ' mt-4';
-        formMessage.innerHTML = html;
-        formMessage.style.display = 'block';
-    }
-
-    function resetButton() {
-        if (!submitBtn) return;
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Enviar Mensaje';
-    }
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        // Validación nativa HTML
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
-
-        // Estado de envío
-        if (submitBtn) {
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Enviando...';
-        }
-
-        const formData = new FormData(form);
-
-        if (FORMSPREE_ENDPOINT && FORMSPREE_ENDPOINT.trim() !== '') {
-            // Envío a Formspree (no requiere servidor propio)
-            fetch(FORMSPREE_ENDPOINT, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) return response.json().catch(() => ({}));
-                return response.json().then(err => { throw err; });
-            })
-            .then(() => {
-                showMessage('success', '<i class="fas fa-check-circle me-2"></i>¡Mensaje enviado con éxito! Gracias por contactarnos.');
-                form.reset();
-                setTimeout(() => { if (formMessage) formMessage.style.display = 'none'; }, 5000);
-            })
-            .catch(() => {
-                showMessage('error', '<i class="fas fa-exclamation-circle me-2"></i>Error al enviar el mensaje. Intentá nuevamente más tarde.');
-            })
-            .finally(() => {
-                resetButton();
-            });
-
-        } else {
-            // Fallback: abrir cliente de correo con mailto (no requiere servidor)
-            const nombre = formData.get('nombre') || '';
-            const email = formData.get('email') || '';
-            const telefono = formData.get('telefono') || '';
-            const asunto = formData.get('asunto') || 'Contacto desde web';
-            const mensaje = formData.get('mensaje') || '';
-
-            const body = [
-                `Nombre: ${nombre}`,
-                `Email: ${email}`,
-                `Teléfono: ${telefono}`,
-                '',
-                mensaje
-            ].join('%0D%0A');
-
-            const mailto = `mailto:${encodeURIComponent(MAILTO_EMAIL)}?subject=${encodeURIComponent(asunto)}&body=${body}`;
-
-            // Abrir cliente de correo. Algunos navegadores bloquean popups si no es interacción directa, pero esto se llama desde submit.
-            window.location.href = mailto;
-
-            // Restaurar botón pasados 1s
-            setTimeout(() => {
-                resetButton();
-            }, 1000);
-        }
-    });
-})();
-</script>
 </body>
 </html>
-
-<!-- ============================================== -->
-<!-- CSS ADICIONAL ESPECÍFICO PARA CONTACTO -->
-<!-- Agregar SOLO estos estilos nuevos a estilo.css -->
-<!-- El resto ya está reutilizado de tus estilos existentes -->
-<!-- ============================================== -->
-
-<style>
-    /* Estilos específicos para la página de contacto */
-
-    .contacto-info-wrapper {
-        padding: 2rem;
-        background: var(--color-blanco);
-        border-radius: 20px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-        height: 100%;
-    }
-
-    .contacto-items-lista .contacto-item {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        padding-bottom: 1.5rem;
-    }
-
-    .contacto-items-lista .contacto-item:last-child {
-        border-bottom: none;
-    }
-
-    .contacto-item-icono {
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(135deg, var(--color-secundario) 0%, var(--color-azul-oscuro) 40%);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--color-blanco);
-        font-size: 1.2rem;
-        margin-right: 1rem;
-        flex-shrink: 0;
-    }
-
-    .contacto-item strong {
-        display: block;
-        color: var(--color-azul-oscuro);
-        font-weight: 600;
-        margin-bottom: 0.3rem;
-    }
-
-    .contacto-item p {
-        color: var(--color-gris-medio);
-        margin: 0;
-        line-height: 1.6;
-    }
-
-    .contacto-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: var(--color-secundario);
-        text-decoration: none;
-        font-weight: 500;
-        margin-top: 0.3rem;
-        transition: all 0.3s ease;
-    }
-
-    .contacto-link:hover {
-        color: var(--color-azul-oscuro);
-        transform: translateX(3px);
-    }
-
-    .red-social-btn {
-        width: 45px;
-        height: 45px;
-        background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--color-blanco);
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-size: 1.1rem;
-    }
-
-    .red-social-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(20, 91, 171, 0.3);
-        color: var(--color-blanco);
-    }
-
-    /* Formulario de contacto */
-    .formulario-contacto-card {
-        padding: 2.5rem;
-        background: var(--color-blanco);
-        border-radius: 20px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-    }
-
-    .formulario-titulo {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 700;
-        color: var(--color-secundario);
-        font-size: 1.8rem;
-    }
-
-    /* Mapa */
-    .mapa-container {
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        border-radius: 15px;
-        overflow: hidden;
-    }
-
-    /* Responsive */
-    @media (max-width: 991.98px) {
-        .contacto-info-wrapper {
-            margin-bottom: 2rem;
-        }
-
-        .formulario-contacto-card {
-            padding: 2rem;
-        }
-    }
-
-    @media (max-width: 767.98px) {
-        .contacto-info-wrapper,
-        .formulario-contacto-card {
-            padding: 1.5rem;
-        }
-
-        .formulario-titulo {
-            font-size: 1.5rem;
-        }
-    }
-</style>
