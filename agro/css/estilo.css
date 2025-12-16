@@ -1826,12 +1826,10 @@ footer .text-white-50:hover {
 
 .suceso-imagen {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 340px; /* tamaño razonable en desktop */
+    overflow: hidden; /* recorta la imagen para mantener proporción */
     background: linear-gradient(135deg, var(--color-secundario), var(--color-detalle));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     color: var(--color-blanco);
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
@@ -2054,6 +2052,11 @@ footer .text-white-50:hover {
     .logos-container {
         max-width: 500px;
     }
+
+    /* Ajuste de altura para imágenes en tablets/phone grandes */
+    .suceso-imagen {
+        height: 180px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -2080,7 +2083,7 @@ footer .text-white-50:hover {
     }
 
     .suceso-imagen {
-        height: 150px;
+        height: 150px; /* ya existía: mantenido para móviles pequeños */
     }
 
     .logos-container {
@@ -2148,7 +2151,7 @@ footer .text-white-50:hover {
     position: relative;
 }
 
-.equipo-foto {
+.suceso-imagen img {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -2636,13 +2639,6 @@ footer .text-white-50:hover {
 
 .fausto-pretitulo {
     display: block;
-    color: var(--color-gris-medio);
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 5px;
 }
 
 .fausto-nombre {
@@ -3457,24 +3453,3 @@ footer .text-white-50:hover {
     overflow: hidden;
 }
 
-/* Responsive */
-@media (max-width: 991.98px) {
-    .contacto-info-wrapper {
-        margin-bottom: 2rem;
-    }
-
-    .formulario-contacto-card {
-        padding: 2rem;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .contacto-info-wrapper,
-    .formulario-contacto-card {
-        padding: 1.5rem;
-    }
-
-    .formulario-titulo {
-        font-size: 1.5rem;
-    }
-}
