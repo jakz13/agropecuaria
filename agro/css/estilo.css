@@ -3490,7 +3490,7 @@ footer .text-white-50:hover {
     max-width: 100%;
     height: auto;
     object-fit: contain;
-    background: rgba(227, 242, 253, 0.6);
+    background: rgb(209, 209, 209);
     border: 2px solid rgba(20, 91, 171, 0.2);
     border-radius: 15px;
     padding: 1.5rem 2rem;
