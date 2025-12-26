@@ -24,6 +24,40 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
+    // Cargar el footer si existe el contenedor
+    function cargarFooter() {
+        const footerContainer = document.getElementById('FooterContainer');
+        if (!footerContainer) return;
+
+        fetch('complementos/footer.html')
+            .then(response => {
+                if (!response.ok) throw new Error('No se pudo cargar el footer');
+                return response.text();
+            })
+            .then(html => {
+                footerContainer.innerHTML = html;
+                // Actualizar el año automáticamente
+                actualizarAnioFooter();
+            })
+            .catch(err => {
+                console.error('Error al cargar el footer:', err);
+                footerContainer.innerHTML = '<p>Error cargando el footer</p>';
+            });
+    }
+
+    // Actualizar el año del copyright automáticamente
+    function actualizarAnioFooter() {
+        const anioActual = new Date().getFullYear();
+        const copyrightElements = document.querySelectorAll('footer p');
+
+        copyrightElements.forEach(element => {
+            if (element.textContent.includes('©')) {
+                // Reemplazar cualquier año de 4 dígitos después de © con el año actual
+                element.textContent = element.textContent.replace(/©\s*\d{4}/, `© ${anioActual}`);
+            }
+        });
+    }
+
     // Calcula y aplica la altura de la navbar
     function ajustarAlturaNavbar() {
         const nav = document.querySelector('.navbar-moderna');
@@ -106,12 +140,9 @@ document.addEventListener('DOMContentLoaded', function () {
         return ('' + num).replace(/[^+\d]/g, '');
     }
 
-    // Configuración central del número de WhatsApp (siempre definida por whatsapp-config.js antes de main.js)
-    // FUNCIÓN DEL CARRUSEL CÍCLICO ELIMINADA
-    // Ya no es necesaria porque ahora las categorías son estáticas
-
     // Inicialización principal
     cargarNavbar();
+    cargarFooter(); // ← NUEVO: Cargar el footer
 
     if (document.querySelector('.navbar-moderna')) {
         if (window.inicializarNavegacion) window.inicializarNavegacion();
