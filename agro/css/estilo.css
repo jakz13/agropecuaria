@@ -3106,18 +3106,23 @@ footer .text-white-50:hover {
    TARJETAS CON EFECTO FLIP - ACCIONES
    ======================================== */
 
+/* ========================================
+   TARJETAS CON EFECTO FLIP - ACCIONES
+   SECCIÓN COMPLETA CORREGIDA
+   ======================================== */
+
 .accion-flip-container {
     perspective: 1000px;
     height: 100%;
-    min-height: 700px; /* Aumentado para dar más espacio */
-    position: relative; /* IMPORTANTE */
+    min-height: 700px;
+    position: relative;
 }
 
 .accion-flip-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    min-height: 600px; /* Asegura altura mínima */
+    min-height: 600px;
     text-align: center;
     transition: transform 0.8s;
     transform-style: preserve-3d;
@@ -3132,12 +3137,12 @@ footer .text-white-50:hover {
     position: absolute;
     width: 100%;
     height: 100%;
-    min-height: 600px; /* Altura mínima consistente */
+    min-height: 600px;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     border-radius: 20px;
-    top: 0; /* IMPORTANTE: Fija la posición */
-    left: 0; /* IMPORTANTE: Fija la posición */
+    top: 0;
+    left: 0;
 }
 
 .accion-flip-front {
@@ -3160,7 +3165,7 @@ footer .text-white-50:hover {
     display: flex;
     flex-direction: column;
     position: relative;
-    padding-bottom: 20rem; /* Más espacio para el botón */
+    padding-bottom: 5rem;
 }
 
 /* Ajustar el contenido de la tarjeta frontal */
@@ -3168,16 +3173,21 @@ footer .text-white-50:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
+    margin-bottom: 1rem;
 }
 
 .accion-flip-front .accion-descripcion {
-    flex: 1; /* Permite que el texto se expanda */
+    margin-bottom: 1rem;
+}
+
+.accion-flip-front .accion-impacto {
+    margin-bottom: 1.5rem;
 }
 
 /* Botón para voltear - POSICIÓN FIJA */
 .btn-flip {
     position: absolute;
-    bottom: 1rem; /* Más espacio desde abajo */
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
@@ -3279,14 +3289,24 @@ footer .text-white-50:hover {
     opacity: 1;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE PARA TARJETAS FLIP */
 @media (max-width: 991.98px) {
     .accion-flip-container,
     .accion-flip-inner,
     .accion-flip-front,
-    .accion-flip-back,
+    .accion-flip-back {
+        min-height: 700px;
+    }
+
     .accion-flip-front .accion-card {
-        min-height: 570px;
+        min-height: 700px;
+        padding-bottom: 5.5rem;
+    }
+
+    .btn-flip {
+        bottom: 2rem;
+        padding: 11px 22px;
+        font-size: 0.88rem;
     }
 
     .galeria-momentos {
@@ -3302,13 +3322,39 @@ footer .text-white-50:hover {
     .accion-flip-container,
     .accion-flip-inner,
     .accion-flip-front,
-    .accion-flip-back,
+    .accion-flip-back {
+        min-height: 780px;
+    }
+
     .accion-flip-front .accion-card {
-        min-height: 550px;
+        min-height: 780px;
+        padding: 2rem 1.8rem;
+        padding-bottom: 6rem;
+    }
+
+    .accion-titulo {
+        font-size: 1.4rem;
+        margin-bottom: 0.9rem;
+    }
+
+    .accion-descripcion {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 1rem;
+    }
+
+    .accion-impacto {
+        padding: 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .accion-impacto span {
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 
     .accion-flip-container {
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
     }
 
     .accion-flip-back {
@@ -3318,7 +3364,7 @@ footer .text-white-50:hover {
     .btn-flip {
         padding: 10px 20px;
         font-size: 0.85rem;
-        bottom: 1.5rem;
+        bottom: 2rem;
     }
 }
 
@@ -3326,9 +3372,53 @@ footer .text-white-50:hover {
     .accion-flip-container,
     .accion-flip-inner,
     .accion-flip-front,
-    .accion-flip-back,
+    .accion-flip-back {
+        min-height: 850px;
+    }
+
     .accion-flip-front .accion-card {
-        min-height: 520px;
+        min-height: 850px;
+        padding: 1.8rem 1.5rem;
+        padding-bottom: 7rem;
+    }
+
+    .accion-icono {
+        width: 70px;
+        height: 70px;
+        font-size: 1.7rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .accion-categoria {
+        font-size: 0.8rem;
+        padding: 5px 14px;
+        margin-bottom: 0.9rem;
+    }
+
+    .accion-titulo {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .accion-descripcion {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        margin-bottom: 0.9rem;
+    }
+
+    .accion-impacto {
+        padding: 0.9rem;
+        gap: 10px;
+        margin-bottom: 1rem;
+    }
+
+    .accion-impacto i {
+        font-size: 1.1rem;
+    }
+
+    .accion-impacto span {
+        font-size: 0.85rem;
+        line-height: 1.4;
     }
 
     .galeria-momentos {
@@ -3341,8 +3431,8 @@ footer .text-white-50:hover {
     }
 
     .btn-flip {
-        bottom: 1rem;
-        padding: 8px 16px;
+        bottom: 2rem;
+        padding: 9px 18px;
         font-size: 0.8rem;
     }
 }
