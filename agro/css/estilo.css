@@ -443,6 +443,9 @@ section {
     .servicio-caracteristicas {
         text-align: center;
     }
+
+    /* Ajuste: subir ligeramente los indicadores para evitar choque con controles */
+    .carrusel-indicadores { bottom: -28px; }
 }
 
 @keyframes aparecer {
@@ -808,6 +811,9 @@ section {
         width: 40px;
         height: 40px;
     }
+
+    /* Ajuste: subir ligeramente los indicadores para evitar choque con controles */
+    .carrusel-indicadores { bottom: -28px; }
 }
 
 @media (max-width: 576px) {
@@ -842,6 +848,9 @@ section {
         height: 35px;
         font-size: 1rem;
     }
+
+    /* Ajuste: indicadores más cerca en móviles muy pequeños */
+    .carrusel-indicadores { bottom: -18px; }
 }
 
 footer h5 {
@@ -1263,8 +1272,9 @@ footer .text-white-50:hover {
 
 .categoria-descripcion {
     font-family: 'Lora', serif;
-    color: var(--color-azul-oscuro);
-    font-size: 0.95rem;
+    color: #000000;
+    font-weight: 700;
+    font-size: 1.2rem;
     line-height: 1.5;
     margin-bottom: 20px;
 }
@@ -1404,9 +1414,9 @@ footer .text-white-50:hover {
     bottom: 0;
     background: linear-gradient(
             to right,
-            rgba(255, 255, 255, 0.95) 0%,
-            rgba(255, 255, 255, 0.85) 40%,
-            rgba(255, 255, 255, 0.4) 70%,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0.6) 25%,
+            rgba(255, 255, 255, 0.4) 55%,
             transparent 100%
     );
     display: flex;
@@ -1415,12 +1425,20 @@ footer .text-white-50:hover {
     transition: background 0.3s ease;
 }
 
+.parrafo-sobre-imagen {
+    background-color: rgba(255, 255, 255, 0.9); /* 90% opaco */
+    color: #000000;
+    padding: 20px;
+    border-radius: 8px;
+    backdrop-filter: blur(2px); /* efecto difuminado moderno */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
 .categoria-card-optimizada:hover .categoria-overlay {
     background: linear-gradient(
             to right,
-            rgba(255, 255, 255, 0.98) 0%,
-            rgba(255, 255, 255, 0.9) 40%,
-            rgba(255, 255, 255, 0.5) 70%,
+            rgba(255, 255, 255, 0.8) 0%,
+            rgba(255, 255, 255, 0.6) 60%,
+            rgba(255, 255, 255, 0.4) 80%,
             transparent 100%
     );
 }
@@ -1772,16 +1790,19 @@ footer .text-white-50:hover {
 
 /* Contenedor principal del carrusel - MODIFICADO */
 .historia-carrusel-wrapper {
-    max-width: 1000px; /* Más ancho para las flechas fuera */
+    max-width: 900px; /* Más ancho para las flechas fuera */
     margin: 0 auto;
-    padding: 2rem 60px; /* Más padding para las flechas */
+    /* Padding lateral responsive: usar porcentajes para adaptarse mejor en móviles */
+    padding: 2rem 4%;
     position: relative;
 }
 
 .carrusel-container {
     position: relative;
-    overflow: hidden; /* Cambiado a visible */
-    min-height: 500px;
+    /* permitir que elementos (flechas fuera) se muestren sin recortes */
+    overflow: hidden;
+    /* reducir min-height por defecto para no forzar espacios gigantes en móviles */
+    min-height: 420px;
 }
 
 /* Slides */
@@ -1807,6 +1828,9 @@ footer .text-white-50:hover {
     position: relative;
     height: 100%;
     margin: 0 10px; /* Espacio para las flechas */
+    /* Hacer la tarjeta un contenedor flex para que la imagen y el contenido se adapten verticalmente */
+    display: flex;
+    flex-direction: column;
 }
 
 .suceso-card::before {
@@ -1826,7 +1850,9 @@ footer .text-white-50:hover {
 
 .suceso-imagen {
     width: 100%;
-    height: 340px; /* tamaño razonable en desktop */
+    /* permitir que la imagen tenga un max-height en desktop pero sea flexible en móviles */
+    max-height: 340px; /* tamaño razonable en desktop */
+    height: auto;
     overflow: hidden; /* recorta la imagen para mantener proporción */
     background: linear-gradient(135deg, var(--color-secundario), var(--color-detalle));
     display: block;
@@ -1837,6 +1863,8 @@ footer .text-white-50:hover {
 
 .suceso-contenido {
     padding: 2rem;
+    /* permitir crecer para ocupar el espacio restante en la tarjeta flexible */
+    flex: 1 1 auto;
 }
 
 .suceso-titulo {
@@ -2053,9 +2081,13 @@ footer .text-white-50:hover {
         max-width: 500px;
     }
 
+    /* Ajuste: subir ligeramente los indicadores para evitar choque con controles */
+    .carrusel-indicadores { bottom: -28px; }
+
     /* Ajuste de altura para imágenes en tablets/phone grandes */
     .suceso-imagen {
-        height: 180px;
+        max-height: 180px;
+        height: auto;
     }
 }
 
@@ -2071,16 +2103,19 @@ footer .text-white-50:hover {
     }
 
     .carrusel-control.prev {
-        left: -30px;
+        left: -10px;
     }
 
     .carrusel-control.next {
-        right: -30px;
+        right: -10px;
     }
 
     .suceso-contenido {
         padding: 1.5rem;
     }
+
+    /* Ajuste: indicadores más cerca en móviles muy pequeños */
+    .carrusel-indicadores { bottom: -18px; }
 
     .suceso-imagen {
         height: 150px; /* ya existía: mantenido para móviles pequeños */
@@ -3255,9 +3290,14 @@ footer .text-white-50:hover {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
-    aspect-ratio: 1;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
+    width: 100%; /* Asegurar que ocupe todo el ancho disponible */
+    aspect-ratio: 1; /* CUADRADO PERFECTO */
+    background: var(--color-gris-claro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .momento-foto:hover {
@@ -3265,10 +3305,25 @@ footer .text-white-50:hover {
 }
 
 .momento-foto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; /* Cambiar de 80% a 100% para que ocupe todo el espacio */
+    height: 100%; /* Cambiar de 80% a 100% */
+    object-fit: contain; /* Cambiar de "cover" a "contain" para ver la imagen completa */
+    transition: transform 0.5s ease;
+    background: #f5f5f5; /* Fondo para las áreas vacías si la imagen no es cuadrada */
 }
+
+/* Ajustar la galería para que tenga más espacio vertical */
+.galeria-momentos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Aumentar el espacio entre fotos */
+    flex: 1;
+    margin-bottom: 1.5rem;
+    height: auto; /* Cambiar a auto para mejor adaptación */
+    min-height: 400px;
+    justify-content: flex-start; /* Alinear al inicio */
+}
+
 
 .momento-caption {
     position: absolute;
@@ -3277,7 +3332,7 @@ footer .text-white-50:hover {
     right: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
     color: var(--color-blanco);
-    padding: 0.8rem 0.5rem 0.5rem;
+    padding: 0.8rem 0.5rem 0.3rem;
     font-size: 0.75rem;
     font-weight: 600;
     text-align: center;
@@ -3431,7 +3486,6 @@ footer .text-white-50:hover {
     }
 
     .btn-flip {
-        bottom: 2rem;
         padding: 9px 18px;
         font-size: 0.8rem;
     }
@@ -3461,7 +3515,7 @@ footer .text-white-50:hover {
 .contacto-item-icono {
     width: 45px;
     height: 45px;
-    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    background: linear-gradient(135deg, #145BABFF 0%, #0d47a1 100%);
     border-radius: 12px;
     display: flex;
     align-items: center;
@@ -3470,6 +3524,19 @@ footer .text-white-50:hover {
     font-size: 1.2rem;
     margin-right: 1rem;
     flex-shrink: 0;
+}
+.red-social-btn {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--color-secundario) 0%, #0d47a1 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blanco);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
 }
 
 .contacto-item strong {
@@ -3648,7 +3715,6 @@ footer .text-white-50:hover {
 
 /* ============================================== */
 /* CSS ADICIONAL PARA PÁGINA DE CONTACTO */
-/* Agregar estos estilos a estilo.css */
 /* ============================================== */
 
 /* Tarjetas de ubicación */
@@ -3738,8 +3804,8 @@ footer .text-white-50:hover {
     gap: 1rem;
     flex: 1;
     margin-bottom: 1.5rem;
-    height: 100%;
-    min-height: 300px;
+    height: 80%;
+    min-height: 200px;
 }
 
 /* Todas las fotos son cuadradas */
@@ -3749,7 +3815,7 @@ footer .text-white-50:hover {
     border-radius: 12px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
-    width: 100%;
+    width: 80%;
     aspect-ratio: 1; /* CUADRADO PERFECTO */
     background: var(--color-gris-claro);
     display: flex;
@@ -3758,8 +3824,8 @@ footer .text-white-50:hover {
 }
 
 .momento-foto img {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 80%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
@@ -3796,8 +3862,8 @@ footer .text-white-50:hover {
 /* CUANDO HAY CUATRO FOTOS - GRID 2x2 */
 .galeria-momentos.cuatro-fotos {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(1, 3fr);
+    grid-auto-rows: 1fr;
     gap: 1rem;
     height: 100%;
 }
@@ -3900,7 +3966,7 @@ footer .text-white-50:hover {
     /* En móvil, 4 fotos también se ponen en columna */
     .galeria-momentos.cuatro-fotos {
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
+        grid-template-rows: repeat(3, 1fr);
         gap: 0.8rem;
     }
 
@@ -3928,5 +3994,85 @@ footer .text-white-50:hover {
     .btn-flip-back {
         padding: 8px 20px;
         font-size: 0.85rem;
+    }
+}
+
+/* Fix: centrar slides y tarjetas del carrusel de historia en móviles */
+@media (max-width: 767.98px) {
+    /* Asegurar padding lateral cómodo */
+    .historia-carrusel-wrapper {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    /* Contenedor del carrusel ocupa todo el ancho disponible y se centra */
+    .carrusel-container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0 auto;
+    }
+
+    /* Cada slide se convierte en flex y centra su contenido horizontalmente */
+    .historia-slide {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+
+    /* Limitar ancho de la tarjeta para que no pegue al borde */
+    .suceso-card {
+        max-width: 760px; /* ancho cómodo en móviles grandes */
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .historia-carrusel-wrapper {
+        padding-left: 6%;
+        padding-right: 6%;
+    }
+
+    .suceso-card {
+        max-width: 640px; /* más estrecho en móviles pequeños */
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    /* Reducir gaps internos de slide para ocupar mejor el espacio */
+    .historia-slide {
+        padding: 0 6px;
+    }
+}
+
+/* Estilos para la marca del desarrollador */
+.desarrollador-marca {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.desarrollador-marca:hover {
+    opacity: 1;
+}
+
+.desarrollador-marca a:hover {
+    color: var(--color-secundario) !important;
+}
+
+/* Asegurar que no interfiera en móviles */
+@media (max-width: 768px) {
+    .desarrollador-marca {
+        position: relative !important;
+        bottom: auto !important;
+        left: auto !important;
+        margin-top: 1rem;
+        padding: 1rem !important;
+        text-align: center;
+        width: 100%;
+    }
+
+    .desarrollador-marca .d-flex {
+        justify-content: center;
     }
 }

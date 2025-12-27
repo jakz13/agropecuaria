@@ -1,5 +1,5 @@
 <!-- Footer - complementos/footer.html -->
-<footer class="bg-dark text-white">
+<footer class="bg-dark text-white position-relative"> <!-- Agrega position-relative aquí -->
     <div class="container py-5">
         <div class="row">
             <!-- Primera columna - Información general -->
@@ -91,14 +91,68 @@
         </div>
     </div>
 
-    <div class="border-top border-secondary">
-        <div class="container py-4">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
-                    <p class="mb-0 small">&copy; 2025 Sociedad Fomento Rural Colonia Suiza. Todos los derechos reservados.</p>
+    <!-- MARCA DE AGUA DEL DESARROLLADOR - Versión simplificada -->
+    <div class="container">
+        <div class="desarrollador-info py-2 border-top border-secondary">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <!-- Información del desarrollador -->
+                <div class="d-flex align-items-center mb-2 mb-md-0">
+                    <!-- Logo clickeable con modal -->
+                    <button type="button" class="btn p-0 me-2 border-0 bg-transparent"
+                            data-bs-toggle="modal" data-bs-target="#logoModal"
+                            style="width: 54px; height: 54px; cursor: zoom-in;">
+                        <img src="complementos/imagenes/JF_Logo.png"
+                             alt="Logo Desarrollador Web"
+                             class="img-fluid rounded-circle"
+                             style="width: 100%; height: 100%; object-fit: contain; background: white; padding: 4px; transition: transform 0.3s ease;">
+                    </button>
+
+                    <!-- Texto -->
+                    <div class="text-white-50" style="font-size: 0.8rem;">
+                        <span class="me-1">Diseño web por</span>
+                        <strong class="text-white">Felipe Bernardi y Anthony Curbelo</strong>
+                        <div class="mt-1">
+                            <a href="mailto:feli.bernardi06@gmail.com?subject=Consulta%20Desarrollo%20Web%20%7C%20SFRCS"
+                               class="text-white-50 text-decoration-none me-3"
+                               title="Contactar a Felipe">
+                                <i class="fas fa-envelope me-1"></i>
+                                feli.bernardi06@gmail.com
+                            </a>
+                            <a href="mailto:curbelo484@gmail.com?subject=Consulta%20Desarrollo%20Web%20%7C%20SFRCS"
+                               class="text-white-50 text-decoration-none"
+                               title="Contactar a Anthony">
+                                <i class="fas fa-envelope me-1"></i>
+                                curbelo484@gmail.com
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 small">Fomento de todos</p>
+
+                <!-- Derechos reservados -->
+                <div class="text-center text-md-end">
+                    <p class="mb-0 small text-white-50">&copy; 2025 Sociedad Fomento Rural Colonia Suiza</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar logo ampliado -->
+    <div class="modal fade" id="logoModal" tabindex="-1" aria-labelledby="logoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content bg-dark border-0">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white" id="logoModalLabel">Logo - Desarrolladores Web</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <img src="complementos/imagenes/JF_Logo.png"
+                         alt="Logo Desarrollador Web Ampliado"
+                         class="img-fluid rounded-circle"
+                         style="max-width: 300px; width: 100%; background: white; padding: 15px;">
+                    <div class="mt-3">
+                        <p class="text-white mb-1">Diseño y desarrollo web</p>
+                        <p class="text-white-50 mb-0 small">Felipe Bernardi & Anthony Curbelo</p>
+                    </div>
                 </div>
             </div>
         </div>
