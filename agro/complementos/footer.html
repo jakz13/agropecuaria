@@ -93,39 +93,39 @@
 
     <!-- MARCA DE AGUA DEL DESARROLLADOR - Versión simplificada -->
     <div class="container">
-        <div class="desarrollador-info py-2 border-top border-secondary" style="padding-right: 50px !important;">
+        <div class="desarrollador-info py-2 border-top border-secondary">
             <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
                 <!-- Información del desarrollador -->
                 <div class="d-flex align-items-center mb-2 mb-md-0">
-                    <!-- Logo clickeable con modal -->
-                    <button type="button" class="btn p-0 me-2 border-0 bg-transparent"
-                            data-bs-toggle="modal" data-bs-target="#logoModal"
-                            style="width: 54px; height: 54px; cursor: zoom-in;">
+                    <!-- Logo -->
+                    <div class="me-2" style="width: 54px; height: 54px;">
                         <img src="complementos/imagenes/JF_Logo.png"
                              alt="Logo Desarrollador Web"
                              class="img-fluid rounded-circle"
-                             style="width: 100%; height: 100%; object-fit: contain; background: white; padding: 4px; transition: transform 0.3s ease;">
-                    </button>
+                             style="width: 100%; height: 100%; object-fit: contain; background: white; padding: 4px;">
+                    </div>
 
                     <!-- Texto -->
                     <div class="text-white-50" style="font-size: 0.8rem;">
                         <span class="me-1">Diseño web por</span>
-                        <strong class="text-white">Anthony Curbelo y Felipe Bernardi</strong>
-                        <div class="mt-1">
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=curbelo484@gmail.com&su=Consulta%20Desarrollo%20Web&body=Hola,%0D%0A%0D%0AMe%20comunico%20por%20una%20consulta%20sobre%20desarrollo%20web.%0D%0A%0D%0ASaludos,"
-                               target="_blank"
-                               class="text-white-50 text-decoration-none"
-                               title="Abrir Gmail para contactar a Felipe">
-                                <i class="fas fa-envelope me-1"></i>
-                                curbelo484@gmail.com
-                            </a>
-                        </div>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=feli.bernardi06@gmail.com&su=Consulta%20Desarrollo%20Web&body=Hola,%0D%0A%0D%0AMe%20comunico%20por%20una%20consulta%20sobre%20desarrollo%20web.%0D%0A%0D%0ASaludos,"
-                               target="_blank"
-                               class="text-white-50 text-decoration-none"
-                               title="Abrir Gmail para contactar a Felipe">
+                        <strong class="text-white">Felipe Bernardi y Anthony Curbelo</strong>
+                        <div class="mt-1 d-flex flex-wrap gap-2">
+                            <!-- Email Felipe - Enlace inteligente -->
+                            <a href="#"
+                               onclick="return openSmartEmail('feli.bernardi06@gmail.com', 'Consulta Desarrollo Web | SFRCS')"
+                               class="text-white-50 text-decoration-none email-link"
+                               title="Contactar a Felipe">
                                 <i class="fas fa-envelope me-1"></i>
                                 feli.bernardi06@gmail.com
+                            </a>
+
+                            <!-- Email Anthony - Enlace inteligente -->
+                            <a href="#"
+                               onclick="return openSmartEmail('curbelo484@gmail.com', 'Consulta Desarrollo Web | SFRCS')"
+                               class="text-white-50 text-decoration-none email-link"
+                               title="Contactar a Anthony">
+                                <i class="fas fa-envelope me-1"></i>
+                                curbelo484@gmail.com
                             </a>
                         </div>
                     </div>
@@ -137,6 +137,91 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // Detectar si es dispositivo móvil
+            function isMobileDevice() {
+                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+
+            // Función principal para abrir email inteligentemente
+            function openSmartEmail(email, subject) {
+                if (isMobileDevice()) {
+                    // En móvil: usar mailto (funciona bien)
+                    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+                    window.location.href = mailtoLink;
+                } else {
+                    // En PC: abrir Gmail web directamente
+                    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(getEmailBody())}`;
+                    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+                }
+                return false; // Prevenir comportamiento por defecto
+            }
+
+            // Cuerpo del email predeterminado
+            function getEmailBody() {
+                return `Hola equipo de desarrollo web,
+
+Me comunico desde el sitio web de Sociedad Fomento Rural Colonia Suiza.
+
+[Por favor, cuéntenos sobre su proyecto]
+
+- Tipo de proyecto:
+- Presupuesto estimado:
+- Plazo de entrega:
+
+Saludos cordiales,
+[Nombre y apellido]`;
+            }
+
+            // Versión alternativa con enlaces href directos (sin onclick)
+            function setupSmartEmailLinks() {
+                document.querySelectorAll('.smart-email').forEach(link => {
+                    const email = link.getAttribute('data-email');
+                    const subject = link.getAttribute('data-subject') || 'Consulta Desarrollo Web';
+
+                    if (isMobileDevice()) {
+                        // Móvil: mailto
+                        link.href = `mailto:${email}?subject=${encodeURIComponent(subject)}`;
+                    } else {
+                        // PC: Gmail web
+                        link.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}`;
+                        link.target = '_blank';
+                        link.rel = 'noopener noreferrer';
+                    }
+                });
+            }
+
+            // Ejecutar al cargar la página
+            document.addEventListener('DOMContentLoaded', function() {
+                setupSmartEmailLinks();
+            });
+        </script>
+
+        <style>
+            .email-link {
+                transition: all 0.3s ease;
+                border-bottom: 1px dashed transparent;
+                display: inline-flex;
+                align-items: center;
+            }
+
+            .email-link:hover {
+                color: var(--color-secundario) !important;
+                border-bottom-color: var(--color-secundario);
+                transform: translateY(-1px);
+            }
+
+            /* Indicador visual para PC */
+            @media (min-width: 769px) {
+                .email-link::after {
+                    content: " ↗";
+                    font-size: 0.7em;
+                    opacity: 0.7;
+                    margin-left: 2px;
+                }
+            }
+        </style>
     </div>
 
     <!-- Modal para mostrar logo ampliado -->
