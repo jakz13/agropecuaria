@@ -3300,10 +3300,6 @@ footer .text-white-50:hover {
     justify-content: center;
 }
 
-.momento-foto:hover {
-    transform: scale(1.05);
-}
-
 .momento-foto img {
     width: 100%; /* Cambiar de 80% a 100% para que ocupe todo el espacio */
     height: 100%; /* Cambiar de 80% a 100% */
@@ -3522,7 +3518,7 @@ footer .text-white-50:hover {
     justify-content: center;
     color: var(--color-blanco);
     font-size: 1.2rem;
-    margin-right: 1rem;
+    margin-right: 0.6rem;
     flex-shrink: 0;
 }
 .red-social-btn {
@@ -4075,4 +4071,32 @@ footer .text-white-50:hover {
     .desarrollador-marca .d-flex {
         justify-content: center;
     }
+}
+
+/* Forzar iconos sólidos y legibles en la página de contacto */
+.contacto-item-icono i,
+.contacto-item-icono svg,
+.red-social-btn i,
+.ubicacion-header i,
+.contacto-info-wrapper .fa,
+.contacto-items-lista .contacto-item i {
+    color: #ffffff !important; /* icono blanco sólido */
+    opacity: 1 !important; /* asegurar opacidad completa */
+    filter: none !important;
+    text-shadow: none !important;
+}
+
+.ubicacion-header h2 i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: var(--color-secundario); /* fondo azul sólido */
+    color: #ffffff !important; /* dibujo en blanco puro */
+    border-radius: 8px;
+    margin-right: 0.6rem;
+    font-size: 1rem;
+    box-shadow: 0 6px 16px rgba(20,91,171,0.18);
+    opacity: 1 !important;
 }
